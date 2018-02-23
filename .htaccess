@@ -1,0 +1,7 @@
+
+DirectoryIndex index.php
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php|assets|adminassets|robots\.txt)
+
+RewriteRule ^(.*)$ /manipurshop/index.php?$1 [L]
