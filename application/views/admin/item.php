@@ -11,7 +11,7 @@
                       <div class="notice-board">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                           Shipping Information 
+                           Item Master Information 
                                 <div class="pull-right" >
                                     <div class="dropdown">
   <button class="btn btn-success dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">

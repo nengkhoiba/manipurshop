@@ -11,7 +11,7 @@
                       <div class="notice-board">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                           Shipping Information 
+                           Brand Information 
                                 <div class="pull-right" >
                                     <div class="dropdown">
   <button class="btn btn-success dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -25,52 +25,21 @@
 </div>
                                 </div>
                             </div>
-                            <!-- start data shipping -->
-                            
-                             <div class="table-responsive">
-                               <div id="data_container">
-                               
-                               </div>
-                            </div>
-                            
-                            <!-- end data shipping -->
+                         
                             
                             
                             <div class="panel-body">
                                
-                                <ul >
-                                   
-                                     <li>
-                                            <a href="#">
-                                     <span class="glyphicon glyphicon-align-left text-success" ></span> 
-                                                  Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                                 <span class="label label-warning" > Just now </span>
-                                            </a>
-                                    </li>
-                                     <li>
-                                          <a href="#">
-                                     <span class="glyphicon glyphicon-info-sign text-danger" ></span>  
-                                          Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                          <span class="label label-info" > 2 min chat</span>
-                                            </a>
-                                    </li>
-                                     <li>
-                                          <a href="#">
-                                     <span class="glyphicon glyphicon-comment  text-warning" ></span>  
-                                          Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                          <span class="label label-success" >GO ! </span>
-                                            </a>
-                                    </li>
-                                    <li>
-                                          <a href="#">
-                                     <span class="glyphicon glyphicon-edit  text-danger" ></span>  
-                                          Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                          <span class="label label-success" >Let's have it </span>
-                                            </a>
-                                    </li>
-                                   </a>
-                                    </li>
-                                </ul>
+                                  <!-- start data shipping -->
+                            
+		                             <div class="table-responsive">
+		                               <div id="data_container">
+		                               
+		                               </div>
+		                            </div>
+                            
+                            	<!-- end data shipping -->
+                               
                             </div>
                             <div class="panel-footer">
                                 <a href="#" class="btn btn-default btn-block"> <i class="glyphicon glyphicon-repeat"></i> Just A Small Footer Button</a>
@@ -156,36 +125,25 @@
                      <div class="Compose-Message">               
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                       Insert Shipping Info
+                       Insert Brand Info
                     </div>
-                    <div class="panel-body">
-                    	<?php echo form_open('admin/data_controller/shipping')?>  
-                     
-	                      <label>Pincode:</label>
+                    <div class="panel-body">  
+                    
+                      <?php echo form_open('admin/data_controller/brand');?>
+	                      <label>Code:</label>
 	                      <input type="hidden" name="postType" id="postType"/>
-	                      <input type="text" name="pincode" id="pincode" class="form-control" />
-	                      <label>Time:</label>
-	                      <input type="text" name="time" id="time" class="form-control" />
-	                      <label>Rate:</label>
-	                      <input type="text" name="rate" id="rate" class="form-control" />
+	                      <input type="text" name="code" id="code" class="form-control" />
+	                      <label>Description:</label>
+	                      <input type="text" name="description" id="description" class="form-control" />
 	                      <label>Added-By:</label>
 	                      <input type="text" name="added_by" id="added_by" class="form-control" />
-	                      <label>Added-On:</label>
-	                      <input type="text" name="added_on" id="added_on" class="form-control" />
-	                      <label>Modified-By:</label>
-	                      <input type="text" name="modified_by" id="modified_by" class="form-control" />
-	                      <label>Modified-On:</label>
-	                      <input type="text" name="modified_on" id="modified_on" class="form-control" />
-	                      <label>IsActive:</label>
-	                      <select id="ddlActive" name="ddlActive" class="form-control">
-	                      	<option value="1">Yes</option>
-	                      	<option value="0">No</option>
-	                      </select>
 	                      <hr/>
 	                      <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-tags"></span>  Save </a>
 	                      <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-tags"></span>  Save </a>
 						  <input type="submit" value="SaveButton"/>                   
+                   
                       <?php echo form_close();?>
+                      
                     </div>
                     <div class="panel-footer text-muted">
                         <strong>Note : </strong>Please note that we track all messages so don't send any spams.
@@ -211,7 +169,7 @@
   function search()
   {
 
-  	var url = "<?php echo site_url('admin/data_controller/load_shipping');?>";
+  	var url = "<?php echo site_url('admin/data_controller/load_brand');?>";
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {
@@ -220,7 +178,7 @@
   				if(xmlHttp.responseText != null){
   					
   					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-  					$('#shipping_data').DataTable({
+  					$('#brand_data').DataTable({
   				        dom: 'Bfrtip',
   				        buttons: [
   				            'csv', 'pdf', 'print'

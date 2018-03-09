@@ -6,9 +6,9 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('admin/home.php');
 	}
-	public function login()
+	public function brand()
 	{
-		$this->load->view('admin/login.php');
+		$this->load->view('admin/brand.php');
 	}
 	
 	

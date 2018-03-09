@@ -6,12 +6,14 @@ class Nav extends CI_Controller {
 	{
 		$this->load->view('admin/home.php');
 	}
-	public function login()
+	public function brand()
 	{
-		$this->load->view('admin/login.php');
+		$this->load->view('admin/brand.php');
 	}
 	
-	
+	public function category(){
+		$this->load->view('admin/category');
+	}
 
 }
 
