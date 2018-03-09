@@ -3,8 +3,6 @@
     <div class="content-wrapper">
         <div class="container">
            
-           	<?php $this->load->view('admin/global/dashboard.php')?>
-           
            
             <div class="row">
                 <div class="col-md-6">
@@ -160,6 +158,7 @@
  <script>
 
   $(document).ready (function(){
+	  $('#brand').addClass('menu-top-active');
 	  search();
 	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
 		});

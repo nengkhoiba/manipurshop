@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
+
     <title>Admin ManipurShop</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/bootstrap.css" rel="stylesheet" />
@@ -15,12 +13,7 @@
     <link href="<?php echo base_url();?>adminassets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/style.css" rel="stylesheet" />
-     <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   
 </head>
 <body>
     <header>
@@ -92,12 +85,10 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active" href="index.html">Dashboard</a></li>
-                            <li><a href="ui.html">UI Elements</a></li>
-                            <li><a href="table.html">Data Tables</a></li>
-                            <li><a href="forms.html">Forms</a></li>
-                             <li><a href="login.html">Login Page</a></li>
-                            <li><a href="blank.html">Blank Page</a></li>
+                            <li><a id="das" href="index.html">Dashboard</a></li>
+                            <li><a id="cat" href="<?php echo base_url();?>admin/nav/category">Category</a></li>
+                            <li><a id="brand" href="<?php echo base_url();?>admin/nav/brand">Brand</a></li>
+                            <li><a href="table.html">Pincode</a></li>
 
                         </ul>
                     </div>
