@@ -2,7 +2,7 @@
 
 class Nav extends CI_Controller {
 
-	public function index()
+	public function shipping()
 	{
 		$this->load->view('admin/shipping.php');
 	}

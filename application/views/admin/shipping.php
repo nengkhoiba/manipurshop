@@ -93,7 +93,7 @@
  <script>
 
   $(document).ready (function(){
-	  $('#cat').addClass('menu-top-active');
+	  $('#shipping').addClass('menu-top-active');
 	  search();
 	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
 		});

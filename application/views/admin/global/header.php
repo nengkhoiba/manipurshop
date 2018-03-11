@@ -88,7 +88,8 @@
                             <li><a id="das" href="index.html">Dashboard</a></li>
                             <li><a id="cat" href="<?php echo base_url();?>admin/nav/category">Category</a></li>
                             <li><a id="brand" href="<?php echo base_url();?>admin/nav/brand">Brand</a></li>
-                            <li><a href="table.html">Pincode</a></li>
+                            <li><a id="shipping" href="<?php echo base_url();?>admin/nav/shipping">Pincode</a></li>
+                            <li><a id="item" href="<?php echo base_url();?>admin/nav/item">Item</a></li>
 
                         </ul>
                     </div>
