@@ -397,6 +397,7 @@
  <script>
 
   $(document).ready (function(){
+	  $('#item').addClass('menu-top-active');
 	  search();
 	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
 		});
