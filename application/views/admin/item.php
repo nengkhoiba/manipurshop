@@ -2,6 +2,12 @@
    
     <div class="content-wrapper">
         <div class="container">
+                <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line">Item</h4>
+                </div>
+
+            </div>
             <div class="row">
             <ul class="nav nav-tabs">
 				<li class="active">

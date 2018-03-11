@@ -37,14 +37,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-
-                    <img src="<?php echo base_url();?>adminassets/img/logo.png" />
-                </a>
+             
 
             </div>
 
-            <div class="left-div">
+            <div class="left-div pull-right">
                 <div class="user-settings-wrapper">
                     <ul class="nav">
 
@@ -58,16 +55,14 @@
                                         <img src="<?php echo base_url();?>adminassets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Jhon Deo Alex </h4>
-                                        <h5>Developer & Designer</h5>
+                                        <h4 class="media-heading">Nengkhoiba</h4>
+                                        <h5>Admin</h5>
 
                                     </div>
                                 </div>
+                                
                                 <hr />
-                                <h5><strong>Personal Bio : </strong></h5>
-                                Anim pariatur cliche reprehen derit.
-                                <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
+                              <a href="#" class="btn btn-danger btn-xs">Logout</a>
 
                             </div>
                         </li>
@@ -85,7 +80,7 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a id="das" href="index.html">Dashboard</a></li>
+                            <li><a id="das" href="<?php echo base_url();?>admin/nav">Dashboard</a></li>
                             <li><a id="cat" href="<?php echo base_url();?>admin/nav/category">Category</a></li>
                             <li><a id="brand" href="<?php echo base_url();?>admin/nav/brand">Brand</a></li>
                             <li><a id="shipping" href="<?php echo base_url();?>admin/nav/shipping">Pincode</a></li>

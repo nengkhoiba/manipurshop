@@ -138,7 +138,7 @@ header {
     }
 
     .user-settings-wrapper .dropdown-menu {
-        margin: 0px;
+        margin: 0px -140px;
         border-radius: 0px!important;
         -moz-border-radius: 0px!important;
         -webkit-border-radius: 0px!important;
