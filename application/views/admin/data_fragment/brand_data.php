@@ -2,13 +2,12 @@
  <table  id="brand_data" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Ref. No.</th>
+                                            <th>ID</th>
                                             <th>Code</th>
                                             <th>Description</th>
-                                            <th>Added-By</th>
                                             <th>Added-On</th>
                                             <th>Edit</th>
-                                            
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -25,9 +24,9 @@
 			                                        	<td><?php echo $result['ID']; ?></td>
 			                                        	<td><?php echo $result['Code']; ?></td>
 			                                        	<td><?php echo $result['Description']; ?></td>
-			                                        	<td><?php echo $result['Added_by']; ?></td>
 			                                        	<td><?php echo $result['Added_on']; ?></td>
-			                                        	<td><i style="cursor: pointer;" class="fa fa-edit" onclick="edit('<?php echo $result['ID'];?>','<?php echo $result['Code'];?>')" ></i></td>
+			                                        	<td><i style="cursor: pointer;" class="fa fa-edit" onclick="edit('<?php echo $result['ID'];?>','<?php echo $result['Code'];?>','<?php echo $result['Description'];?>')" ></i></td>
+			                                        	<td><i style="cursor: pointer" onclick="remove('<?php echo $result['ID']; ?>')" class="fa fa-remove"></i></td>
 			                                        </tr>
                                        				
                                        				<?php

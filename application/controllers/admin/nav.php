@@ -4,7 +4,7 @@ class Nav extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/home.php');
+		$this->load->view('admin/shipping.php');
 	}
 	public function brand()
 	{
@@ -15,6 +15,10 @@ class Nav extends CI_Controller {
 		$this->load->view('admin/category');
 	}
 
+	public function item()
+	{
+		$this->load->view('admin/item.php');
+	}
 }
 
 	

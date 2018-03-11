@@ -3,7 +3,7 @@
         <div class="container">
          <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Brand</h4>
+                    <h4 class="page-head-line">Shipping</h4>
                 </div>
 
             </div>
@@ -30,7 +30,7 @@
                       <div class="notice-board">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                           			Brand Information 
+                           			Shipping Information 
                                 	<div class="pull-right" >
                                     <div class="dropdown">
 									  <button class="btn btn-success dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -58,17 +58,19 @@
                      <div class="Compose-Message">               
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                       Insert Brand Info
+                       Insert Shipping Info
                     </div>
                     <div class="panel-body">  
                     
-                      <?php echo form_open('admin/data_controller/brand');?>
+                      <?php echo form_open('admin/data_controller/shipping');?>
                      
-	                      <label>Code:</label>
+	                      <label>Pincode:</label>
 	                      <input type="hidden" name="postType" id="postType"/>
-	                      <input required type="text" name="code" id="code" class="form-control" />
-	                      <label>Description:</label>
-	                      <input required type="text" name="description" id="description" class="form-control" />
+	                      <input required type="text" name="pincode" id="pincode" class="form-control" />
+	                      <label>Time:</label>
+	                      <input required type="text" name="time" id="time" class="form-control" />
+	                      <label>Amount:</label>
+	                      <input required type="text" name="rate" id="rate" class="form-control" />
 	                      <hr/>
 						  <input class="btn btn-success" type="submit" value="Save"/>                   
                       
@@ -76,7 +78,7 @@
                       
                     </div>
                     <div class="panel-footer text-muted">
-                        <strong>Note : </strong>This is the brand master
+                        <strong>Note : </strong>This is the Shipping master
                     </div>
                 </div>
                      </div>
@@ -86,6 +88,7 @@
     </div>
     <!-- CONTENT-WRAPPER SECTION END-->
     <?php $this->load->view('admin/global/footer.php')?>
+  
   
  <script>
 
@@ -100,7 +103,7 @@
   function search()
   {
 
-  	var url = "<?php echo site_url('admin/data_controller/load_brand');?>";
+  	var url = "<?php echo site_url('admin/data_controller/load_shipping');?>";
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {
@@ -109,7 +112,7 @@
   				if(xmlHttp.responseText != null){
   					
   					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-  					$('#brand_data').DataTable({
+  					$('#shipping_data').DataTable({
   				        dom: 'Bfrtip',
   				        buttons: [
   				            'csv', 'pdf', 'print'
@@ -126,17 +129,18 @@
   	catch(error) {}
   	}
   	}
-	function edit(id,code,description)
+	function edit(id,pincode,time,rate)
 	{
-		document.getElementById('description').value=description;
-		document.getElementById('code').value=code;
+		document.getElementById('time').value=time;
+		document.getElementById('rate').value=rate;
+		document.getElementById('pincode').value=pincode;
 		document.getElementById('postType').value=id;
 		
 	}
 	function remove(id){
 
 		if(confirm("Confirm Delete?")){
-	  	var url = "<?php echo site_url('admin/data_controller/deleteBrand?id=');?>"+id;
+	  	var url = "<?php echo site_url('admin/data_controller/deleteShipping?id=');?>"+id;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -159,4 +163,4 @@
 		}
 	}
   </script>
-     
+      
