@@ -68,7 +68,14 @@
 										  <span class="input-group-addon" id="sizing-addon1">Item Description</span>
 										  <input id="itemDesc" name="itemDesc" type="text" class="form-control" placeholder="Item Description" aria-describedby="sizing-addon1">
 										</div>
-					                      
+										<div class="input-group form-group input-group-sm">
+										  <span class="input-group-addon" id="sizing-addon1">Item Stock</span>
+										  <input id="itemStock" name="itemStock" type="text" class="form-control" placeholder="Item Stock" aria-describedby="sizing-addon1">
+										</div>
+					                     <div class="input-group form-group input-group-sm">
+										  <span class="input-group-addon" id="sizing-addon1">Delivery Time</span>
+										  <input id="itemDelivery" name="itemDelivery" type="text" class="form-control" placeholder="In Hours" aria-describedby="sizing-addon1">
+										</div>
 					              		 <a href="#" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
 				                     
 				                    </div>
@@ -235,63 +242,6 @@
 										  </div>
 										  
 									
-				                    </div>
-				                    </div>
-			                  
-			                </div>
-			  			</div>
-			  				<div class="Compose-Message">               
-			                	<div class="panel panel-info">
-				                    <div class="panel-heading">
-				                       ITEM STOCK
-				                    </div>
-				                    <div class="panel-body">
-				                     <div class="row">
-				                     <div class="container">
-				                     	<div class="input-group form-group input-group-sm">
-										  <span class="input-group-addon" id="sizing-addon1">Number of stock</span>
-										  <input id="itemStock" name="itemStock" type="text" class="form-control" placeholder="Qnty" aria-describedby="sizing-addon1">
-										</div>
-										<div class="input-group form-group input-group-sm ">
-										  <span class="input-group-addon" id="sizing-addon1">Description</span>
-										  <input id="itemStockDescription" name="itemDetailDescription" type="text" class="form-control" placeholder="Description" aria-describedby="sizing-addon1">
-										</div>
-				                     
-										<div class="form-group">
-					              		 <a href="#" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
-				                     	</div>
-				                     	</div>
-				                     	</div>
-				                     	<br>
-				                     	<div class="row">
-				                     	<div class="container">
-				                     <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Sl No.</th>
-                                            <th>Stock</th>
-                                            <th>Description</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        <tr>
-                                            <td>#01</td>
-                                            <td>
-                                                <label class="label label-success">300 Qty </label>
-                                            </td>
-			                                <td> From xyz supplier</td>
-                                            <td><i style="cursor: pointer;" class="fa fa-edit" ></i></td>
-			                                <td><i style="cursor: pointer" class="fa fa-remove"></i></td>
-                                        </tr>
-                           
-                                    </tbody>
-                                </table>
-                            </div>
-                            </div>
 				                    </div>
 				                    </div>
 			                  
