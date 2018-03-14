@@ -76,7 +76,7 @@
 										  <span class="input-group-addon" id="sizing-addon1">Delivery Time</span>
 										  <input id="itemDelivery" name="itemDelivery" type="text" class="form-control" placeholder="In Hours" aria-describedby="sizing-addon1">
 										</div>
-					              		 <a href="#" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
+					              		 <a href="#" onclick="itemdetailsSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
 				                     
 				                    </div>
 			                    <div class="panel-footer text-muted">
@@ -94,10 +94,10 @@
 				                     <div class="container">
 					                     <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Item Price</span>
-										  <input id="itemPrice" name="itemPrice" type="text" class="form-control" placeholder="Price" aria-describedby="sizing-addon1">
+										  <input disabled id="itemPrice" name="itemPrice" type="text" class="form-control" placeholder="Price" aria-describedby="sizing-addon1">
 										</div>
 										<div class="form-group">
-					              		 <a href="#" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
+					              		 <a href="#" disabled class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
 				                     	</div>
 				                     	</div>
 				                     	</div>
@@ -351,13 +351,34 @@
     <?php $this->load->view('admin/global/footer.php')?>
   
  <script>
-
+var itemID=0;
   $(document).ready (function(){
 	  $('#item').addClass('menu-top-active');
 	  search();
 	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
 		});
   });
+
+
+  function itemdetailsSave() {
+	  ///insert loading animation here
+	  var url = '<?php echo base_url();?>register/candidateRegister?canfirstName='+document.getElementById('canfirstName').value+'&canLastname='+document.getElementById('canLastname').value+'&CanEmail='+document.getElementById('CanEmail').value+'&canPh='+document.getElementById('canPh').value+'&canPass='+document.getElementById('canPass').value;
+	  callServiceToFetchData(url,serverReplyCAndaidateeReg);
+	  }
+
+  
+	  function serverReplyCAndaidateeReg(response){
+	  var sqlresponse = JSON.parse(response);
+		  if(sqlresponse.status === "success"){
+		  	//stop animation
+			  itemID=sqlresponse.ItemID;
+		  	//enable the other sections here
+			  	$('#itemPrice').attr.remove("disabled");
+		  }
+	  }
+
+
+
   
   
   function search()
