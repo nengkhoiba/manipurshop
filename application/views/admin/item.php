@@ -9,6 +9,9 @@
 
             </div>
             <div class="row">
+             <div id="msgbox" class="col-md-12">
+                    
+                </div>
             <ul class="nav nav-tabs">
 				<li class="active">
 	        		<a href="#1" data-toggle="tab">Item master</a>
@@ -22,7 +25,7 @@
 			<br>
 			  <div class="tab-pane active" id="1">
 			  	                  
-				               
+				 
 		                     <div class="Compose-Message">               
 			                	<div class="panel panel-warning">
 				                    <div class="panel-heading">
@@ -60,6 +63,10 @@
                                        ?>
 										  </select>
 										</div>
+										  <div class="input-group form-group input-group-sm">
+										  <span class="input-group-addon" id="sizing-addon1">Item Code</span>
+										  <input id="itemCode" name="itemCode" type="text" class="form-control" placeholder="Item Code" aria-describedby="sizing-addon1">
+										</div>
 					                     <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Item Name</span>
 										  <input id="itemName" name="itemName" type="text" class="form-control" placeholder="Item" aria-describedby="sizing-addon1">
@@ -76,8 +83,14 @@
 										  <span class="input-group-addon" id="sizing-addon1">Delivery Time</span>
 										  <input id="itemDelivery" name="itemDelivery" type="text" class="form-control" placeholder="In Hours" aria-describedby="sizing-addon1">
 										</div>
-					              		 <a href="#" onclick="itemdetailsSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
-				                     
+					              		 <a href="#" onclick="iteminfoSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
+				                     		
+				                     		<!-- GIF SAVING  -->
+				                     		<div id="SavingGIF" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
+				                     		<img src='<?php echo base_url();?>adminassets/img/animated_save_icon.gif' width="64" height="64" />
+				                     		<br>SAVING...
+				                     		</div>
+				                     		<!-- GIF SAVING -->
 				                    </div>
 			                    <div class="panel-footer text-muted">
 			                        <strong>Note : </strong>Please fill this first
@@ -95,40 +108,18 @@
 					                     <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Item Price</span>
 										  <input disabled id="itemPrice" name="itemPrice" type="text" class="form-control" placeholder="Price" aria-describedby="sizing-addon1">
+										  <input disabled id="priceID" name="priceID" type="hidden" class="form-control">
 										</div>
 										<div class="form-group">
-					              		 <a href="#" disabled class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
+					              		 <a href="#"  onclick="itempriceSave()" disabled id="itemPriceSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
 				                     	</div>
 				                     	</div>
 				                     	</div>
 				                     	<br>
 				                     	<div class="row">
 				                     	<div class="container">
-				                     <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Sl No.</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        <tr>
-                                            <td>#01</td>
-                                            <td>
-                                                <label class="label label-info">300 USD </label>
-                                            </td>
-			                                <td> <a href="#"  class="btn btn-xs btn-success"  >Enable</a> </td>
-                                            <td><i style="cursor: pointer;" class="fa fa-edit" ></i></td>
-			                                <td><i style="cursor: pointer" class="fa fa-remove"></i></td>
-                                        </tr>
-                           
-                                    </tbody>
-                                </table>
+				                     <div id='itemPriceContainer' class="table-responsive">
+                               
                             </div>
                             </div>
 				                    </div>
@@ -146,48 +137,49 @@
 				                     <div class="container">
 				                     	<div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Title</span>
-										  <input id="itemDetailTitle" name="itemDetailTitle" type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon1">
+										  <input id="itemDetailTitle" disabled name="itemDetailTitle" type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon1">
 										</div>
 										<div class="input-group form-group input-group-sm ">
 										  <span class="input-group-addon" id="sizing-addon1">Description</span>
-										  <input id="itemDetailDescription" name="itemDetailDescription" type="text" class="form-control" placeholder="Description" aria-describedby="sizing-addon1">
+										  <input id="itemDetailDescription" disabled name="itemDetailDescription" type="text" class="form-control" placeholder="Description" aria-describedby="sizing-addon1">
 										</div>
 				                     
 										<div class="form-group">
-					              		 <a href="#" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
+					              		 <a href="#" disabled onclick="itemDetailSave()" id="itemDetailsSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
 				                     	</div>
 				                     	</div>
 				                     	</div>
 				                     	<br>
 				                     	<div class="row">
 				                     	<div class="container">
-				                     <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Sl No.</th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        <tr>
-                                            <td>#01</td>
-                                            <td>
-                                                Color
-                                            </td>
-			                                <td> Black,Green,Blue </td>
-                                            <td><i style="cursor: pointer;" class="fa fa-edit" ></i></td>
-			                                <td><i style="cursor: pointer" class="fa fa-remove"></i></td>
-                                        </tr>
-                           
-                                    </tbody>
-                                </table>
-                            </div>
-                            </div>
+				                     <div class="table-responsive" id ="itemDetailDataContainer">
+				                     
+			                                <table class="table table-striped table-bordered table-hover">
+			                                    <thead>
+			                                        <tr>
+			                                            <th>Sl No.</th>
+			                                            <th>Title</th>
+			                                            <th>Description</th>
+			                                            <th>Edit</th>
+			                                            <th>Delete</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                       
+			                                        <tr>
+			                                            <td>#01</td>
+			                                            <td>
+			                                                Color
+			                                            </td>
+						                                <td> Black,Green,Blue </td>
+			                                            <td><i style="cursor: pointer;" class="fa fa-edit" ></i></td>
+						                                <td><i style="cursor: pointer" class="fa fa-remove"></i></td>
+			                                        </tr>
+			                           
+			                                    </tbody>
+			                                </table>
+			                            </div>
+			                            </div>
 				                    </div>
 				                    </div>
 			                  
@@ -200,143 +192,36 @@
 				                    </div>
 				                    <div class="panel-body">
 				                     <div class="row">
+				                     <div class="form-group">
 				                     <div class="container">
-				                     	<div class="form-group">
-					              		 <a href="#" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-image"> </span>&nbsp;Upload Photo</a>
+					              		 <a href="#" disabled id="uploadfile" class="btn btn-sm btn-success pull-left">UPLOAD IMAGE</a>
+				                     </div>
 				                     	</div>
-				                     	</div>
-				                     	</div>
-				                     	<br>
-				                     <div class="row">
-										  <div class="col-sm-6 col-md-3">
-										    <div class="thumbnail">
-										      <img src="<?php echo base_url();?>assets/images/shop/product7.jpg" alt="image">
-										      
-										        <a href="#" class="btn btn-xs btn-danger" role="button">Remove</a>
-										      
-										    </div>
-										  </div>
-										   <div class="col-sm-6 col-md-3">
-										    <div class="thumbnail">
-										      <img src="<?php echo base_url();?>assets/images/shop/product8.jpg" alt="image">
-										      
-										        <a href="#" class="btn btn-xs btn-danger" role="button">Remove</a>
-										      
-										    </div>
-										  </div>
-										   <div class="col-sm-6 col-md-3">
-										    <div class="thumbnail">
-										      <img src="<?php echo base_url();?>assets/images/shop/product9.jpg" alt="image">
-										      
-										        <a href="#" class="btn btn-xs btn-danger" role="button">Remove</a>
-										      
-										    </div>
-										  </div>
-										   <div class="col-sm-6 col-md-3">
-										    <div class="thumbnail">
-										      <img src="<?php echo base_url();?>assets/images/shop/product10.jpg" alt="image">
-										      
-										        <a href="#" class="btn btn-xs btn-danger" role="button">Remove</a>
-										      
-										    </div>
-										  </div>
+				                     </div>
+				                     <div id="imageContainer" class="row">
 										  
 									
 				                    </div>
-				                    </div>
+				                    <div class="row">
+				                    <div id="imageUploadContainer" style="display: none" class="container" >
+									            <input type="file" name="file" id="file">
+									            <div class="upload-area"  id="uploadfile">
+									            </div>
+									        </div>
+				                    </div></div>
+				                    
 			                  
 			                </div>
 			  			</div>
-			  			<a href="#" class="btn btn-info pull-right">Publish Item </a>  
+			  			<a href="#" disabled id="publishItem"class="btn btn-info pull-right">Publish Item </a>  
 					  
 			 </div>
 			 
-				<div class="tab-pane" id="2">
-         			<div class="col-md-6">
-                      <div class="notice-board">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                           Item Master Information 
-                                <div class="pull-right" >
-                                    <div class="dropdown">
-									  <button class="btn btn-success dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-									    <span class="glyphicon glyphicon-cog"></span>
-									    <span class="caret"></span>
-									  </button>
-									  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Refresh</a></li>
-									    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
-									  </ul>
-									</div>
-                                </div>
-                            </div>
-                            <!-- start data shipping -->
-                            
-                             <div class="table-responsive">
-                               <div id="data_container">
-                               
-                               </div>
-                            </div>
-                            
-                            <!-- end data shipping -->
-                            
-                            
-                            <div class="panel-body">
-                               
-                                <ul >
-                                   
-                                     <li>
-                                            <a href="#">
-                                     <span class="glyphicon glyphicon-align-left text-success" ></span> 
-                                                  Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                                 <span class="label label-warning" > Just now </span>
-                                            </a>
-                                    </li>
-                                     <li>
-                                          <a href="#">
-                                     <span class="glyphicon glyphicon-info-sign text-danger" ></span>  
-                                          Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                          <span class="label label-info" > 2 min chat</span>
-                                            </a>
-                                    </li>
-                                     <li>
-                                          <a href="#">
-                                     <span class="glyphicon glyphicon-comment  text-warning" ></span>  
-                                          Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                          <span class="label label-success" >GO ! </span>
-                                            </a>
-                                    </li>
-                                    <li>
-                                          <a href="#">
-                                     <span class="glyphicon glyphicon-edit  text-danger" ></span>  
-                                          Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                          <span class="label label-success" >Let's have it </span>
-                                            </a>
-                                    </li>
-                                   </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="panel-footer">
-                                <a href="#" class="btn btn-default btn-block"> <i class="glyphicon glyphicon-repeat"></i> Just A Small Footer Button</a>
-                            </div>
-                        </div>
+				<div class="tab-pane" id="2"  >
+         			<div id="itemListContainer" class="col-md-12">
+                      
+                   <?php $this->load->view('admin/data_fragment/item_info_data');?>
                     </div>
-                    <hr />
-                    <div class="text-center alert alert-warning">
-                        <a href="#" class="btn btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>&nbsp; Facebook</a>
-                        <a href="#" class="btn btn-social btn-google">
-                            <i class="fa fa-google-plus"></i>&nbsp; Google</a>
-                        <a href="#" class="btn btn-social btn-twitter">
-                            <i class="fa fa-twitter"></i>&nbsp; Twitter </a>
-                        <a href="#" class="btn btn-social btn-linkedin">
-                            <i class="fa fa-linkedin"></i>&nbsp; Linkedin </a>
-                    </div>
-                     
-                    <hr />
-                   
-                </div>
 				</div>
       
 			</div>
@@ -351,54 +236,176 @@
     <?php $this->load->view('admin/global/footer.php')?>
   
  <script>
-var itemID=0;
+var ITEM_ID=0;
+
   $(document).ready (function(){
 	  $('#item').addClass('menu-top-active');
-	  search();
-	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
-		});
+	
+	 // $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);});
   });
 
-
-  function itemdetailsSave() {
+//ITEM INFO 
+  function iteminfoSave() {
 	  ///insert loading animation here
-	  var url = '<?php echo base_url();?>register/candidateRegister?canfirstName='+document.getElementById('canfirstName').value+'&canLastname='+document.getElementById('canLastname').value+'&CanEmail='+document.getElementById('CanEmail').value+'&canPh='+document.getElementById('canPh').value+'&canPass='+document.getElementById('canPass').value;
-	  callServiceToFetchData(url,serverReplyCAndaidateeReg);
+			$(document.getElementById('SavingGIF')).ajaxStart(function(){
+			 // Show image container
+			 $("#SavingGIF").show();
+			});
+			$(document.getElementById('SavingGIF')).ajaxComplete(function(){
+			 // Hide image container
+			 $("#SavingGIF").hide();
+			});
+	  //run form validation
+	  
+	  if(document.getElementById('itemCode').value.trim()==""){
+
+		var msg="<div class='alert alert-danger'>"+
+        "Please enter Item Code!</div>";
+        document.getElementById('msgbox').innerHTML=msg;
+        return;
+	 }
+	  else if(document.getElementById('itemName').value.trim()==""){
+	  	var msg="<div class='alert alert-danger'>"+
+        "Please enter Item Name!</div>";
+        document.getElementById('msgbox').innerHTML=msg;
+        return;
+		  }
+	  else if(document.getElementById('itemDesc').value.trim()==""){
+	  		var msg="<div class='alert alert-danger'>"+
+		        "Please enter Item Description!</div>";
+		        document.getElementById('msgbox').innerHTML=msg;
+		        return;
+	  }
+	  else if (document.getElementById('itemStock').value.trim()==""){
+		
+		var msg="<div class='alert alert-danger'>"+
+        "Please enter Item Stock!</div>";
+        document.getElementById('msgbox').innerHTML=msg;
+        return;  	 
+	  }
+	   else if (document.getElementById('itemDelivery').value.trim()==""){
+		  
+		  var msg="<div class='alert alert-danger'>"+
+        "Please enter Item Delivery!</div>";
+        document.getElementById('msgbox').innerHTML=msg;
+        return;	 
+	  }
+		 else{
+		 document.getElementById('msgbox').innerHTML="";
+		 }
+	  //end form validation
+	  
+	  var url = '<?php echo base_url();?>admin/data_controller/itemInfo?itemCode='+document.getElementById('itemCode').value+'&itemCategory='+document.getElementById('itemCategory').value+'&itemBrand='+document.getElementById('itemBrand').value+'&itemName='+document.getElementById('itemName').value+'&itemDesc='+document.getElementById('itemDesc').value+'&itemStock='+document.getElementById('itemStock').value+'&itemDelivery='+document.getElementById('itemDelivery').value+'&postType='+ITEM_ID;
+	  callServiceToFetchData(url,itemInfosaveReply);
 	  }
 
   
-	  function serverReplyCAndaidateeReg(response){
+	  function itemInfosaveReply(response){
 	  var sqlresponse = JSON.parse(response);
 		  if(sqlresponse.status === "success"){
 		  	//stop animation
-			  itemID=sqlresponse.ItemID;
+			  	  ITEM_ID=sqlresponse.itemID;
+			  var msg="<div class='alert alert-success'>"+
+		        "Item details save! </div>";
+		        document.getElementById('msgbox').innerHTML=msg;
 		  	//enable the other sections here
-			  	$('#itemPrice').attr.remove("disabled");
+			  	//$('#itemPrice').attr.remove("disabled");
+			  	enableControl();
+		  }
+		  if(sqlresponse.status === "fali"){
+		  	//stop animation
+			  	  ITEM_ID=sqlresponse.itemID;
+			  var msg="<div class='alert alert-success'>"+
+		        "Something went wrong! </div>";
+		        document.getElementById('msgbox').innerHTML=msg;
+			  
 		  }
 	  }
 
+	  function load_item_info(){
+		  var url = '<?php echo base_url();?>admin/data_controller/load_itemDetail?id='+ITEM_ID;
+		  callServiceToFetchData(url,itemDetaiLoadRelpy);
+	  }
+	  function itemDetaiLoadRelpy(response){
+		  var sqlresponse = JSON.parse(response);
+			  
+				     document.getElementById('itemCategory').value=sqlresponse.cat_id;
+				     document.getElementById('itemBrand').value=sqlresponse.brand_id;
+				     document.getElementById('itemCode').value=sqlresponse.code;
+				     document.getElementById('itemName').value=sqlresponse.title;
+				     document.getElementById('itemDesc').value=sqlresponse.desc;
+				     document.getElementById('itemStock').value=sqlresponse.stock;
+				     document.getElementById('itemDelivery').value=sqlresponse.time;
+		  }
 
+//ITEM INFO END 
 
-  
-  
-  function search()
-  {
+//ITEM PRICE
+function enableControl(){
+	$('#itemPrice').removeAttr("disabled");
+  	$('#itemDetailTitle').removeAttr("disabled");
+  	$('#itemPriceSection').removeAttr("disabled");
+  	$('#itemDetailDescription').removeAttr("disabled");
+  	$('#itemDetailsSection').removeAttr("disabled");
+  	$('#uploadPhoto').removeAttr("disabled");
+  	$('#uploadfile').removeAttr("disabled");
+}
+ function itempriceSave() {
+	  //run form validation
+	  
+	  if(document.getElementById('itemPrice').value.trim()==""){
 
-  	var url = "<?php echo site_url('admin/data_controller/load_shipping');?>";
+		var msg="<div class='alert alert-danger'>"+
+        "Please enter Item Code!</div>";
+        document.getElementById('msgbox').innerHTML=msg;
+        return;
+	 }
+		 else{
+		 document.getElementById('msgbox').innerHTML="";
+		 }
+	  //end form validation
+	  
+	  var url = '<?php echo base_url();?>admin/data_controller/itemPrice?itemPrice='+document.getElementById('itemPrice').value+'&itemID='+ITEM_ID+'&priceID='+document.getElementById('priceID').value;
+	  	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+	  					
+	  					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
+	  					document.getElementById('itemPrice').value="";
+	  					document.getElementById('priceID').value="";
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
+}
+function  editItemPrice(price,id){
+	document.getElementById('itemPrice').value=price;
+	document.getElementById('priceID').value=id;
+	
+}
+
+function removeItemPrice(id){
+
+	if(confirm("Confirm Delete?")){
+  	var url = "<?php echo site_url('admin/data_controller/delete_itemPrice?id=');?>"+id+"&itemID="+ITEM_ID;
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {
   			xmlHttp.onreadystatechange=function() {
   			if(xmlHttp.readyState == 4) {
   				if(xmlHttp.responseText != null){
-  					
-  					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-  					$('#shipping_data').DataTable({
-  				        dom: 'Bfrtip',
-  				        buttons: [
-  				            'csv', 'pdf', 'print'
-  				        ]
-  				    });
+
+  					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
+  				
   				}else{
   					alert("Error");
   				}
@@ -409,17 +416,179 @@ var itemID=0;
   	}
   	catch(error) {}
   	}
-  	}
-	function edit(id,name)
-	{
-		document.getElementById('txtRoleName').value=name;
-		document.getElementById('postType').value=id;
-		
 	}
-	function remove(id){
+} 	
+	  
+function enablePrice(id){
 
-		if(confirm("Confirm Delete?")){
-	  	var url = "<?php echo site_url('data_controller/delete_shipping?id=');?>"+id;
+  	var url = "<?php echo site_url('admin/data_controller/enable_itemPrice?id=');?>"+id+"&itemID="+ITEM_ID;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+
+  					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
+  				
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+	
+} 		  
+
+
+//ITEM PRICE END   
+  
+//ITEM DETAILS
+function itemDetailSave() {
+	  //run form validation
+	  
+	  if(document.getElementById('itemDetailTitle').value.trim()==""){
+
+		var msg="<div class='alert alert-danger'>"+
+        "Please enter Item Title!</div>";
+        document.getElementById('msgbox').innerHTML=msg;
+        return;
+	 }
+	 else if(document.getElementById('itemDetailDescription').value.trim()==""){
+	 	var msg="<div class='alert alert-danger'>"+
+        "Please enter Item Description!</div>";
+        document.getElementById('msgbox').innerHTML=msg;
+        return;
+	 }
+		 
+		 else{
+		 document.getElementById('msgbox').innerHTML="";
+		 }
+	  //end form validation
+	  
+	  var url = '<?php echo base_url();?>admin/data_controller/itemDetail?itemDetailTitle='+document.getElementById('itemDetailTitle').value+'&itemDetailDescription='+document.getElementById('itemDetailDescription').value+'&postType='+ITEM_ID;
+	  callServiceToFetchData(url,itemDetailSaveRelpy);
+	  }
+
+  
+	  function itemDetailSaveRelpy(response){
+	  var sqlresponse = JSON.parse(response);
+		  if(sqlresponse.status === "success"){
+		  	//stop animation
+			  	  ITEM_ID=sqlresponse.itemID;
+			  var msg="<div class='alert alert-success'>"+
+		        "Item Detail save! </div>";
+		        document.getElementById('itemDetailDataContainer').innerHTML=xmlHttp.responseText;
+			  
+		  }
+		  if(sqlresponse.status === "fail"){
+		  	//stop animation
+			  	  ITEM_ID=sqlresponse.itemID;
+			  var msg="<div class='alert alert-success'>"+
+		        "Something went wrong! </div>";
+		        document.getElementById('msgbox').innerHTML=msg;
+			  
+		  }
+	  }
+//ITEM DETAILS END 
+//IMAGE UPLOAD 
+$("html").on("dragover", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $("h1").text("Drag here");
+ });
+
+ $("html").on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
+ $(function() {
+
+	    // preventing page from redirecting
+	    $("html").on("dragover", function(e) {
+	        e.preventDefault();
+	        e.stopPropagation();
+	        $("h1").text("Drag here");
+	    });
+
+	    $("html").on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
+
+	    // Drag enter
+	    $('.upload-area').on('dragenter', function (e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+	        $("h1").text("Drop");
+	    });
+
+	    // Drag over
+	    $('.upload-area').on('dragover', function (e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+	        $("h1").text("Drop");
+	    });
+
+	    // Drop
+	    $('.upload-area').on('drop', function (e) {
+	        e.stopPropagation();
+	        e.preventDefault();
+
+	        $("h1").text("Upload");
+
+	        var file = e.originalEvent.dataTransfer.files;
+	        var fd = new FormData();
+
+	        fd.append('file', file[0]);
+
+	        uploadData(fd);
+	    });
+
+	    // Open file selector on div click
+	    $("#uploadfile").click(function(){
+	        $("#file").click();
+	    });
+
+	    // file selected
+	    $("#file").change(function(){
+	        var fd = new FormData();
+
+	        var files = $('#file')[0].files[0];
+
+	        fd.append('file',files);
+	        fd.append('itemID',ITEM_ID);
+
+	        uploadData(fd);
+	    });
+	});
+
+	// Sending AJAX request and upload file
+	function uploadData(formdata){
+
+	    $.ajax({
+	        url: '<?php echo base_url();?>admin/data_controller/imageUpload',
+	        type: 'post',
+	        data: formdata,
+	        contentType: false,
+	        processData: false,
+	        dataType: 'json',
+	        success: function(response){
+	            loadImages();
+	        }
+	    });
+	}
+
+	
+
+	// Bytes conversion
+	function convertSize(size) {
+	    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+	    if (size == 0) return '0 Byte';
+	    var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
+	    return Math.round(size / Math.pow(1024, i), 2) + ' ' + sizes[i];
+	}
+
+	function loadImages(){
+		var url = "<?php echo site_url('admin/data_controller/loadImage?id=');?>"+ITEM_ID;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -427,7 +596,7 @@ var itemID=0;
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
 
-		  				search();	
+	  					document.getElementById('imageContainer').innerHTML = xmlHttp.responseText;
 	  				
 	  				}else{
 	  					alert("Error");
@@ -440,5 +609,63 @@ var itemID=0;
 	  	catch(error) {}
 	  	}
 		}
+	function removeItemImage(id){
+
+		if(confirm("Confirm Delete?")){
+	  	var url = "<?php echo site_url('admin/data_controller/delete_itemImage?id=');?>"+id+"&itemID="+ITEM_ID;
+	  	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+
+	  					document.getElementById('imageContainer').innerHTML = xmlHttp.responseText;
+	  				
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
+		}
+	} 	
+	 function load_item_price(){
+			var url = "<?php echo site_url('admin/data_controller/load_item_price?id=');?>"+ITEM_ID;
+		  	var xmlHttp = GetXmlHttpObject();
+		  	if (xmlHttp != null) {
+		  		try {
+		  			xmlHttp.onreadystatechange=function() {
+		  			if(xmlHttp.readyState == 4) {
+		  				if(xmlHttp.responseText != null){
+
+		  					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
+		  				
+		  				}else{
+		  					alert("Error");
+		  				}
+		  			}
+		  		}
+		  		xmlHttp.open("GET", url, true);
+		  		xmlHttp.send(null);
+		  	}
+		  	catch(error) {}
+		  	}
+		}
+	function loadItem(id){
+		 $('#1').addClass('active');
+		 $('#2').removeClass('active');
+		 enableControl();
+		 ITEM_ID=id;
+		 load_item_info();
+		 load_item_price();
+		 loadImages();
 	}
+//END IMAGE UPLOAD
+
+  
   </script>
