@@ -190,15 +190,80 @@
 			                  
 			                </div>
 			  			</div>
-			  			<a href="#" disabled id="publishItem"class="btn btn-info pull-right">Publish Item </a>  
-					  
+			  			<a href="#" disabled id="publishItem" onclick="itemPublishSave()"class="btn btn-info pull-right">Publish Item </a>  
+					    <a href="#" style="display: none;" id="unpublishItem" onclick="itemUnpublish()"class="btn btn-danger pull-right">Unpublish Item </a>  
+					    
 			 </div>
 			 
 				<div class="tab-pane" id="2"  >
          			<div id="itemListContainer" class="col-md-12">
-                      
-                   <?php $this->load->view('admin/data_fragment/item_info_data');?>
-                    </div>
+                 	<div class="container">
+                 		<div class="row">
+                 			<div class="col-sm-12">
+                 				
+							    <div class="form-group col-sm-3">
+							      <label >Category:</label>
+							       <select id="itemCategorySearch" name="itemCategorySearch" class="form-control"  aria-describedby="sizing-addon1">
+							       	<option value="0">-- Select --</option>
+							      			  	<?php 
+                                       		$sql="SELECT ID, Code,Description,Added_on FROM Category WHERE isActive=1";
+                                       		$query = $this->db->query($sql);
+                                       		if($query){
+                                       			while ($result = mysql_fetch_array($query->result_id)){
+                                       				?><option value="<?php echo $result['ID'];?>"><?php echo $result['Description'];?></option>
+                                       				<?php
+                                       			}
+                                       		}
+                                       ?>
+										  </select>
+							    </div>
+							    <div class="form-group col-sm-3">
+							      <label >Brand:</label>
+							       <select id="itemBrandSearch" name="itemBrandSearch" class="form-control" aria-describedby="sizing-addon1">
+										  	<option value="0">-- Select --</option>
+										  	<?php 
+                                       		$sql="SELECT ID, Code,Description,Added_on FROM Brand WHERE isActive=1";
+                                       		$query = $this->db->query($sql);
+                                       		if($query){
+                                       			while ($result = mysql_fetch_array($query->result_id)){
+                                       				?><option value="<?php echo $result['ID'];?>"><?php echo $result['Description'];?></option>
+                                       				<?php
+                                       			}
+                                       		}
+                                       ?>
+										  </select>
+							    </div>
+							    <div class="form-group col-sm-3">
+							      <label >Code:</label>
+							      <input type="text" class="form-control " id="itemCodeSearch" placeholder="Enter code" name="itemCodeSearch">
+							    </div>
+							    <div class="form-group col-sm-3">
+							      <label >Title:</label>
+							      <input type="text" class="form-control" id="itemTitleSearch" placeholder="Enter Title" name="itemTitleSearch">
+							    </div>
+                 			</div>
+                 		</div>
+                 	</div>
+                 	</br>
+                 	<div class="row">
+                 		<div class="col-sm-12">
+                 			<div class="col-sm-10"></div>
+                 			<div class="col-sm-1">
+								 <button  type="button" onclick="reset()" class="btn btn-info">Reset</button>
+                 			</div>
+                 			<div class="col-sm-1">
+                 				 <button  type="button" onclick="search()" class="btn btn-info">Search</button>
+                 			</div>
+                 		</div>
+                 	</div>
+                 	</br>
+                 	<hr>
+                 	<div class="container">
+                 	<div id="itemSearchConntainer">
+                 	
+                 	</div>
+                 	</div>
+                   </div>
 				</div>
       
 			</div>
@@ -288,6 +353,7 @@ var ITEM_ID=0;
 		  	//enable the other sections here
 			  	//$('#itemPrice').attr.remove("disabled");
 			  	enableControl();
+			  	itemPublishCheck();
 		  }
 		  if(sqlresponse.status === "fali"){
 		  	//stop animation
@@ -315,6 +381,31 @@ var ITEM_ID=0;
 				     document.getElementById('itemDelivery').value=sqlresponse.time;
 		  }
 
+	  function enablePublish(id){
+
+		  	var url = "<?php echo site_url('admin/data_controller/enable_itemPublish?id=');?>"+id+"&itemID="+ITEM_ID;
+		  	var xmlHttp = GetXmlHttpObject();
+		  	if (xmlHttp != null) {
+		  		try {
+		  			xmlHttp.onreadystatechange=function() {
+		  			if(xmlHttp.readyState == 4) {
+		  				if(xmlHttp.responseText != null){
+
+		  					document.getElementById('itemListContainer').innerHTML = xmlHttp.responseText;
+		  				
+		  				}else{
+		  					alert("Error");
+		  				}
+		  			}
+		  		}
+		  		xmlHttp.open("GET", url, true);
+		  		xmlHttp.send(null);
+		  	}
+		  	catch(error) {}
+		  	}
+			
+		} 		  
+			  
 //ITEM INFO END 
 
 //ITEM PRICE
@@ -326,6 +417,7 @@ function enableControl(){
   	$('#itemDetailsSection').removeAttr("disabled");
   	$('#uploadPhoto').removeAttr("disabled");
   	$('#uploadfile').removeAttr("disabled");
+  	
 }
  function itempriceSave() {
 	  //run form validation
@@ -353,6 +445,7 @@ function enableControl(){
 	  					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
 	  					document.getElementById('itemPrice').value="";
 	  					document.getElementById('priceID').value="";
+	  					itemPublishCheck();
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -439,6 +532,7 @@ function itemDetailSave() {
 	  }	 
 		 else{
 		 document.getElementById('msgbox').innerHTML="";
+		 s
 		 }
 	  //end form validation
 	  
@@ -451,9 +545,10 @@ function itemDetailSave() {
 	  				if(xmlHttp.responseText != null){
 	  					
 	  					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
-	  					document.getElementById('itemTitle').value="";
-	  					document.getElementById('itemDesc').value="";
+	  					document.getElementById('itemDetailTitle').value="";
+	  					document.getElementById('itemDetailDescription').value="";
 	  					document.getElementById('detailID').value="";
+	  					itemPublishCheck();
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -506,7 +601,7 @@ function load_item_details(){
   				if(xmlHttp.responseText != null){
 
   					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
-  				
+  					
   				}else{
   					alert("Error");
   				}
@@ -623,7 +718,7 @@ $("html").on("dragover", function(e) {
 	  				if(xmlHttp.responseText != null){
 
 	  					document.getElementById('imageContainer').innerHTML = xmlHttp.responseText;
-	  				
+	  					itemPublishCheck();
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -683,17 +778,92 @@ $("html").on("dragover", function(e) {
 		  	}
 		}
 	
-	function loadItem(id){
+	function loadItem(id,isPublish){
 		 $('#1').addClass('active');
-		 $('#2').removeClass('active');
+		 $('#2').removeClass('active');	
 		 enableControl();
 		 ITEM_ID=id;
 		 load_item_info();
 		 load_item_price();
 		 load_item_details();
 		 loadImages();
+		 if(isPublish==1){
+
+			  $('#unpublishItem').show();
+			  $('#publishItem').hide();
+			 }else{
+
+				  $('#unpublishItem').hide();
+				  $('#publishItem').show();
+				 }
+		 
+		 
 	}
 //END IMAGE UPLOAD
+//item info search 
+ function search(){
+	 var url = "<?php echo site_url('admin/data_controller/searchItem?cid=');?>"+document.getElementById('itemCategorySearch').value+'&bid='+document.getElementById('itemBrandSearch').value+'&title='+document.getElementById('itemTitleSearch').value+'&code='+document.getElementById('itemCodeSearch').value;
+	  	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
 
+	  					document.getElementById('itemSearchConntainer').innerHTML = xmlHttp.responseText;
+	  				
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
+}
+//end item info search
+//item info search reset 
+function reset()
+{
+	document.getElementById('itemCategorySearch').value = "0";
+		document.getElementById('itemBrandSearch').value="0";
+		document.getElementById('itemTitleSearch').value="";
+		document.getElementById('itemCodeSearch').value="";
+		document.getElementById('itemSearchConntainer').innerHTML = "";
+}
+//end item info search reset
+//item publish check
+function itemPublishCheck(){
+	 var url = '<?php echo base_url();?>admin/data_controller/itemPublish?itemid='+ITEM_ID;
+	  callServiceToFetchData(url,itemPublishCheckReply);
+}
+ function itemPublishCheckReply(response){
+	  var sqlresponse = JSON.parse(response);
+		  if(sqlresponse.status === "1"){
+			  $('#publishItem').removeAttr("disabled");
+		  }else{
+			  $('#publishItem').addAttr("disabled");
+		}
+		  
+		 
+	  }
+
+
+// end item publish check 
+//item publish save
+function itemPublishSave(){
+	 var url = '<?php echo base_url();?>admin/data_controller/itemPublishSave?itemid='+ITEM_ID;
+	 callServiceToFetchData(url,itemPublishSaveReply);
+}
+function itemPublishSaveReply(response){
+	  var sqlresponse = JSON.parse(response);
+		  if(sqlresponse.status === "success"){
+			  loadItem(ITEM_ID,1);
+			  	}
+	  }
+
+//end item publish save
   
   </script>
