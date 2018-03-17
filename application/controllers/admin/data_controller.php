@@ -293,6 +293,23 @@ class Data_controller extends CI_Controller {
 			$this->output->set_output(json_encode($data));
 		}
 	}
+	public function enable_itemPublish(){
+		$itemId= mysql_real_escape_string(trim($_GET['itemID']));
+		$sql1 = "Update Item set isPublish =1 where ID='$itemId'";
+		$sql2 = "Update Item set isPublish =0 where ID!='$itemId' AND Item_id='$itemId'";
+		
+		$query1 = $this->db->query($sql1);
+		$query2 = $this->db->query($sql2);
+		
+		$data["ItemID"]=$itemId;
+		if($query2){
+			
+		}
+		else{
+			
+		}
+	}
+	
 	//END ITEM INFO
 	//ITEM PRICE
 	public function itemPrice(){
@@ -465,5 +482,71 @@ class Data_controller extends CI_Controller {
 		
 	}
 	//end image upload 
+	//item info search'
+	public function searchItem(){
+		$cat = mysql_real_escape_string(trim($_GET['cid']));
+		$brand = mysql_real_escape_string(trim($_GET['bid']));
+		$title = mysql_real_escape_string(trim($_GET['title']));
+		$code = mysql_real_escape_string(trim($_GET['code']));
+		
+		
+		$Data['CatID']=$cat;
+		$Data['BrandID']=$brand;
+		$Data['ItemTitle']=$title;
+		$Data['ItemCode']=$code;
+			
+		$this->load->view('admin/data_fragment/item_info_data',$Data);
+		
+	}
+	//item info search end 
+	//item publish check 
+	public function itemPublish(){
+		$flag1=0;
+		$flag2=0;
+		$flag3=0;
+		$itemID = mysql_real_escape_string(trim($_GET['itemid']));
+		$sql="SELECT ID FROM Item_Price WHERE Item_id='$itemID' AND isCurrent=1 AND isActive=1";
+		$query=$this->db->query($sql);
+		if($query->num_rows()>0){
+			$flag1=1;
+		}else{
+			$flag1=0;
+		}
+		$sql1="SELECT ID FROM Item_Details WHERE Item_id='$itemID' AND isActive=1";
+		$query1=$this->db->query($sql1);
+		if($query1->num_rows()>0){
+			$flag2=1;
+		}else{
+			$flag2=0;
+		}
+		$sql2="SELECT ID FROM Item_Image WHERE Item_id='$itemID' AND isActive=1";
+		$query2=$this->db->query($sql2);
+		if($query2->num_rows()>3){
+			$flag3=1;
+		}else{
+			$flag3=0;
+		}
+		$isPublishReady=0;
+		if($flag1==1 && $flag2==1 && $flag3==1){
+			$isPublishReady=1;
+		}
+		$this->output->set_output(json_encode(array (
+				"status"=>"$isPublishReady"
+		)));
+	}
+	// item publish check end
+	//item publish save 
+	public function itemPublishSave(){
+		$itemID = mysql_real_escape_string(trim($_GET['itemid']));
+		$sql="UPDATE `Item` SET isPublish=1 WHERE ID='$itemID' ";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->output->set_output(json_encode(array (
+					"status"=>"success"
+			)));
+		}
+	}
+	//end item publish save 
+	
 }
 

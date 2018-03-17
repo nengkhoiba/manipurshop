@@ -13,11 +13,11 @@
                                          <?php 
                                        		
                                        		
-                                       		$sql="SELECT 
-												ID,Price,isCurrent
-												FROM Item_Price 
-												WHERE isActive =1 
-												AND Item_id=$ItemID";
+												$sql="SELECT  ip.ID,ip.Price,ip.isCurrent 
+												FROM Item_Price ip 
+												LEFT JOIN Item Item ON Item.ID = Ip.Item_id
+												WHERE ip.isActive =1 
+												AND ip.Item_id=$ItemID";
                                        		$query = $this->db->query($sql);
                                        		if($query){
                                        			while ($result = mysql_fetch_array($query->result_id)){
@@ -33,10 +33,16 @@
 			                                <td> <a href="#"  class="btn btn-xs btn-danger" disabled >Active</a> </td>
 			                                <?php }?>
 			                                <td><i style="cursor: pointer;" class="fa fa-edit" onclick="editItemPrice('<?php echo $result['Price'];?>','<?php echo $result['ID'];?>')" ></i></td>
+			                                
+			                                <?php if($result['isCurrent']==1){?>
+			                                <td></td>
+			                                <?php }
+			                                else {?>
 			                                <td><i style="cursor: pointer" onclick="removeItemPrice('<?php echo $result['ID']; ?>')" class="fa fa-remove"></i></td>
 			                                        
                                         </tr>
                                        				<?php
+                                       				}
                                        			}
                                        		}
                                        ?>
