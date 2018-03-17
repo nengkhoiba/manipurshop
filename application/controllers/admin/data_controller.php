@@ -368,19 +368,58 @@ class Data_controller extends CI_Controller {
 	//ITEM PRICE END 
 	//ITEM DETAILS 
 	public function itemDetails(){
-		$itemId = mysql_real_escape_strin(trim($_GET['postType']));
-		$itemTitle = mysql_real_escape_string(trim($_GET['itemDetailTitle']));
-		$itemDesc = mysql_real_escape_string(trim($_GET['itemDetailDescription']));
+		$itemId = mysql_real_escape_string(trim($_GET['itemID']));
+		$detailId =mysql_real_escape_string(trim($_GET['detailID']));
+		$itemTitle = mysql_real_escape_string(trim($_GET['itemTitle']));
+		$itemDesc = mysql_real_escape_string(trim($_GET['itemDesc']));
 		$addedBy=$this->session->userdata("USERID");
 		
-		$sql ="INSERT INTO `Item_Details`( `Item_id`, `Title`, `Description`, `Added_by`, `Added_on`, `isActive`) 
-				VALUES ('$itemId','$itemTitle','$itemDesc','$addedBy',NOW(),1)";
-		$query=$this->db->query($sql);
-		if($query){
-			$this->output->set_output(json_encode(array (
-					"status"=>"success"
-			)));
+		if($detailId== 0){
+			$sql ="INSERT INTO `Item_Details`( `Item_id`, `Title`, `Description`, `Added_by`, `Added_on`, `isActive`)
+			VALUES ('$itemId','$itemTitle','$itemDesc','$addedBy',NOW(),1)";
+			$query =$this->db->query($sql);
+			$data["ItemID"]=$itemId;
+			if($query){
+				
+				$this->load->view('admin/data_fragment/item_Details_data',$data);
+			}
+			else{
+				$this->load->view('admin/data_fragment/item_Details_data',$data);
+			}
 		}
+		else {
+			$sql ="UPDATE Item_Details Set Title= '$itemTitle',Description='$itemDesc',Modified_by='$addedBy', Modified_on=NOW() where Item_id='$itemId' AND ID='$detailId'";
+			$query =$this->db->query($sql);
+			$data["ItemID"]=$itemId;
+			if($query){
+				
+				$this->load->view('admin/data_fragment/item_Details_data',$data);
+			}
+			else{
+				$this->load->view('admin/data_fragment/item_Details_data',$data);
+			}
+		}
+		
+	}
+	public function delete_itemDetail(){
+		$detailID = mysql_real_escape_string(trim($_GET['id']));
+		$itemId= mysql_real_escape_string(trim($_GET['itemID']));
+		$sql = "Update Item_Details set isActive =0 where ID='$detailID'";
+		$query = $this->db->query($sql);
+		$data["ItemID"]=$itemId;
+		if($query){
+			
+			$this->load->view('admin/data_fragment/item_Details_data',$data);
+		}
+		else{
+			$this->load->view('admin/data_fragment/item_Details_data',$data);
+		}
+	}
+	public function load_item_details(){
+		$itemId= mysql_real_escape_string(trim($_GET['id']));
+		$data["ItemID"]=$itemId;
+		$this->load->view('admin/data_fragment/item_Details_data',$data);
+		
 	}
 	//END ITEM DETAILS
 	//image upload

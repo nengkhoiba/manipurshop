@@ -138,6 +138,7 @@
 				                     	<div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Title</span>
 										  <input id="itemDetailTitle" disabled name="itemDetailTitle" type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon1">
+										  <input id="detailID" disabled name="detailID" type="hidden">										
 										</div>
 										<div class="input-group form-group input-group-sm ">
 										  <span class="input-group-addon" id="sizing-addon1">Description</span>
@@ -154,30 +155,6 @@
 				                     	<div class="container">
 				                     <div class="table-responsive" id ="itemDetailDataContainer">
 				                     
-			                                <table class="table table-striped table-bordered table-hover">
-			                                    <thead>
-			                                        <tr>
-			                                            <th>Sl No.</th>
-			                                            <th>Title</th>
-			                                            <th>Description</th>
-			                                            <th>Edit</th>
-			                                            <th>Delete</th>
-			                                        </tr>
-			                                    </thead>
-			                                    <tbody>
-			                                       
-			                                        <tr>
-			                                            <td>#01</td>
-			                                            <td>
-			                                                Color
-			                                            </td>
-						                                <td> Black,Green,Blue </td>
-			                                            <td><i style="cursor: pointer;" class="fa fa-edit" ></i></td>
-						                                <td><i style="cursor: pointer" class="fa fa-remove"></i></td>
-			                                        </tr>
-			                           
-			                                    </tbody>
-			                                </table>
 			                            </div>
 			                            </div>
 				                    </div>
@@ -454,46 +431,95 @@ function itemDetailSave() {
 	  if(document.getElementById('itemDetailTitle').value.trim()==""){
 
 		var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Title!</div>";
+        "Please enter Item Details!</div>";
         document.getElementById('msgbox').innerHTML=msg;
         return;
 	 }
-	 else if(document.getElementById('itemDetailDescription').value.trim()==""){
-	 	var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Description!</div>";
-        document.getElementById('msgbox').innerHTML=msg;
-        return;
-	 }
-		 
+	  else if(document.getElementById('itemDetailDescription').value.trim()==""){
+	  }	 
 		 else{
 		 document.getElementById('msgbox').innerHTML="";
 		 }
 	  //end form validation
 	  
-	  var url = '<?php echo base_url();?>admin/data_controller/itemDetail?itemDetailTitle='+document.getElementById('itemDetailTitle').value+'&itemDetailDescription='+document.getElementById('itemDetailDescription').value+'&postType='+ITEM_ID;
-	  callServiceToFetchData(url,itemDetailSaveRelpy);
-	  }
+	  var url = '<?php echo base_url();?>admin/data_controller/itemDetails?itemTitle='+document.getElementById('itemDetailTitle').value+'&itemID='+ITEM_ID+'&itemDesc='+document.getElementById('itemDetailDescription').value+'&detailID='+document.getElementById('detailID').value;
+	  	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+	  					
+	  					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
+	  					document.getElementById('itemTitle').value="";
+	  					document.getElementById('itemDesc').value="";
+	  					document.getElementById('detailID').value="";
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
+}
+function  editItemDetail(id,title,desc){
+	document.getElementById('itemDetailTitle').value=title;
+	document.getElementById('itemDetailDescription').value=desc;
+	document.getElementById('detailID').value=id;	
+}
 
-  
-	  function itemDetailSaveRelpy(response){
-	  var sqlresponse = JSON.parse(response);
-		  if(sqlresponse.status === "success"){
-		  	//stop animation
-			  	  ITEM_ID=sqlresponse.itemID;
-			  var msg="<div class='alert alert-success'>"+
-		        "Item Detail save! </div>";
-		        document.getElementById('itemDetailDataContainer').innerHTML=xmlHttp.responseText;
-			  
-		  }
-		  if(sqlresponse.status === "fail"){
-		  	//stop animation
-			  	  ITEM_ID=sqlresponse.itemID;
-			  var msg="<div class='alert alert-success'>"+
-		        "Something went wrong! </div>";
-		        document.getElementById('msgbox').innerHTML=msg;
-			  
-		  }
-	  }
+function removeItemDetail(id){
+
+	if(confirm("Confirm Delete?")){
+  	var url = "<?php echo site_url('admin/data_controller/delete_itemDetail?id=');?>"+id+"&itemID="+ITEM_ID;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+
+  					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
+  				
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+	}
+} 	
+function load_item_details(){
+	var url = "<?php echo site_url('admin/data_controller/load_item_details?id=');?>"+ITEM_ID;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+
+  					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
+  				
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+}	  
+
+
 //ITEM DETAILS END 
 //IMAGE UPLOAD 
 $("html").on("dragover", function(e) {
@@ -656,6 +682,7 @@ $("html").on("dragover", function(e) {
 		  	catch(error) {}
 		  	}
 		}
+	
 	function loadItem(id){
 		 $('#1').addClass('active');
 		 $('#2').removeClass('active');
@@ -663,6 +690,7 @@ $("html").on("dragover", function(e) {
 		 ITEM_ID=id;
 		 load_item_info();
 		 load_item_price();
+		 load_item_details();
 		 loadImages();
 	}
 //END IMAGE UPLOAD
