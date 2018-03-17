@@ -6,6 +6,14 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('homepage.php');
 	}
+	public function product()
+	{
+		$this->load->view('product.php');
+	}
+	public function error()
+	{
+		$this->load->view('error.php');
+	}
 
 }
 
