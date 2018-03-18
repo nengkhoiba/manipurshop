@@ -11,7 +11,7 @@ LEFT JOIN Item_Price IP ON IP.Item_id=Item.ID
 AND IP.isCurrent=1
 
 WHERE Item.isActive=1
-AND Item.isPublish=0
+AND Item.isPublish=1
 
 ORDER BY Item.ID DESC
 LIMIT 6";

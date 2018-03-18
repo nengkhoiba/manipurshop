@@ -7,8 +7,16 @@ class Home extends CI_Controller {
 		$this->load->view('homepage.php');
 	}
 	public function product()
-	{
-		$this->load->view('product.php');
+	{	$P_id=mysql_real_escape_string(trim($_GET['id']));
+	$sql="SELECT ID FROM Item WHERE ID='$P_id' AND isPublish=1 AND isActive=1";
+	$query=$this->db->query($sql);
+	if($query->num_rows()>0){
+		$data['ItemID']=$P_id;
+		$this->load->view('product.php',$data);
+	}else{
+		$this->load->view('error.php');
+	}
+		
 	}
 	public function error()
 	{

@@ -532,7 +532,7 @@ function itemDetailSave() {
 	  }	 
 		 else{
 		 document.getElementById('msgbox').innerHTML="";
-		 s
+		 
 		 }
 	  //end form validation
 	  
