@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2018 at 02:46 PM
+-- Generation Time: Mar 18, 2018 at 10:34 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.3.29
 
@@ -47,7 +47,7 @@ INSERT INTO `Brand` (`ID`, `Code`, `Description`, `Added_by`, `Added_on`, `Modif
 (3, '103', 'Puma', 1, '2018-02-24 02:52:51', 4, '2018-02-24 02:52:51', 1),
 (4, '104', 'Reebok', 2, '2018-02-24 02:52:51', 1, '2018-03-11 01:45:39', 1),
 (5, '105', 'Levis ', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 1),
-(6, '106', 'John Player', 3, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 1),
+(6, '106', 'John Player', 3, '0000-00-00 00:00:00', 1, '2018-03-18 07:10:09', 1),
 (7, '107', 'Adidas Neo', 4, '2018-03-03 02:37:26', 1, '2018-03-11 01:50:08', 0),
 (8, '107', 'Adidas Originals', 1, '2018-03-11 01:38:54', 1, '2018-03-11 01:50:48', 0);
 
@@ -133,52 +133,14 @@ CREATE TABLE IF NOT EXISTS `Item` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Item`
 --
 
 INSERT INTO `Item` (`ID`, `Code`, `Title`, `Category_id`, `Brand_id`, `Description`, `Item_stock`, `Delivery_Time`, `isPublish`, `Added_by`, `Added_on`, `Modified_by`, `Modified_on`, `isActive`) VALUES
-(1, '', '', 0, 0, '', 0, 0, 0, 1, '2018-03-11 05:35:32', 0, '0000-00-00 00:00:00', 1),
-(2, '102', 'ASDasd', 1, 2, 'A new Tees', 0, 0, 0, 1, '2018-03-11 05:36:51', 0, '0000-00-00 00:00:00', 1),
-(3, '', '', 0, 0, '', 0, 0, 0, 1, '2018-03-14 14:50:47', 0, '0000-00-00 00:00:00', 1),
-(4, '', '', 0, 0, '', 0, 0, 0, 1, '2018-03-14 14:55:12', 0, '0000-00-00 00:00:00', 1),
-(5, '12313itemCategory=1', 'Sweater', 0, 1, 'Limited Edition', 0, 56, 0, 1, '2018-03-14 15:14:25', 0, '0000-00-00 00:00:00', 1),
-(6, '12313', 'new gfh', 1, 1, 'Limited Edition', 4, 56, 0, 1, '2018-03-14 15:32:51', 0, '0000-00-00 00:00:00', 1),
-(7, '12313', 'new gfh', 1, 1, 'Limited Edition', 4, 56, 0, 1, '2018-03-14 15:33:03', 0, '0000-00-00 00:00:00', 1),
-(8, '12313', 'new gfh', 1, 1, 'Limited Edition', 4, 56, 0, 1, '2018-03-14 15:33:46', 0, '0000-00-00 00:00:00', 1),
-(9, 'A001', 'Tshirt', 3, 4, 'limited collection', 12, 48, 0, 1, '2018-03-14 15:40:32', 0, '0000-00-00 00:00:00', 1),
-(10, 'A001', 'Tshirt', 3, 4, 'limited collection', 12, 48, 0, 1, '2018-03-14 15:41:01', 0, '0000-00-00 00:00:00', 1),
-(11, 'A001', 'Tshirt', 3, 4, 'limited collection', 12, 48, 0, 1, '2018-03-14 15:42:21', 0, '0000-00-00 00:00:00', 1),
-(12, 'A001', 'Tshirt', 3, 4, 'limited collection', 12, 48, 0, 1, '2018-03-14 15:42:29', 0, '0000-00-00 00:00:00', 1),
-(13, 'A001', 'Tshirt', 3, 4, 'limited collection', 12, 48, 0, 1, '2018-03-14 15:49:42', 0, '0000-00-00 00:00:00', 1),
-(14, 'A001', 'Tshirt', 3, 4, 'limited collection', 12, 48, 0, 1, '2018-03-14 15:50:40', 0, '0000-00-00 00:00:00', 1),
-(15, 'Z2340', 'Sweater', 1, 4, 'Navy Blue', 6, 48, 0, 1, '2018-03-15 01:42:38', 0, '0000-00-00 00:00:00', 1),
-(16, 'Z2340', 'Sweater', 1, 4, 'Blue', 12, 48, 0, 1, '2018-03-15 01:45:30', 0, '0000-00-00 00:00:00', 1),
-(17, 'S0978', 'Zig zag', 2, 4, 'Black', 12, 46, 0, 1, '2018-03-15 01:49:36', 0, '0000-00-00 00:00:00', 1),
-(18, 'Sh1002', 'Denim Shirt', 3, 5, 'Black', 12, 78, 0, 1, '2018-03-15 09:21:28', 0, '0000-00-00 00:00:00', 1),
-(19, '12', 'messi', 2, 1, 'football shoe', 6, 39, 0, 1, '2018-03-15 09:25:04', 0, '0000-00-00 00:00:00', 1),
-(20, 'CS125', 'Mens Causal Shirt', 3, 6, 'White and blue check', 12, 89, 0, 1, '2018-03-16 03:15:08', 0, '0000-00-00 00:00:00', 1),
-(21, 'AS 120', 'Short', 1, 3, 'Short', 6, 120, 0, 1, '2018-03-16 03:29:49', 0, '0000-00-00 00:00:00', 1),
-(22, 'SH009', 'Shoe', 1, 4, 'running shoe', 12, 48, 0, 1, '2018-03-16 03:34:35', 0, '0000-00-00 00:00:00', 1),
-(23, 'A129', 'new', 1, 1, 'Brand', 23, 45, 0, 1, '2018-03-16 11:15:28', 0, '0000-00-00 00:00:00', 1),
-(24, 'AS12', 'Classic Shirt', 2, 4, 'Blue in colour', 12, 128, 0, 1, '2018-03-16 11:20:36', 0, '0000-00-00 00:00:00', 1),
-(25, 'As123', 'A class', 1, 4, 'hawai', 13, 68, 0, 1, '2018-03-16 11:32:03', 0, '0000-00-00 00:00:00', 1),
-(26, 'As123', 'asasd', 1, 1, 'asd', 123, 12, 0, 1, '2018-03-16 11:41:40', 0, '0000-00-00 00:00:00', 1),
-(27, 'AB09', 'T SHirt', 1, 1, 'new design', 40, 48, 0, 1, '2018-03-16 11:56:57', 0, '0000-00-00 00:00:00', 1),
-(28, 'SW12', 'Adidas New Sweater', 1, 1, 'Limited Edition', 12, 48, 0, 1, '2018-03-16 12:14:40', 0, '0000-00-00 00:00:00', 1),
-(29, 'SK90', 'Sneaker', 2, 1, 'New Sneaker', 34, 68, 0, 1, '2018-03-16 12:28:00', 0, '0000-00-00 00:00:00', 1),
-(30, 'SK90', 'Sneaker', 2, 1, 'New Sneaker', 34, 68, 0, 1, '2018-03-16 12:32:18', 0, '0000-00-00 00:00:00', 1),
-(31, 'SHJ10', 'Jordan Shirt', 3, 1, 'New Shirt', 12, 68, 0, 1, '2018-03-16 12:37:40', 0, '0000-00-00 00:00:00', 1),
-(32, '11', 'dsd', 1, 1, 'ddd', 222, 22, 0, 1, '2018-03-16 12:54:13', 0, '0000-00-00 00:00:00', 1),
-(33, 'sd', 'sdsd', 1, 1, 'sdsd', 444, 44, 0, 1, '2018-03-16 13:18:24', 0, '0000-00-00 00:00:00', 1),
-(34, '111', '2222', 1, 1, 'wwww', 22, 22, 0, 1, '2018-03-16 13:31:04', 0, '0000-00-00 00:00:00', 1),
-(35, 'qqq', 'aaa', 1, 1, 'aaa', 22, 22, 0, 1, '2018-03-16 13:38:05', 0, '0000-00-00 00:00:00', 1),
-(36, 'qqq', 'aaa', 1, 1, 'aaa', 22, 22, 0, 1, '2018-03-16 13:39:06', 0, '0000-00-00 00:00:00', 1),
-(37, 'asdad', 'asd', 1, 1, 'fgas', 1212, 12, 0, 1, '2018-03-16 13:48:52', 0, '0000-00-00 00:00:00', 1),
-(38, 'asdhjk', 'a.sdh', 1, 1, 'qwe', 2, 123, 0, 1, '2018-03-16 13:49:58', 0, '0000-00-00 00:00:00', 1),
-(39, 'N01', 'Nike Air Max', 2, 2, 'Original', 3, 48, 0, 1, '2018-03-16 14:13:33', 0, '0000-00-00 00:00:00', 1);
+(1, 'A01', 'Women Shirt', 3, 6, 'New Arrival', 10, 48, 1, 1, '2018-03-18 05:27:22', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -196,7 +158,16 @@ CREATE TABLE IF NOT EXISTS `Item_Details` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Item_Details`
+--
+
+INSERT INTO `Item_Details` (`ID`, `Item_id`, `Title`, `Description`, `Added_by`, `Added_on`, `Modified_by`, `Modified_on`, `isActive`) VALUES
+(1, 1, 'Size', 'S, M , L', 1, '2018-03-18 05:30:57', 0, '0000-00-00 00:00:00', 1),
+(2, 1, 'Color', 'Red, Blue, Black', 1, '2018-03-18 05:31:15', 0, '0000-00-00 00:00:00', 1),
+(3, 1, 'Material', 'Cotton', 1, '2018-03-18 09:35:13', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -215,32 +186,18 @@ CREATE TABLE IF NOT EXISTS `Item_Image` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Item_Image`
 --
 
 INSERT INTO `Item_Image` (`ID`, `Item_id`, `Image_Url`, `Title`, `Description`, `Added_by`, `Added_on`, `Modified_by`, `Modified_on`, `isActive`) VALUES
-(1, 33, 'images/Screen Shot 2018-03-02 at 9.54.27 PM.png', '', '', 1, '2018-03-16 13:22:24', 0, '0000-00-00 00:00:00', 1),
-(2, 33, 'images/Screen Shot 2018-03-02 at 9.54.27 PM.png', '', '', 1, '2018-03-16 13:24:32', 0, '0000-00-00 00:00:00', 1),
-(3, 33, 'images/Screen Shot 2018-03-14 at 8.08.26 AM.png', '', '', 1, '2018-03-16 13:25:22', 0, '0000-00-00 00:00:00', 1),
-(4, 33, 'images/Screen Shot 2018-03-14 at 8.08.26 AM.png', '', '', 1, '2018-03-16 13:25:59', 0, '0000-00-00 00:00:00', 1),
-(5, 33, 'images/Screen Shot 2018-02-26 at 4.39.49 PM.png', '', '', 1, '2018-03-16 13:26:23', 0, '0000-00-00 00:00:00', 1),
-(6, 33, 'images/Screen Shot 2018-03-14 at 8.08.26 AM.png', '', '', 1, '2018-03-16 13:27:27', 0, '0000-00-00 00:00:00', 1),
-(7, 0, 'images/Screen Shot 2018-03-02 at 9.54.27 PM.png', '', '', 1, '2018-03-16 13:31:14', 0, '0000-00-00 00:00:00', 1),
-(8, 34, 'images/Screen Shot 2018-03-02 at 9.54.27 PM.png', '', '', 1, '2018-03-16 13:31:23', 0, '0000-00-00 00:00:00', 1),
-(9, 0, 'images/Screen Shot 2018-03-02 at 9.54.27 PM.png', '', '', 1, '2018-03-16 13:35:17', 0, '0000-00-00 00:00:00', 1),
-(10, 35, 'images/Screen Shot 2018-03-14 at 8.08.26 AM.png', '', '', 1, '2018-03-16 13:38:14', 0, '0000-00-00 00:00:00', 1),
-(11, 36, 'images/Screen Shot 2018-03-14 at 8.08.26 AM.png', '', '', 1, '2018-03-16 13:39:13', 0, '0000-00-00 00:00:00', 1),
-(12, 36, 'images/Screen Shot 2018-03-02 at 9.54.27 PM.png', '', '', 1, '2018-03-16 13:39:24', 0, '0000-00-00 00:00:00', 1),
-(13, 36, 'images/cv.pages', '', '', 1, '2018-03-16 13:39:38', 0, '0000-00-00 00:00:00', 1),
-(14, 37, 'images/Screen Shot 2018-03-14 at 8.08.26 AM.png', '', '', 1, '2018-03-16 13:49:00', 0, '0000-00-00 00:00:00', 1),
-(15, 37, 'images/Screen Shot 2018-03-02 at 9.54.27 PM.png', '', '', 1, '2018-03-16 13:49:06', 0, '0000-00-00 00:00:00', 1),
-(16, 38, 'images/hhh.jpg', '', '', 1, '2018-03-16 13:50:11', 0, '0000-00-00 00:00:00', 1),
-(17, 38, 'images/back.jpg', '', '', 1, '2018-03-16 13:50:23', 0, '0000-00-00 00:00:00', 0),
-(18, 39, 'images/f.jpg', '', '', 1, '2018-03-16 14:13:56', 0, '0000-00-00 00:00:00', 1),
-(19, 39, 'images/hhh.jpg', '', '', 1, '2018-03-16 14:14:07', 0, '0000-00-00 00:00:00', 1);
+(1, 1, 'images/product1.jpg', '', '', 1, '2018-03-18 05:28:19', 0, '0000-00-00 00:00:00', 1),
+(2, 1, 'images/product5.jpg', '', '', 1, '2018-03-18 05:28:28', 0, '0000-00-00 00:00:00', 1),
+(3, 1, 'images/product4.jpg', '', '', 1, '2018-03-18 05:28:41', 0, '0000-00-00 00:00:00', 1),
+(4, 1, 'images/product2.jpg', '', '', 1, '2018-03-18 05:28:49', 0, '0000-00-00 00:00:00', 0),
+(5, 1, 'images/product6.jpg', '', '', 1, '2018-03-18 05:29:03', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -258,32 +215,15 @@ CREATE TABLE IF NOT EXISTS `Item_Price` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Item_Price`
 --
 
 INSERT INTO `Item_Price` (`ID`, `Item_id`, `Price`, `isCurrent`, `Added_by`, `Added_on`, `Modified_by`, `Modified_on`, `isActive`) VALUES
-(1, 26, 123, 1, 1, '2018-03-16 11:41:50', 0, '0000-00-00 00:00:00', 1),
-(2, 27, 250, 1, 1, '2018-03-16 11:57:05', 0, '0000-00-00 00:00:00', 1),
-(3, 27, 250, 0, 1, '2018-03-16 11:57:46', 0, '0000-00-00 00:00:00', 1),
-(4, 27, 250, 0, 1, '2018-03-16 11:58:26', 0, '0000-00-00 00:00:00', 1),
-(5, 27, 300, 0, 1, '2018-03-16 11:58:57', 0, '0000-00-00 00:00:00', 1),
-(6, 28, 2999, 0, 1, '2018-03-16 12:14:49', 0, '0000-00-00 00:00:00', 0),
-(7, 28, 2234, 0, 1, '2018-03-16 12:21:58', 0, '0000-00-00 00:00:00', 0),
-(8, 28, 2299, 0, 1, '2018-03-16 12:24:20', 0, '0000-00-00 00:00:00', 0),
-(9, 28, 2299, 0, 1, '2018-03-16 12:25:00', 0, '0000-00-00 00:00:00', 1),
-(10, 28, 2299, 0, 1, '2018-03-16 12:25:06', 0, '0000-00-00 00:00:00', 0),
-(11, 29, 3999, 0, 1, '2018-03-16 12:28:07', 0, '0000-00-00 00:00:00', 0),
-(12, 29, 4590, 0, 1, '2018-03-16 12:28:18', 0, '0000-00-00 00:00:00', 1),
-(13, 29, 4590, 0, 1, '2018-03-16 12:30:14', 0, '0000-00-00 00:00:00', 1),
-(14, 30, 1499, 0, 1, '2018-03-16 12:32:26', 0, '0000-00-00 00:00:00', 1),
-(15, 30, 100, 0, 1, '2018-03-16 12:32:33', 1, '2018-03-16 12:32:41', 1),
-(16, 31, 1499, 0, 1, '2018-03-16 12:37:48', 0, '0000-00-00 00:00:00', 1),
-(17, 31, 999, 0, 1, '2018-03-16 12:37:54', 0, '0000-00-00 00:00:00', 1),
-(18, 31, 1299, 1, 1, '2018-03-16 12:38:09', 0, '0000-00-00 00:00:00', 1),
-(19, 39, 2999, 1, 1, '2018-03-16 14:13:39', 0, '0000-00-00 00:00:00', 1);
+(1, 1, 499, 1, 1, '2018-03-18 05:27:29', 1, '2018-03-18 09:32:50', 1),
+(2, 1, 599, 0, 1, '2018-03-18 09:33:01', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -328,7 +268,14 @@ CREATE TABLE IF NOT EXISTS `Login` (
   `Key` varchar(500) NOT NULL,
   `Role` int(10) NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Login`
+--
+
+INSERT INTO `Login` (`ID`, `Email`, `Password`, `Key`, `Role`, `isActive`) VALUES
+(1, 'nengkhoiba.chungkham@gmail.com', 'welcome', 'qwertyuiop', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -419,23 +366,7 @@ CREATE TABLE IF NOT EXISTS `Shipping_Details` (
   `State` varchar(30) NOT NULL,
   `City` varchar(30) NOT NULL,
   `Pincode` int(10) NOT NULL,
-  `Mobile` int(15) NOT NULL,
-  `Added_by` int(125) NOT NULL,
-  `Added_on` timestamp NOT NULL,
-  `Modified_by` int(125) NOT NULL,
-  `Modified_on` timestamp NOT NULL,
-  `isActive` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Stock_Item`
---
-
-CREATE TABLE IF NOT EXISTS `Stock_Item` (
-  `Item_id` int(125) NOT NULL,
-  `Stock_qty` int(10) NOT NULL,
+  `Mobile` bigint(15) NOT NULL,
   `Added_by` int(125) NOT NULL,
   `Added_on` timestamp NOT NULL,
   `Modified_by` int(125) NOT NULL,
@@ -455,8 +386,15 @@ CREATE TABLE IF NOT EXISTS `User_Details` (
   `Address` varchar(100) NOT NULL,
   `DOB` date NOT NULL,
   `Gender` varchar(10) NOT NULL,
-  `Mobile` int(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Mobile` bigint(15) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `User_Details`
+--
+
+INSERT INTO `User_Details` (`ID`, `Name`, `Address`, `DOB`, `Gender`, `Mobile`) VALUES
+(1, 'Nengkhoiba Chungkham', 'Brahmapur Chungkham Leikai', '1990-12-15', 'MALE', 9774180184);
 
 -- --------------------------------------------------------
 
@@ -469,7 +407,14 @@ CREATE TABLE IF NOT EXISTS `User_Role` (
   `Code` varchar(50) NOT NULL,
   `Description` varchar(50) NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `User_Role`
+--
+
+INSERT INTO `User_Role` (`ID`, `Code`, `Description`, `isActive`) VALUES
+(1, 'ADMIN', 'ADMIN', 1);
 
 --
 -- Indexes for dumped tables
@@ -566,12 +511,6 @@ ALTER TABLE `Shipping_Details`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `Stock_Item`
---
-ALTER TABLE `Stock_Item`
-  ADD UNIQUE KEY `Item_id` (`Item_id`);
-
---
 -- Indexes for table `User_Details`
 --
 ALTER TABLE `User_Details`
@@ -611,22 +550,22 @@ ALTER TABLE `Customer_login`
 -- AUTO_INCREMENT for table `Item`
 --
 ALTER TABLE `Item`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `Item_Details`
 --
 ALTER TABLE `Item_Details`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `Item_Image`
 --
 ALTER TABLE `Item_Image`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `Item_Price`
 --
 ALTER TABLE `Item_Price`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `Item_review`
 --
@@ -641,7 +580,7 @@ ALTER TABLE `Item_View`
 -- AUTO_INCREMENT for table `Login`
 --
 ALTER TABLE `Login`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `Order_Header`
 --
@@ -666,12 +605,12 @@ ALTER TABLE `Shipping_Details`
 -- AUTO_INCREMENT for table `User_Details`
 --
 ALTER TABLE `User_Details`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `User_Role`
 --
 ALTER TABLE `User_Role`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

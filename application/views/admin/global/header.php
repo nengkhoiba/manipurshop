@@ -55,14 +55,16 @@
                                         <img src="<?php echo base_url();?>adminassets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Nengkhoiba</h4>
-                                        <h5>Admin</h5>
+                                        <h4 class="media-heading"><?php echo $this->session->userdata('name')?></h4>
+                                        <h5 class="media-heading"><?php echo $this->session->userdata('email')?></h4>
+                                        <h5 class="media-heading"><?php echo $this->session->userdata('role')?></h5>
+                                      
 
                                     </div>
                                 </div>
                                 
                                 <hr />
-                              <a href="#" class="btn btn-danger btn-xs">Logout</a>
+                              <a href="<?php echo base_url();?>admin/login/logout" class="btn btn-danger btn-xs">Logout</a>
 
                             </div>
                         </li>

@@ -191,7 +191,7 @@
 			                </div>
 			  			</div>
 			  			<a style="cursor:pointer" disabled id="publishItem" onclick="itemPublishSave()"class="btn btn-info pull-right">Publish Item </a>  
-					    <a style="cursor:pointer" style="display: none;" id="unpublishItem" onclick="itemUnpublish()"class="btn btn-danger pull-right">Unpublish Item </a>  
+					    <a  style="cursor:pointer;display: none;" id="unpublishItem" onclick="itemUnpublish()"class="btn btn-danger pull-right">Unpublish Item </a>  
 					    
 			 </div>
 			 
