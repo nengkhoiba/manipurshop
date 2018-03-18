@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2018 at 10:34 AM
+-- Generation Time: Mar 18, 2018 at 12:29 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.3.29
 
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `Item` (
   `Title` varchar(50) NOT NULL,
   `Category_id` int(125) NOT NULL,
   `Brand_id` int(125) NOT NULL,
-  `Description` varchar(50) NOT NULL,
+  `Description` varchar(500) NOT NULL,
   `Item_stock` int(50) NOT NULL,
   `Delivery_Time` int(50) NOT NULL,
   `isPublish` int(1) DEFAULT '0',
@@ -133,14 +133,16 @@ CREATE TABLE IF NOT EXISTS `Item` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Item`
 --
 
 INSERT INTO `Item` (`ID`, `Code`, `Title`, `Category_id`, `Brand_id`, `Description`, `Item_stock`, `Delivery_Time`, `isPublish`, `Added_by`, `Added_on`, `Modified_by`, `Modified_on`, `isActive`) VALUES
-(1, 'A01', 'Women Shirt', 3, 6, 'New Arrival', 10, 48, 1, 1, '2018-03-18 05:27:22', 0, '0000-00-00 00:00:00', 1);
+(1, 'A01', 'Women Shirt', 3, 6, 'New Arrival', 10, 48, 1, 1, '2018-03-18 05:27:22', 0, '0000-00-00 00:00:00', 1),
+(2, 'NK01', 'Nike Air Max 2017 Running Shoes', 2, 2, 'The Nike Air Max 2017 Running Shoe is built with an Engineered that appears to sit atop the same sole.', 5, 24, 1, 1, '2018-03-18 10:45:03', 0, '0000-00-00 00:00:00', 1),
+(3, 'PM01', 'Puma Shirt for Man', 3, 3, 'New Arrival', 20, 48, 1, 1, '2018-03-18 11:53:03', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `Item_Details` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Item_Details`
@@ -167,7 +169,16 @@ CREATE TABLE IF NOT EXISTS `Item_Details` (
 INSERT INTO `Item_Details` (`ID`, `Item_id`, `Title`, `Description`, `Added_by`, `Added_on`, `Modified_by`, `Modified_on`, `isActive`) VALUES
 (1, 1, 'Size', 'S, M , L', 1, '2018-03-18 05:30:57', 0, '0000-00-00 00:00:00', 1),
 (2, 1, 'Color', 'Red, Blue, Black', 1, '2018-03-18 05:31:15', 0, '0000-00-00 00:00:00', 1),
-(3, 1, 'Material', 'Cotton', 1, '2018-03-18 09:35:13', 0, '0000-00-00 00:00:00', 1);
+(3, 1, 'Material', 'Cotton', 1, '2018-03-18 09:35:13', 0, '0000-00-00 00:00:00', 1),
+(4, 2, 'Runner Type', 'Pro', 1, '2018-03-18 10:46:29', 0, '0000-00-00 00:00:00', 1),
+(5, 2, 'Running Track', 'Road', 1, '2018-03-18 10:46:36', 0, '0000-00-00 00:00:00', 1),
+(6, 2, 'Color', 'Black', 1, '2018-03-18 10:46:55', 0, '0000-00-00 00:00:00', 1),
+(7, 2, 'Features', 'Lightweight', 1, '2018-03-18 10:47:22', 0, '0000-00-00 00:00:00', 1),
+(8, 2, 'Upper Material', 'Mesh/Textile', 1, '2018-03-18 10:47:44', 0, '0000-00-00 00:00:00', 1),
+(9, 2, 'Sole Material', 'Rubber', 1, '2018-03-18 10:48:16', 0, '0000-00-00 00:00:00', 1),
+(10, 3, 'Size', 'Small, Medium, Large', 1, '2018-03-18 12:25:15', 0, '0000-00-00 00:00:00', 1),
+(11, 3, 'Color', 'Black', 1, '2018-03-18 12:25:26', 0, '0000-00-00 00:00:00', 1),
+(12, 3, 'Material', 'Polyster', 1, '2018-03-18 12:25:38', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -186,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `Item_Image` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Item_Image`
@@ -197,7 +208,15 @@ INSERT INTO `Item_Image` (`ID`, `Item_id`, `Image_Url`, `Title`, `Description`, 
 (2, 1, 'images/product5.jpg', '', '', 1, '2018-03-18 05:28:28', 0, '0000-00-00 00:00:00', 1),
 (3, 1, 'images/product4.jpg', '', '', 1, '2018-03-18 05:28:41', 0, '0000-00-00 00:00:00', 1),
 (4, 1, 'images/product2.jpg', '', '', 1, '2018-03-18 05:28:49', 0, '0000-00-00 00:00:00', 0),
-(5, 1, 'images/product6.jpg', '', '', 1, '2018-03-18 05:29:03', 0, '0000-00-00 00:00:00', 1);
+(5, 1, 'images/product6.jpg', '', '', 1, '2018-03-18 05:29:03', 0, '0000-00-00 00:00:00', 1),
+(6, 2, 'images/nike4.jpg', '', '', 1, '2018-03-18 10:48:40', 0, '0000-00-00 00:00:00', 1),
+(7, 2, 'images/nike2.jpeg', '', '', 1, '2018-03-18 10:48:58', 0, '0000-00-00 00:00:00', 1),
+(8, 2, 'images/nike.jpg', '', '', 1, '2018-03-18 10:49:11', 0, '0000-00-00 00:00:00', 1),
+(9, 2, 'images/nike3.webp', '', '', 1, '2018-03-18 10:49:23', 0, '0000-00-00 00:00:00', 1),
+(10, 3, 'images/product9.jpg', '', '', 1, '2018-03-18 12:26:36', 0, '0000-00-00 00:00:00', 1),
+(11, 3, 'images/product11.jpg', '', '', 1, '2018-03-18 12:26:44', 0, '0000-00-00 00:00:00', 1),
+(12, 3, 'images/product7.jpg', '', '', 1, '2018-03-18 12:26:50', 0, '0000-00-00 00:00:00', 1),
+(13, 3, 'images/product12.jpg', '', '', 1, '2018-03-18 12:26:55', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -215,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `Item_Price` (
   `Modified_by` int(125) NOT NULL,
   `Modified_on` timestamp NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Item_Price`
@@ -223,7 +242,11 @@ CREATE TABLE IF NOT EXISTS `Item_Price` (
 
 INSERT INTO `Item_Price` (`ID`, `Item_id`, `Price`, `isCurrent`, `Added_by`, `Added_on`, `Modified_by`, `Modified_on`, `isActive`) VALUES
 (1, 1, 499, 1, 1, '2018-03-18 05:27:29', 1, '2018-03-18 09:32:50', 1),
-(2, 1, 599, 0, 1, '2018-03-18 09:33:01', 0, '0000-00-00 00:00:00', 1);
+(2, 1, 599, 0, 1, '2018-03-18 09:33:01', 0, '0000-00-00 00:00:00', 1),
+(3, 2, 9999, 0, 1, '2018-03-18 10:45:41', 0, '0000-00-00 00:00:00', 1),
+(4, 2, 2, 0, 1, '2018-03-18 10:45:44', 0, '0000-00-00 00:00:00', 0),
+(5, 2, 2481, 1, 1, '2018-03-18 10:46:02', 0, '0000-00-00 00:00:00', 1),
+(6, 3, 300, 1, 1, '2018-03-18 12:24:54', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -550,22 +573,22 @@ ALTER TABLE `Customer_login`
 -- AUTO_INCREMENT for table `Item`
 --
 ALTER TABLE `Item`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `Item_Details`
 --
 ALTER TABLE `Item_Details`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `Item_Image`
 --
 ALTER TABLE `Item_Image`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `Item_Price`
 --
 ALTER TABLE `Item_Price`
-  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `ID` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `Item_review`
 --
