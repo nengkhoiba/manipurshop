@@ -1,3 +1,6 @@
+	<div id="loading" class="loading-svg">
+	<img style="width:70px" src="<?php echo base_url();?>assets/images/loading.svg">
+	</div>
 	<footer id="footer"><!--Footer-->
 		
 		<div class="footer-widget">
@@ -17,13 +20,21 @@
 					</div>
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Quock Shop</h2>
+							<h2>Quick Shop</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">T-Shirt</a></li>
-								<li><a href="#">Mens</a></li>
-								<li><a href="#">Womens</a></li>
-								<li><a href="#">Gift Cards</a></li>
-								<li><a href="#">Shoes</a></li>
+								<?php 
+                                       		$sql="SELECT ID, Code,Description,Added_on FROM Category WHERE isActive=1 LIMIT 5";
+                                       		$query = $this->db->query($sql);
+                                       		if($query){
+                                       			while ($result = mysql_fetch_array($query->result_id)){
+                                       				?>
+                                       					
+															<li><a href="#"><?php echo $result['Description']; ?></a></li>
+														
+                                       				<?php
+                                       			}
+                                       		}
+                                       ?>
 							</ul>
 						</div>
 					</div>

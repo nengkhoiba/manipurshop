@@ -18,9 +18,9 @@ class Home extends CI_Controller {
 	}
 		
 	}
-	public function error()
+	public function login()
 	{
-		$this->load->view('error.php');
+		$this->load->view('login.php');
 	}
 
 }

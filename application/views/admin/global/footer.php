@@ -1,3 +1,6 @@
+	<div id="loading" class="loading-svg">
+	<img style="width:70px" src="<?php echo base_url();?>assets/images/loading.svg">
+	</div>
   <footer>
         <div class="container">
             <div class="row">

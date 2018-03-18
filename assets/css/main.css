@@ -1430,7 +1430,7 @@ h2.title {
 #form {
   display: block;
   margin-bottom: 185px;
-  margin-top: 185px;
+  margin-top: 20px;
   overflow: hidden;
 }
 
@@ -2520,6 +2520,13 @@ h2.title {
 
 .contact-info .social-networks ul li a:hover{
   color: #0978ea;
+}
+.loading-svg{
+	position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 50px;
+    margin-bottom: 50px;
 }
 
 

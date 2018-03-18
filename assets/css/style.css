@@ -1,0 +1,20 @@
+.loading-svg{
+	position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 50px;
+    margin-bottom: 50px;
+  	z-index: 10;
+  	display:none;
+}
+.msgbox{
+    color: #ffffff !important;
+    background-color: #00000078 !important;
+    border-color: #35353400 !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 70% !important;
+    margin-bottom: 120px !important;
+    z-index: 10 !important;
+    
+}
