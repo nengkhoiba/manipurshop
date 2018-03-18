@@ -55,7 +55,7 @@ if($query){
 								<h2><?php echo $result['Title']; ?></h2>
 								<p>Web ID: <?php echo $result['ID'];?></p>
 								<span>
-									<span>INR ₹<?php echo $result['Price']; ?></span>
+									<span>₹<?php echo $result['Price']; ?></span>
 									<label>Quantity:</label>
 									<input type="text" value="1" />
 									<button type="button" class="btn btn-fefault cart">

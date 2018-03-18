@@ -475,7 +475,7 @@ function removeItemPrice(id){
   				if(xmlHttp.responseText != null){
 
   					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
-  				
+  					 itemPublishCheck();
   				}else{
   					alert("Error");
   				}
@@ -500,7 +500,7 @@ function enablePrice(id){
   				if(xmlHttp.responseText != null){
 
   					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
-  				
+  					 itemPublishCheck();
   				}else{
   					alert("Error");
   				}
@@ -578,7 +578,7 @@ function removeItemDetail(id){
   				if(xmlHttp.responseText != null){
 
   					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
-  				
+  					 itemPublishCheck();
   				}else{
   					alert("Error");
   				}
@@ -742,7 +742,7 @@ $("html").on("dragover", function(e) {
 	  				if(xmlHttp.responseText != null){
 
 	  					document.getElementById('imageContainer').innerHTML = xmlHttp.responseText;
-	  				
+	  					 itemPublishCheck();
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -797,6 +797,7 @@ $("html").on("dragover", function(e) {
 
 				  $('#unpublishItem').hide();
 				  $('#publishItem').show();
+				  itemPublishCheck();
 				 }
 		 
 		 
