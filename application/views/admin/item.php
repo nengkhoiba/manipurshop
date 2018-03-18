@@ -13,10 +13,10 @@
                     
                 </div>
             <ul class="nav nav-tabs">
-				<li class="active">
+				<li id="tabItemMaster" class="active">
 	        		<a href="#1" data-toggle="tab">Item master</a>
 				</li>
-				<li>
+				<li id="tab2ItemMaster">
 					<a href="#2" data-toggle="tab">Item List</a>
 				</li>
 			</ul>
@@ -83,7 +83,7 @@
 										  <span class="input-group-addon" id="sizing-addon1">Delivery Time</span>
 										  <input id="itemDelivery" name="itemDelivery" type="text" class="form-control" placeholder="In Hours" aria-describedby="sizing-addon1">
 										</div>
-					              		 <a href="#" onclick="iteminfoSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
+					              		 <a style="cursor:pointer" onclick="iteminfoSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
 				                     		
 				                     		<!-- GIF SAVING  -->
 				                     		<div id="SavingGIF" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
@@ -111,7 +111,7 @@
 										  <input disabled id="priceID" name="priceID" type="hidden" class="form-control">
 										</div>
 										<div class="form-group">
-					              		 <a href="#"  onclick="itempriceSave()" disabled id="itemPriceSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
+					              		 <a style="cursor:pointer"  onclick="itempriceSave()" disabled id="itemPriceSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
 				                     	</div>
 				                     	</div>
 				                     	</div>
@@ -146,7 +146,7 @@
 										</div>
 				                     
 										<div class="form-group">
-					              		 <a href="#" disabled onclick="itemDetailSave()" id="itemDetailsSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
+					              		 <a style="cursor:pointer" disabled onclick="itemDetailSave()" id="itemDetailsSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
 				                     	</div>
 				                     	</div>
 				                     	</div>
@@ -171,7 +171,7 @@
 				                     <div class="row">
 				                     <div class="form-group">
 				                     <div class="container">
-					              		 <a href="#" disabled id="uploadfile" class="btn btn-sm btn-success pull-left">UPLOAD IMAGE</a>
+					              		 <a style="cursor:pointer" disabled id="uploadfile" class="btn btn-sm btn-success pull-left">UPLOAD IMAGE</a>
 				                     </div>
 				                     	</div>
 				                     </div>
@@ -190,8 +190,8 @@
 			                  
 			                </div>
 			  			</div>
-			  			<a href="#" disabled id="publishItem" onclick="itemPublishSave()"class="btn btn-info pull-right">Publish Item </a>  
-					    <a href="#" style="display: none;" id="unpublishItem" onclick="itemUnpublish()"class="btn btn-danger pull-right">Unpublish Item </a>  
+			  			<a style="cursor:pointer" disabled id="publishItem" onclick="itemPublishSave()"class="btn btn-info pull-right">Publish Item </a>  
+					    <a style="cursor:pointer" style="display: none;" id="unpublishItem" onclick="itemUnpublish()"class="btn btn-danger pull-right">Unpublish Item </a>  
 					    
 			 </div>
 			 
@@ -781,6 +781,8 @@ $("html").on("dragover", function(e) {
 	function loadItem(id,isPublish){
 		 $('#1').addClass('active');
 		 $('#2').removeClass('active');	
+		 $('#tab2ItemMaster').removeClass('active');
+		 $('#tabItemMaster').addClass('active');
 		 enableControl();
 		 ITEM_ID=id;
 		 load_item_info();

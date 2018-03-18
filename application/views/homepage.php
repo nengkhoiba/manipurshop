@@ -13,7 +13,7 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<div class="col-sm-6">
-									<h1><span>E</span>-Manipur Shop</h1>
+									<h1><span>M</span>UROLEN</h1>
 									<h2>Write anything here</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
@@ -25,7 +25,7 @@
 							</div>
 							<div class="item">
 								<div class="col-sm-6">
-									<h1><span>E</span>-Manipur Shop</h1>
+									<h1><span>M</span>UROLEN</h1>
 									<h2>Manipur dukan</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
@@ -38,7 +38,7 @@
 							
 							<div class="item">
 								<div class="col-sm-6">
-									<h1><span>E</span>-Manipur Shop</h1>
+									<h1><span>M</span>UROLEN</h1>
 									<h2>Shop now</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
@@ -369,3 +369,8 @@
 		</div>
 	</section>
 	<?php $this->load->view('data/global_footer');?>
+	<script>
+	function itemClick(id){
+		window.open("<?php echo base_url();?>home/product?id="+id);
+		}
+	</script>

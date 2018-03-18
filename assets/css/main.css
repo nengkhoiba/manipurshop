@@ -262,8 +262,7 @@ a#scrollUp i{
   height: 35px;
   outline: medium none;
   padding-left: 10px;
-  width: 155px;
-  background-image: url(../images/home/searchicon.png);
+  width: 200px;
   background-repeat: no-repeat;
   background-position: 130px;
 }
@@ -610,7 +609,7 @@ ul.sub-menu {
   color: #363432;
   font-family: 'Roboto', sans-serif;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 22px;
   margin-top: 10px;
 }
@@ -663,7 +662,7 @@ ul.sub-menu {
   color: #0978ea;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   margin: 0 auto 30px;
   text-align: center;
   text-transform: uppercase;
@@ -725,6 +724,7 @@ h2.title:before{
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  font-weight: 300;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -773,6 +773,7 @@ h2.title:before{
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   padding: 5px 25px;
+  font-weight: 300;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -838,7 +839,7 @@ h2.title {
   color: #0978ea;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   margin: 0 15px;
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -865,13 +866,13 @@ h2.title {
 	color: #0978ea;
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
-	font-weight: 700;
+	font-weight: 400;
 }
 .product-overlay h2{
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
-	font-weight: 700;
+	font-weight: 400;
 }
 
 
@@ -1173,7 +1174,6 @@ h2.title {
 
 .view-product img {
   border: 1px solid #F7F7F0;
-  height: 380px;
   width: 100%;
 }
 
@@ -1183,7 +1183,7 @@ h2.title {
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 0;
   padding: 8px 20px;
   position: absolute;
@@ -1197,6 +1197,7 @@ h2.title {
 #similar-product .carousel-inner .item img {
   display: inline-block;
   margin-left: 15px;
+      width: 85px;
 }
 
 .item-control {
@@ -1253,7 +1254,7 @@ h2.title {
   float: left;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
-  font-weight: 700;
+  font-weight: 400;
   margin-right: 20px;
   margin-top: 0px;
 }
@@ -1262,7 +1263,7 @@ h2.title {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 400;
   height: 33px;
   outline: medium none;
   text-align: center;
@@ -1272,7 +1273,7 @@ h2.title {
 .product-information span label {
   color: #696763;
   font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   margin-right: 5px;
 }
 
@@ -1399,6 +1400,7 @@ h2.title {
 
 .content-404 img {
  margin:0 auto;
+ width:30%;
 }
 
 .content-404 p {
@@ -1971,7 +1973,7 @@ h2.title {
 #cart_items .cart_info 
 .table.table-condensed.total-result span {
   color: #0978ea;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 16px
 }
 
@@ -2127,7 +2129,7 @@ h2.title {
   border-radius: 0;
   color: #696763;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   padding: 4px;
   text-transform: uppercase;
   width: 57px;
@@ -2166,7 +2168,7 @@ h2.title {
 .rating-area .rate-this {
   color: #363432;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -2222,7 +2224,7 @@ h2.title {
 .media-heading {
   color: #363432;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
   font-family: 'Roboto', sans-serif;
   margin-bottom: 15px
 }
@@ -2281,7 +2283,7 @@ h2.title {
 .response-area h2 {
   color: #363432;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .response-area .media {
@@ -2318,7 +2320,7 @@ h2.title {
   color: #363432;
   float: left;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   margin-right: 10px;
   padding: 0 10px 0 0;
   position: relative;
@@ -2345,7 +2347,7 @@ h2.title {
 }
 
 .replay-box h2 {
-  font-weight: 700;
+  font-weight: 400;
   font-size: 20px;
   color: #363432;
   margin-top: 0;
@@ -2364,7 +2366,7 @@ h2.title {
 .replay-box span {
   color: #0978ea;
   float: right;
-  font-weight: 700;
+  font-weight: 400;
   margin-top: 21px;
 }
 

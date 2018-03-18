@@ -6,7 +6,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Admin ManipurShop</title>
+    <title>Admin Murolen</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>info@yourdomain.com
+                    <strong>Email: </strong>info@murolen.com
                     &nbsp;&nbsp;
                     <strong>Support: </strong>+90-897-678-44
                 </div>

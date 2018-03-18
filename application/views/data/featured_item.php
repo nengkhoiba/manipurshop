@@ -19,7 +19,7 @@ $query = $this->db->query($sql);
 if($query){
 	while ($result = mysql_fetch_array($query->result_id)){
 		?>
-                        <div class="col-sm-4" onclick="itemClick('<?php echo $result['ID']; ?>')">
+                        <div style="cursor: pointer;" class="col-sm-4" onclick="itemClick('<?php echo $result['ID']; ?>')">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
