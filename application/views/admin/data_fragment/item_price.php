@@ -13,11 +13,11 @@
                                          <?php 
                                        		
                                        		
-												$sql="SELECT  ip.ID,ip.Price,ip.isCurrent 
-												FROM Item_Price ip 
-												LEFT JOIN Item Item ON Item.ID = Ip.Item_id
-												WHERE ip.isActive =1 
-												AND ip.Item_id=$ItemID";
+												$sql="SELECT  IP.ID,IP.Price,IP.isCurrent 
+												FROM Item_Price IP 
+												LEFT JOIN Item Item ON Item.ID = IP.Item_id
+												WHERE IP.isActive =1 
+												AND IP.Item_id=$ItemID";
                                        		$query = $this->db->query($sql);
                                        		if($query){
                                        			while ($result = mysql_fetch_array($query->result_id)){
