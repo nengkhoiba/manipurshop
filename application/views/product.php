@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Murolen an E-Commerce platform only for manipur.">
+    <meta name="author" content="">
+    <title>Home | Murolen</title>
 <?php $this->load->view('data/global_header')?>
 	
 	<section>
