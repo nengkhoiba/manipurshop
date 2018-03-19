@@ -11,7 +11,7 @@ LEFT JOIN Item_Price IP ON IP.Item_id=Item.ID
 AND IP.isCurrent=1
 
 WHERE Item.isActive=1
-AND Item.isPublish=0
+AND Item.isPublish=1
 
 ORDER BY Item.ID DESC
 LIMIT 6";
@@ -19,7 +19,7 @@ $query = $this->db->query($sql);
 if($query){
 	while ($result = mysql_fetch_array($query->result_id)){
 		?>
-                        <div class="col-sm-4" onclick="itemClick('<?php echo $result['ID']; ?>')">
+                        <div style="cursor: pointer;" class="col-sm-4" onclick="itemClick('<?php echo $result['ID']; ?>')">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">

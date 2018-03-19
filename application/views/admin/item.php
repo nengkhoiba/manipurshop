@@ -8,15 +8,15 @@
                 </div>
 
             </div>
-            <div class="row">
-             <div id="msgbox" class="col-md-12">
+            <div class="row ">
+                 <div id="msgbox" class="col-md-12">
                     
                 </div>
             <ul class="nav nav-tabs">
-				<li class="active">
+				<li id="tabItemMaster" class="active">
 	        		<a href="#1" data-toggle="tab">Item master</a>
 				</li>
-				<li>
+				<li id="tab2ItemMaster">
 					<a href="#2" data-toggle="tab">Item List</a>
 				</li>
 			</ul>
@@ -83,7 +83,7 @@
 										  <span class="input-group-addon" id="sizing-addon1">Delivery Time</span>
 										  <input id="itemDelivery" name="itemDelivery" type="text" class="form-control" placeholder="In Hours" aria-describedby="sizing-addon1">
 										</div>
-					              		 <a href="#" onclick="iteminfoSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
+					              		 <a style="cursor:pointer" onclick="iteminfoSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
 				                     		
 				                     		<!-- GIF SAVING  -->
 				                     		<div id="SavingGIF" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
@@ -111,7 +111,7 @@
 										  <input disabled id="priceID" name="priceID" type="hidden" class="form-control">
 										</div>
 										<div class="form-group">
-					              		 <a href="#"  onclick="itempriceSave()" disabled id="itemPriceSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
+					              		 <a style="cursor:pointer"  onclick="itempriceSave()" disabled id="itemPriceSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
 				                     	</div>
 				                     	</div>
 				                     	</div>
@@ -146,7 +146,7 @@
 										</div>
 				                     
 										<div class="form-group">
-					              		 <a href="#" disabled onclick="itemDetailSave()" id="itemDetailsSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
+					              		 <a style="cursor:pointer" disabled onclick="itemDetailSave()" id="itemDetailsSection" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>
 				                     	</div>
 				                     	</div>
 				                     	</div>
@@ -171,7 +171,7 @@
 				                     <div class="row">
 				                     <div class="form-group">
 				                     <div class="container">
-					              		 <a href="#" disabled id="uploadfile" class="btn btn-sm btn-success pull-left">UPLOAD IMAGE</a>
+					              		 <a style="cursor:pointer" disabled id="uploadfile" class="btn btn-sm btn-success pull-left">UPLOAD IMAGE</a>
 				                     </div>
 				                     	</div>
 				                     </div>
@@ -190,8 +190,8 @@
 			                  
 			                </div>
 			  			</div>
-			  			<a href="#" disabled id="publishItem" onclick="itemPublishSave()"class="btn btn-info pull-right">Publish Item </a>  
-					    <a href="#" style="display: none;" id="unpublishItem" onclick="itemUnpublish()"class="btn btn-danger pull-right">Unpublish Item </a>  
+			  			<a style="cursor:pointer" disabled id="publishItem" onclick="itemPublishSave()"class="btn btn-info pull-right">Publish Item </a>  
+					    <a  style="cursor:pointer;display: none;" id="unpublishItem" onclick="itemUnpublish()"class="btn btn-danger pull-right">Unpublish Item </a>  
 					    
 			 </div>
 			 
@@ -285,71 +285,57 @@ var ITEM_ID=0;
 	
 	 // $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);});
   });
-
+  function popupmsg(message){
+		var msg="<div class='msgbox alert alert-danger ' >"+
+		   message+"</div>";
+	     document.getElementById('msgbox').innerHTML=msg;
+	     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
+	}
 //ITEM INFO 
   function iteminfoSave() {
-	  ///insert loading animation here
-			$(document.getElementById('SavingGIF')).ajaxStart(function(){
-			 // Show image container
-			 $("#SavingGIF").show();
-			});
-			$(document.getElementById('SavingGIF')).ajaxComplete(function(){
-			 // Hide image container
-			 $("#SavingGIF").hide();
-			});
+	  
 	  //run form validation
 	  
 	  if(document.getElementById('itemCode').value.trim()==""){
 
-		var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Code!</div>";
-        document.getElementById('msgbox').innerHTML=msg;
+        popupmsg("Please enter Item Code!");
         return;
 	 }
 	  else if(document.getElementById('itemName').value.trim()==""){
-	  	var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Name!</div>";
-        document.getElementById('msgbox').innerHTML=msg;
+		  popupmsg("Please enter Item Name!");
         return;
 		  }
 	  else if(document.getElementById('itemDesc').value.trim()==""){
-	  		var msg="<div class='alert alert-danger'>"+
-		        "Please enter Item Description!</div>";
-		        document.getElementById('msgbox').innerHTML=msg;
+		  popupmsg("Please enter Item Description!");
 		        return;
 	  }
 	  else if (document.getElementById('itemStock').value.trim()==""){
 		
-		var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Stock!</div>";
-        document.getElementById('msgbox').innerHTML=msg;
+		  popupmsg("Please enter Item Stock!");
         return;  	 
 	  }
 	   else if (document.getElementById('itemDelivery').value.trim()==""){
 		  
-		  var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Delivery!</div>";
-        document.getElementById('msgbox').innerHTML=msg;
+		   popupmsg("Please enter Item Delivery Time!");
         return;	 
 	  }
 		 else{
 		 document.getElementById('msgbox').innerHTML="";
 		 }
 	  //end form validation
-	  
+	  $('#loading').show();
 	  var url = '<?php echo base_url();?>admin/data_controller/itemInfo?itemCode='+document.getElementById('itemCode').value+'&itemCategory='+document.getElementById('itemCategory').value+'&itemBrand='+document.getElementById('itemBrand').value+'&itemName='+document.getElementById('itemName').value+'&itemDesc='+document.getElementById('itemDesc').value+'&itemStock='+document.getElementById('itemStock').value+'&itemDelivery='+document.getElementById('itemDelivery').value+'&postType='+ITEM_ID;
 	  callServiceToFetchData(url,itemInfosaveReply);
 	  }
 
   
 	  function itemInfosaveReply(response){
+		  $('#loading').hide();
 	  var sqlresponse = JSON.parse(response);
 		  if(sqlresponse.status === "success"){
 		  	//stop animation
 			  	  ITEM_ID=sqlresponse.itemID;
-			  var msg="<div class='alert alert-success'>"+
-		        "Item details save! </div>";
-		        document.getElementById('msgbox').innerHTML=msg;
+			  	popupmsg("Successfully saved!");
 		  	//enable the other sections here
 			  	//$('#itemPrice').attr.remove("disabled");
 			  	enableControl();
@@ -358,20 +344,19 @@ var ITEM_ID=0;
 		  if(sqlresponse.status === "fali"){
 		  	//stop animation
 			  	  ITEM_ID=sqlresponse.itemID;
-			  var msg="<div class='alert alert-success'>"+
-		        "Something went wrong! </div>";
-		        document.getElementById('msgbox').innerHTML=msg;
+			  	popupmsg("Something went wrong!");
 			  
 		  }
 	  }
 
 	  function load_item_info(){
+		  $('#loading').show();
 		  var url = '<?php echo base_url();?>admin/data_controller/load_itemDetail?id='+ITEM_ID;
 		  callServiceToFetchData(url,itemDetaiLoadRelpy);
 	  }
 	  function itemDetaiLoadRelpy(response){
 		  var sqlresponse = JSON.parse(response);
-			  
+		  $('#loading').hide();
 				     document.getElementById('itemCategory').value=sqlresponse.cat_id;
 				     document.getElementById('itemBrand').value=sqlresponse.brand_id;
 				     document.getElementById('itemCode').value=sqlresponse.code;
@@ -382,7 +367,7 @@ var ITEM_ID=0;
 		  }
 
 	  function enablePublish(id){
-
+		  $('#loading').show();
 		  	var url = "<?php echo site_url('admin/data_controller/enable_itemPublish?id=');?>"+id+"&itemID="+ITEM_ID;
 		  	var xmlHttp = GetXmlHttpObject();
 		  	if (xmlHttp != null) {
@@ -390,7 +375,7 @@ var ITEM_ID=0;
 		  			xmlHttp.onreadystatechange=function() {
 		  			if(xmlHttp.readyState == 4) {
 		  				if(xmlHttp.responseText != null){
-
+		  					$('#loading').hide();
 		  					document.getElementById('itemListContainer').innerHTML = xmlHttp.responseText;
 		  				
 		  				}else{
@@ -419,21 +404,20 @@ function enableControl(){
   	$('#uploadfile').removeAttr("disabled");
   	
 }
+
  function itempriceSave() {
 	  //run form validation
-	  
+	
 	  if(document.getElementById('itemPrice').value.trim()==""){
-
-		var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Code!</div>";
-        document.getElementById('msgbox').innerHTML=msg;
+		
+		  popupmsg("Please enter item price!");
         return;
 	 }
 		 else{
 		 document.getElementById('msgbox').innerHTML="";
 		 }
 	  //end form validation
-	  
+	    $('#loading').show();
 	  var url = '<?php echo base_url();?>admin/data_controller/itemPrice?itemPrice='+document.getElementById('itemPrice').value+'&itemID='+ITEM_ID+'&priceID='+document.getElementById('priceID').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
@@ -441,7 +425,7 @@ function enableControl(){
 	  			xmlHttp.onreadystatechange=function() {
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
-	  					
+	  					$('#loading').hide();
 	  					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
 	  					document.getElementById('itemPrice').value="";
 	  					document.getElementById('priceID').value="";
@@ -464,7 +448,7 @@ function  editItemPrice(price,id){
 }
 
 function removeItemPrice(id){
-
+	$('#loading').show();
 	if(confirm("Confirm Delete?")){
   	var url = "<?php echo site_url('admin/data_controller/delete_itemPrice?id=');?>"+id+"&itemID="+ITEM_ID;
   	var xmlHttp = GetXmlHttpObject();
@@ -473,9 +457,9 @@ function removeItemPrice(id){
   			xmlHttp.onreadystatechange=function() {
   			if(xmlHttp.readyState == 4) {
   				if(xmlHttp.responseText != null){
-
+  					$('#loading').hide();
   					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
-  				
+  					 itemPublishCheck();
   				}else{
   					alert("Error");
   				}
@@ -490,7 +474,7 @@ function removeItemPrice(id){
 } 	
 	  
 function enablePrice(id){
-
+	$('#loading').show();
   	var url = "<?php echo site_url('admin/data_controller/enable_itemPrice?id=');?>"+id+"&itemID="+ITEM_ID;
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
@@ -498,9 +482,9 @@ function enablePrice(id){
   			xmlHttp.onreadystatechange=function() {
   			if(xmlHttp.readyState == 4) {
   				if(xmlHttp.responseText != null){
-
+  					$('#loading').hide();
   					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
-  				
+  					 itemPublishCheck();
   				}else{
   					alert("Error");
   				}
@@ -520,22 +504,21 @@ function enablePrice(id){
 //ITEM DETAILS
 function itemDetailSave() {
 	  //run form validation
-	  
 	  if(document.getElementById('itemDetailTitle').value.trim()==""){
 
-		var msg="<div class='alert alert-danger'>"+
-        "Please enter Item Details!</div>";
-        document.getElementById('msgbox').innerHTML=msg;
+		  popupmsg("Please enter item details title!");
         return;
 	 }
 	  else if(document.getElementById('itemDetailDescription').value.trim()==""){
+		  popupmsg("Please enter Item detail description!");
 	  }	 
 		 else{
 		 document.getElementById('msgbox').innerHTML="";
-		 s
+		 
 		 }
 	  //end form validation
 	  
+	  $('#loading').show();
 	  var url = '<?php echo base_url();?>admin/data_controller/itemDetails?itemTitle='+document.getElementById('itemDetailTitle').value+'&itemID='+ITEM_ID+'&itemDesc='+document.getElementById('itemDetailDescription').value+'&detailID='+document.getElementById('detailID').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
@@ -543,7 +526,7 @@ function itemDetailSave() {
 	  			xmlHttp.onreadystatechange=function() {
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
-	  					
+	  					$('#loading').hide();
 	  					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
 	  					document.getElementById('itemDetailTitle').value="";
 	  					document.getElementById('itemDetailDescription').value="";
@@ -567,7 +550,7 @@ function  editItemDetail(id,title,desc){
 }
 
 function removeItemDetail(id){
-
+	$('#loading').show();
 	if(confirm("Confirm Delete?")){
   	var url = "<?php echo site_url('admin/data_controller/delete_itemDetail?id=');?>"+id+"&itemID="+ITEM_ID;
   	var xmlHttp = GetXmlHttpObject();
@@ -576,9 +559,9 @@ function removeItemDetail(id){
   			xmlHttp.onreadystatechange=function() {
   			if(xmlHttp.readyState == 4) {
   				if(xmlHttp.responseText != null){
-
+  					$('#loading').hide();
   					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
-  				
+  					 itemPublishCheck();
   				}else{
   					alert("Error");
   				}
@@ -592,6 +575,7 @@ function removeItemDetail(id){
 	}
 } 	
 function load_item_details(){
+	$('#loading').show();
 	var url = "<?php echo site_url('admin/data_controller/load_item_details?id=');?>"+ITEM_ID;
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
@@ -599,7 +583,7 @@ function load_item_details(){
   			xmlHttp.onreadystatechange=function() {
   			if(xmlHttp.readyState == 4) {
   				if(xmlHttp.responseText != null){
-
+  					$('#loading').hide();
   					document.getElementById('itemDetailDataContainer').innerHTML = xmlHttp.responseText;
   					
   				}else{
@@ -684,7 +668,7 @@ $("html").on("dragover", function(e) {
 
 	// Sending AJAX request and upload file
 	function uploadData(formdata){
-
+		$('#loading').show();
 	    $.ajax({
 	        url: '<?php echo base_url();?>admin/data_controller/imageUpload',
 	        type: 'post',
@@ -709,6 +693,7 @@ $("html").on("dragover", function(e) {
 	}
 
 	function loadImages(){
+		$('#loading').show();
 		var url = "<?php echo site_url('admin/data_controller/loadImage?id=');?>"+ITEM_ID;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
@@ -716,7 +701,7 @@ $("html").on("dragover", function(e) {
 	  			xmlHttp.onreadystatechange=function() {
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
-
+	  					$('#loading').hide();
 	  					document.getElementById('imageContainer').innerHTML = xmlHttp.responseText;
 	  					itemPublishCheck();
 	  				}else{
@@ -731,7 +716,7 @@ $("html").on("dragover", function(e) {
 	  	}
 		}
 	function removeItemImage(id){
-
+		$('#loading').show();
 		if(confirm("Confirm Delete?")){
 	  	var url = "<?php echo site_url('admin/data_controller/delete_itemImage?id=');?>"+id+"&itemID="+ITEM_ID;
 	  	var xmlHttp = GetXmlHttpObject();
@@ -740,9 +725,9 @@ $("html").on("dragover", function(e) {
 	  			xmlHttp.onreadystatechange=function() {
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
-
+	  					$('#loading').hide();
 	  					document.getElementById('imageContainer').innerHTML = xmlHttp.responseText;
-	  				
+	  					 itemPublishCheck();
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -756,6 +741,7 @@ $("html").on("dragover", function(e) {
 		}
 	} 	
 	 function load_item_price(){
+		 $('#loading').show();
 			var url = "<?php echo site_url('admin/data_controller/load_item_price?id=');?>"+ITEM_ID;
 		  	var xmlHttp = GetXmlHttpObject();
 		  	if (xmlHttp != null) {
@@ -763,7 +749,7 @@ $("html").on("dragover", function(e) {
 		  			xmlHttp.onreadystatechange=function() {
 		  			if(xmlHttp.readyState == 4) {
 		  				if(xmlHttp.responseText != null){
-
+		  					$('#loading').hide();
 		  					document.getElementById('itemPriceContainer').innerHTML = xmlHttp.responseText;
 		  				
 		  				}else{
@@ -781,6 +767,8 @@ $("html").on("dragover", function(e) {
 	function loadItem(id,isPublish){
 		 $('#1').addClass('active');
 		 $('#2').removeClass('active');	
+		 $('#tab2ItemMaster').removeClass('active');
+		 $('#tabItemMaster').addClass('active');
 		 enableControl();
 		 ITEM_ID=id;
 		 load_item_info();
@@ -795,6 +783,7 @@ $("html").on("dragover", function(e) {
 
 				  $('#unpublishItem').hide();
 				  $('#publishItem').show();
+				  itemPublishCheck();
 				 }
 		 
 		 
@@ -802,6 +791,7 @@ $("html").on("dragover", function(e) {
 //END IMAGE UPLOAD
 //item info search 
  function search(){
+	 $('#loading').show();
 	 var url = "<?php echo site_url('admin/data_controller/searchItem?cid=');?>"+document.getElementById('itemCategorySearch').value+'&bid='+document.getElementById('itemBrandSearch').value+'&title='+document.getElementById('itemTitleSearch').value+'&code='+document.getElementById('itemCodeSearch').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
@@ -809,7 +799,7 @@ $("html").on("dragover", function(e) {
 	  			xmlHttp.onreadystatechange=function() {
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
-
+	  					$('#loading').hide();
 	  					document.getElementById('itemSearchConntainer').innerHTML = xmlHttp.responseText;
 	  				
 	  				}else{
@@ -836,15 +826,17 @@ function reset()
 //end item info search reset
 //item publish check
 function itemPublishCheck(){
+	$('#loading').show();
 	 var url = '<?php echo base_url();?>admin/data_controller/itemPublish?itemid='+ITEM_ID;
 	  callServiceToFetchData(url,itemPublishCheckReply);
 }
  function itemPublishCheckReply(response){
+	 $('#loading').hide();
 	  var sqlresponse = JSON.parse(response);
 		  if(sqlresponse.status === "1"){
 			  $('#publishItem').removeAttr("disabled");
 		  }else{
-			  $('#publishItem').addAttr("disabled");
+			  $('#publishItem'). attr("disabled", "disabled");
 		}
 		  
 		 
@@ -861,6 +853,7 @@ function itemPublishSaveReply(response){
 	  var sqlresponse = JSON.parse(response);
 		  if(sqlresponse.status === "success"){
 			  loadItem(ITEM_ID,1);
+			  popupmsg("Publish Succesfully!");
 			  	}
 	  }
 

@@ -1,8 +1,11 @@
+	<div id="loading" class="loading-svg">
+	<img style="width:70px" src="<?php echo base_url();?>assets/images/loading.svg">
+	</div>
   <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
+                    &copy; 2018 Murolen | By : <a href="http://www.murolen.com/" target="_blank">Murolen</a>
                 </div>
 
             </div>

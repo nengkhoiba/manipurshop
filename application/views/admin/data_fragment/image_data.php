@@ -17,7 +17,7 @@
 												      	
 												      }else{?>
 												      
-												        <a href="#" onclick="removeItemImage('<?php echo $result['ID']; ?>')" class="btn btn-xs btn-danger" role="button">Remove</a>
+												        <a  style="cursor: pointer;" onclick="removeItemImage('<?php echo $result['ID']; ?>')" class="btn btn-xs btn-danger" role="button">Remove</a>
 												      <?php }?>
 												    </div>
 										  		</div>

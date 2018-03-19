@@ -1,9 +1,36 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Data_controller extends CI_Controller {
-	public function __construct(){
+	
+	function __construct() {
 		parent::__construct();
-		$this->session->set_userdata('USERID', "1");
+		if($this->session->userdata('loginStatus'))
+		{
+			if($this->session->userdata('role') == "ADMIN"){
+					
+	
+			}else {
+				redirect('admin/login');
+			}
+	
+		}else {
+			redirect('admin/login');
+		}
+	
+	
+	}
+	
+	function index(){
+		if($this->session->userdata('loginStatus'))
+		{
+			if($this->session->userdata('role') == "ADMIN"){
+			}else {
+				redirect('admin/login');
+			}
+	
+		}else {
+			redirect('admin/login');
+		}
 	}
 	//SHIPPING
 	public function shipping()

@@ -25,12 +25,12 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 								<?php 
-                                       		$sql="SELECT ID, Code,Description,Added_on FROM Brand WHERE isActive=1";
+                                       		$sql="SELECT ID, Code,Description,(SELECT COUNT(*) FROM Item WHERE Brand_id=BD.ID AND isPublish=1) AS ItemCount FROM Brand BD WHERE isActive=1";
                                        		$query = $this->db->query($sql);
                                        		if($query){
                                        			while ($result = mysql_fetch_array($query->result_id)){
                                        				?>
-													<li><a href="#"> <span class="pull-right">(50)</span><?php echo $result['Description']; ?></a></li>
+													<li><a href="#"> <span class="pull-right">(<?php echo $result['ItemCount']; ?>)</span><?php echo $result['Description']; ?></a></li>
                                        				<?php
                                        			}
                                        		}
@@ -42,8 +42,8 @@
 						<div class="price-range"><!--price-range-->
 							<h2>Price Range</h2>
 							<div class="well text-center">
-								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="5" data-slider-value="[0,10000]" id="sl2" ><br />
+								 <b class="pull-left">₹ 0</b> <b class="pull-right">₹ 10000</b>
 							</div>
 						</div><!--/price-range-->
 						

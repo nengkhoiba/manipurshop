@@ -5,29 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
-    <title>Free Responsive Admin Theme - ZONTAL</title>
+
+    <title>Admin Murolen</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
     <link href="<?php echo base_url();?>adminassets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/style.css" rel="stylesheet" />
-     <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   
 </head>
 <body>
     <header>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>info@yourdomain.com
+                    <strong>Email: </strong>info@murolen.com
                     &nbsp;&nbsp;
                     <strong>Support: </strong>+90-897-678-44
                 </div>
@@ -36,7 +29,7 @@
         </div>
     </header>
     <!-- HEADER END-->
-    <div class="navbar navbar-inverse set-radius-zero">
+ <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -44,20 +37,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-
-                    <img src="<?php echo base_url();?>adminassets/img/logo.png" />
-                </a>
+             
 
             </div>
 
-            <div class="left-div">
-                <i class="fa fa-user-plus login-icon" ></i>
-        </div>
+            <div class="left-div pull-right">
+                <div class="user-settings-wrapper">
+                    <ul class="nav">
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+                            </a>
+                        
+                        </li>
+
+
+                    </ul>
+                </div>
             </div>
         </div>
-    <!-- LOGO HEADER END-->
-   
+    </div>
     <!-- MENU SECTION END-->
     <div class="content-wrapper">
         <div class="container">
@@ -70,74 +70,64 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                   <h4> Login with facebook <strong> / </strong>Google :</h4>
+                  
+                     <h4> Or Login with <strong>Murolen Account  :</strong></h4>
                     <br />
-                    <a href="index.html" class="btn btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>&nbsp; Facebook Account</a>
-                    &nbsp;OR&nbsp;
-                    <a href="index.html" class="btn btn-social btn-google">
-                            <i class="fa fa-google-plus"></i>&nbsp; Google Account</a>
-                    <hr />
-                     <h4> Or Login with <strong>Zontal Account  :</strong></h4>
-                    <br />
-                     <label>Enter Email ID : </label>
-                        <input type="text" class="form-control" />
+                    <?php echo form_open('admin/login/verify');?>
+                       <label>Enter Email ID : </label>
+                        <input required name="Email" type="text" class="form-control" />
                         <label>Enter Password :  </label>
-                        <input type="password" class="form-control" />
+                        <input required name="Password" type="password" class="form-control" />
                         <hr />
-                        <a href="index.html" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Log Me In </a>&nbsp;
+                        <input type="submit" class="btn btn-info" value="Login">
+                        <a href="#" >&nbsp;Forgot Password</a>&nbsp;
+                	<?php echo form_close();?>
                 </div>
                 <div class="col-md-6">
+                <?php if($msg==null OR $msg=="0"){}else{?>
+                <div class="alert alert-danger">
+                        
+                         <strong> Message :</strong>
+                        <ul>
+                            <li>
+                                <?php echo $msg;?>
+                            </li>
+                           
+                        </ul>
+                       
+                    </div>
+                    <?php }?>
                     <div class="alert alert-info">
-                        This is a free bootstrap admin template with basic pages you need to craft your project. 
-                        Use this template for free to use for personal and commercial use.
+                        Please enter your Murolen E-mail and password to login to admin panel
                         <br />
-                         <strong> Some of its features are given below :</strong>
+                         <strong> Note :</strong>
                         <ul>
                             <li>
-                                Responsive Design Framework Used
+                                Change password for new user
                             </li>
                             <li>
-                                Easy to use and customize
+                                Do not attempt any illigal access
                             </li>
                             <li>
-                                Font awesome icons included
+                                Always change password every 3 months
                             </li>
                             <li>
-                                Clean and light code used.
+                                Always logout on leaving your work station
                             </li>
                         </ul>
                        
                     </div>
-                    <div class="alert alert-success">
-                         <strong> Instructions To Use:</strong>
-                        <ul>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor sit ame
-                            </li>
-                            <li>
-                                 Aamet ipsum dolor sit ame
-                            </li>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor
-                            </li>
-                            <li>
-                                 Cpsum dolor sit ame
-                            </li>
-                        </ul>
-                       
-                    </div>
+                  
                 </div>
 
             </div>
         </div>
     </div>
-    <!-- CONTENT-WRAPPER SECTION END-->
-    <footer>
+  <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
+                    &copy; 2018 Murolen | By : <a href="http://www.murolen.com/" target="_blank">Murolen</a>
                 </div>
 
             </div>
@@ -149,5 +139,6 @@
     <script src="<?php echo base_url();?>adminassets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo base_url();?>adminassets/js/bootstrap.js"></script>
+    <script src="<?php echo base_url();?>adminassets/js/service.js"></script>
 </body>
 </html>

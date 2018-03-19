@@ -6,13 +6,14 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Admin ManipurShop</title>
+    <title>Admin Murolen</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
     <link href="<?php echo base_url();?>adminassets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/style.css" rel="stylesheet" />
+    	<link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
    
 </head>
 <body>
@@ -20,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>info@yourdomain.com
+                    <strong>Email: </strong>info@murolen.com
                     &nbsp;&nbsp;
                     <strong>Support: </strong>+90-897-678-44
                 </div>
@@ -55,14 +56,16 @@
                                         <img src="<?php echo base_url();?>adminassets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Nengkhoiba</h4>
-                                        <h5>Admin</h5>
+                                        <h4 class="media-heading"><?php echo $this->session->userdata('name')?></h4>
+                                        <h5 class="media-heading"><?php echo $this->session->userdata('email')?></h4>
+                                        <h5 class="media-heading"><?php echo $this->session->userdata('role')?></h5>
+                                      
 
                                     </div>
                                 </div>
                                 
                                 <hr />
-                              <a href="#" class="btn btn-danger btn-xs">Logout</a>
+                              <a href="<?php echo base_url();?>admin/login/logout" class="btn btn-danger btn-xs">Logout</a>
 
                             </div>
                         </li>

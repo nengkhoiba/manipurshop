@@ -1,68 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Murolen an E-Commerce platform only for manipur.">
+    <meta name="author" content="">
+    <title>Home | Murolen</title>
 <?php $this->load->view('data/global_header')?>
 	
 	<section>
 		<div class="container">
 			<div class="row">
 				<?php $this->load->view('data/global_nav')?>
-				
+				<?php $sql="SELECT 
+Item.ID,				
+Item.Title,
+Item.Description,
+Item.Item_stock,
+Item.Delivery_Time,
+B.Description AS Brand,
+IP.Price,
+(SELECT Image_Url FROM Item_Image WHERE Item_id=Item.ID AND isActive=1 LIMIT 1) AS ImageUrl
+
+FROM Item Item
+LEFT JOIN Brand B ON B.ID=Item.Brand_id
+LEFT JOIN Item_Price IP ON IP.Item_id=Item.ID
+AND IP.isCurrent=1
+WHERE Item.isActive=1
+AND Item.isPublish=1
+AND Item.ID='$ItemID'";
+$query = $this->db->query($sql);
+if($query){
+	while ($result = mysql_fetch_array($query->result_id)){
+?>
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="images/product-details/1.jpg" alt="" />
-								<h3>ZOOM</h3>
+								<img src="<?php echo base_url();?><?php echo $result['ImageUrl']; ?>" alt="" />
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
-								
-								  <!-- Wrapper for slides -->
-								    <div class="carousel-inner">
+							<div class="carousel-inner">
 										<div class="item active">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										
-									</div>
-
-								  <!-- Controls -->
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
+									<?php $sql1="SELECT Image_Url FROM Item_Image WHERE Item_id='$ItemID' AND isActive=1";
+									$query1 = $this->db->query($sql1);
+									if($query){
+										while ($image = mysql_fetch_array($query1->result_id)){
+									?>
+																	   
+									  <a href=""><img src="<?php echo base_url();?><?php echo $image['Image_Url']; ?>" alt=""></a>
+																	
+									<?php }}?>
+								</div>
+									</div>	
+									 
 							</div>
 
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-								<p>Web ID: 1089772</p>
-								<img src="images/product-details/rating.png" alt="" />
+								<h2><?php echo $result['Title']; ?></h2>
+								<p>Web ID: <?php echo $result['ID'];?></p>
 								<span>
-									<span>US $59</span>
+									<span>₹<?php echo $result['Price']; ?></span>
 									<label>Quantity:</label>
-									<input type="text" value="3" />
+									<input type="text" value="1" />
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
 								</span>
-								<p><b>Availability:</b> In Stock</p>
-								<p><b>Condition:</b> New</p>
-								<p><b>Brand:</b> E-SHOPPER</p>
-								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+								<p><b>Availability:</b> <?php echo $result['Item_stock'];?> In Stock</p>
+								<p><b>Delivery:</b> <?php echo $result['Delivery_Time'];?> hrs After Order</p>
+								<p><b>Brand:</b> <?php echo $result['Brand'];?></p>
+								
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
@@ -70,165 +82,46 @@
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li><a href="#details" data-toggle="tab">Details</a></li>
-								<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
-								<li><a href="#tag" data-toggle="tab">Tag</a></li>
+								<li ><a href="#details" data-toggle="tab">Details</a></li>
 								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
-							<div class="tab-pane fade" id="details" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="tab-pane fade " id="details" >
+								 <table  id="item_details_data" class="table table-striped table-bordered table-hover">
+                                 
+                                    <tbody>
+                                       <?php 
+                                       		
+                                       		
+                                       		$sql="SELECT ide.ID, ide.Item_id, ide.Title, ide.Description ,Item.isPublish as isPublish
+												FROM Item_Details ide
+												LEFT JOIN Item Item ON Item.ID = ide.Item_id
+												WHERE ide.isActive=1 
+												AND ide.Item_id=$ItemID";
+                                       		$query = $this->db->query($sql);
+                                       		if($query){
+                                       			while ($result = mysql_fetch_array($query->result_id)){
+                                       				?>
+                                       				
+                                       				 <tr>
+			                                        	<td><?php echo $result['Title']; ?></td>
+			                                        	<td><?php echo $result['Description']; ?></td>
+			                                        	
+			                                        </tr>
+                                       				
+                                       				<?php
+                                       			}
+                                       		}
+                                       ?>
+                                        
+                                       
+                                    </tbody>
+                                </table>
 							</div>
 							
-							<div class="tab-pane fade" id="companyprofile" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
 							
-							<div class="tab-pane fade" id="tag" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 							
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-sm-12">
@@ -256,7 +149,8 @@
 							
 						</div>
 					</div><!--/category-tab-->
-					
+					<?php }
+	}?>
 					<div class="recommended_items"><!--recommended_items-->
 						<h2 class="title text-center">recommended items</h2>
 						

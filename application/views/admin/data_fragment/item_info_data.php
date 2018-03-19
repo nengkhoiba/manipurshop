@@ -6,6 +6,7 @@
 <th>Title</th>
 <th>Category</th>
 <th>Brand</th>
+<th>Stock</th>
 <th>Added-On</th>
 <th>Is Publish</th>
 <th>Edit</th>
@@ -16,7 +17,7 @@
 <?php
 
 
-$sql="SELECT Item.ID AS ID,Item.Code AS Code,Item.Description as Description ,Item.item_Stock as Stock,Item.isPublish as isPublish,Item.Added_on as Add_On ,
+$sql="SELECT Item.ID AS ID,Item.Code AS Code,Item.Title as Title ,Item.item_Stock as Stock,Item.isPublish as isPublish,Item.Added_on as Add_On ,
 c.Description as Category_Name,b.Description as Brand_Name
 FROM Item Item
 LEFT JOIN Category c ON c.ID=Item.Category_id 
@@ -35,14 +36,15 @@ if($query){
                                        				 <tr  >
 			                                        	<td><?php echo $result['ID']; ?></td>
 			                                        	<td><?php echo $result['Code']; ?></td>
-			                                        	<td><?php echo $result['Description']; ?></td>
+			                                        	<td><?php echo $result['Title']; ?></td>
 			                                        	<td><?php echo $result['Category_Name'];?></td>
 			                                        	<td><?php echo $result['Brand_Name'];?></td>
+			                                        	<td><a  class="label label-warning" ><?php echo $result['Stock'];?></a></td>
 			                                        	<td><?php echo $result['Add_On']; ?></td>
 			                                        	<?php if($result['isPublish']==0){?>
-						                                <td> <a href="#" class="label label-info" >Unpublish</a> </td>
+						                                <td> <a  class="label label-info" >Unpublish</a> </td>
 						                                <?php }else{?>
-						                                <td> <a href="#"  class="label label-success"  >Publish</a> </td>
+						                                <td> <a   class="label label-success"  >Publish</a> </td>
 						                                <?php }?>
 			                                        	<td><i style="cursor: pointer;" class="fa fa-edit" onclick="loadItem('<?php echo $result['ID']; ?>','<?php echo $result['isPublish']?>')" ></i></td>
 			                                        	<td><i style="cursor: pointer" onclick="removeItemMaster('<?php echo $result['ID']; ?>')" class="fa fa-remove"></i></td>

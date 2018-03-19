@@ -2,9 +2,37 @@
 
 class Nav extends CI_Controller {
 
-	public function index()
-	{
-		$this->load->view('admin/dashboard.php');
+	function __construct() {
+		parent::__construct();
+		if($this->session->userdata('loginStatus'))
+		{
+			if($this->session->userdata('role') == "ADMIN"){
+					
+	
+				}else {
+					redirect('admin/login');
+				}
+	
+			}else {
+					redirect('admin/login');
+				}
+	
+	
+	}
+	
+	function index(){
+	if($this->session->userdata('loginStatus'))
+		{
+			if($this->session->userdata('role') == "ADMIN"){
+					
+				$this->load->view('admin/dashboard.php');
+				}else {
+					redirect('admin/login');
+				}
+	
+			}else {
+					redirect('admin/login');
+				}
 	}
 	public function shipping()
 	{
