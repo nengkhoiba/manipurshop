@@ -13,15 +13,11 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="#">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
-							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
-							</span>
+						<?php echo form_open('login/verify');?>
+							<input type="email" name="email" id="email" placeholder="Email" />
+							<input type="password" name="password" id="password" placeholder="Password" />
 							<button type="submit" class="btn btn-default">Login</button>
-						</form>
+						<?php echo form_close();?>
 					</div><!--/login form-->
 				</div>
 				<div class="col-sm-1">
@@ -30,12 +26,12 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
+						<?php echo form_open('login/signUpUser');?>
+							<input type="text" name="userName" id="userName" placeholder="Name"/>
+							<input type="email" name="userEmail" id="userEmail" placeholder="Email Address"/>
+							<input type="password" name="userPass" id="userPass" placeholder="Password"/>
 							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
+						<?php echo form_close();?>
 					</div><!--/sign up form-->
 				</div>
 			</div>
