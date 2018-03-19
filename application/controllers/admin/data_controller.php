@@ -66,11 +66,11 @@ class Data_controller extends CI_Controller {
 			$query= $this->db->query($sql);
 			if($query){
 				$this->session->set_userdata('status', "Successfully Update!");
-				redirect('admin/nav');
+				redirect('admin/nav/shipping');
 			}
 			else {
 				$this->session->set_userdata('status', "Something went wrong!");
-				redirect('admin/nav');
+				redirect('admin/nav/shipping');
 			}
 		}
 	}
