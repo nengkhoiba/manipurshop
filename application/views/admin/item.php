@@ -863,10 +863,11 @@ function itemUnpublish(){
 	 var url = '<?php echo base_url();?>admin/data_controller/itemUnpublishSave?itemid='+ITEM_ID;
 	 callServiceToFetchData(url,itemUnpublishReply);	
 }
-function itemPublishSaveReply(response){
+function itemUnpublishReply(response){
 	  var sqlresponse = JSON.parse(response);
 		  if(sqlresponse.status === "success"){
 			  loadItem(ITEM_ID,0);
+			  popupmsg("Unpublish Succesfully!");
 			  	}
 	  }
 

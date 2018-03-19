@@ -259,9 +259,7 @@ class Data_controller extends CI_Controller {
 							"itemID"=>$itemID
 					)));
 				}
-				else {
-					
-				}
+				
 				
 				
 			}
@@ -272,7 +270,26 @@ class Data_controller extends CI_Controller {
 				)));
 			}
 		}
-		else{
+		else {
+			$sql="UPDATE Item SET
+			Code='$itemCode',
+			Title='$itemName',
+			Category_id='$itemCategory',
+			Brand_id='$itemBrand',
+			Description='$itemDesc',
+			Item_stock='$itemStock',
+			Delivery_Time='$itemDelivery',
+			Modified_by='$addedBy',
+			Modified_on=NOW()
+			WHERE ID='$flag'";
+			$query = $this->db->query($sql);
+			if($query){
+				$this->output->set_output(json_encode(array (
+						"status"=>"success",
+						"itemID"=>$flag
+				)));
+			}
+			
 			
 		}
 		
@@ -577,7 +594,7 @@ class Data_controller extends CI_Controller {
 	//item unpublidh save 
 	public function itemUnpublishSave(){
 		$itemID = mysql_real_escape_string(trim($_GET['itemid']));
-		$sql = "UPDATE `Item` SET isPublish=1 WHERE ID='$itemID'";
+		$sql = "UPDATE `Item` SET isPublish=0 WHERE ID='$itemID'";
 		$query = $this->db->query($sql);
 		if($query){
 			$this->output->set_output(json_encode(array (
