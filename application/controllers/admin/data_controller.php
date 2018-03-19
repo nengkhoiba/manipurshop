@@ -547,6 +547,18 @@ class Data_controller extends CI_Controller {
 		}
 	}
 	//end item publish save 
+	//item unpublidh save 
+	public function itemUnpublishSave(){
+		$itemID = mysql_real_escape_string(trim($_GET['itemid']));
+		$sql = "UPDATE `Item` SET isPublish=1 WHERE ID='$itemID'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->output->set_output(json_encode(array (
+					"status"=>"success"
+			)));
+		}
+	}
+	//end item unpublish save 
 	
 }
 

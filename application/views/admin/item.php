@@ -865,5 +865,17 @@ function itemPublishSaveReply(response){
 	  }
 
 //end item publish save
-  
+//item unpublish 
+function itemUnpublish(){
+	 var url = '<?php echo base_url();?>admin/data_controller/itemUnpublishSave?itemid='+ITEM_ID;
+	 callServiceToFetchData(url,itemUnpublishReply);	
+}
+function itemPublishSaveReply(response){
+	  var sqlresponse = JSON.parse(response);
+		  if(sqlresponse.status === "success"){
+			  loadItem(ITEM_ID,0);
+			  	}
+	  }
+
+//end item unpublish
   </script>
