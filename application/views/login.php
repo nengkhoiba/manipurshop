@@ -7,6 +7,19 @@
     <meta name="author" content="">
     <title>Home | Login</title>
 <?php $this->load->view('data/global_header')?>
+	<?php 
+     		if($this->session->userdata('msg')!=null){
+     		
+     			$msg=$this->session->userdata('msg');
+     			?>
+     			<div  id="success-alert" style="margin-left: 150px; margin-right: 150px;"class="alert alert-success alert-dismissible" role="alert">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  <strong>Message: </strong> <?php echo $msg;?>
+				</div>
+     			<?php 
+     			$this->session->set_userdata('msg', null);
+     		}
+     		?>
 	<section id="form"><!--form-->
 		<div class="container">
 			<div class="row">
@@ -38,3 +51,12 @@
 		</div>
 	</section><!--/form-->
 	<?php $this->load->view('data/global_footer');?>
+	<script >
+	$(document).ready (function(){
+		  
+		  search();
+		  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
+			});
+	  });
+	  
+	</script>
