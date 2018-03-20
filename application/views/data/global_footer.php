@@ -1,6 +1,9 @@
 	<div id="loading" class="loading-svg">
 	<img style="width:70px" src="<?php echo base_url();?>assets/images/loading.svg">
 	</div>
+	 <div id="msgbox" class="col-md-12">
+                    
+                </div>
 	<footer id="footer"><!--Footer-->
 		
 		<div class="footer-widget">
@@ -96,5 +99,6 @@
 	<script src="<?php echo base_url();?>assets/js/price-range.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery.prettyPhoto.js"></script>
     <script src="<?php echo base_url();?>assets/js/main.js"></script>
+    <script src="<?php echo base_url();?>assets/js/service.js"></script>
 </body>
 </html>

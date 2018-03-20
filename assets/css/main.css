@@ -1558,7 +1558,7 @@ h2.title {
 }
 
 .breadcrumbs .breadcrumb > li + li:before {
-  content: " ";
+  content: " ";
 }
 
 #cart_items .cart_info {
@@ -2521,12 +2521,3 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #0978ea;
 }
-.loading-svg{
-	position: fixed;
-    right: 0;
-    bottom: 0;
-    margin-right: 50px;
-    margin-bottom: 50px;
-}
-
-

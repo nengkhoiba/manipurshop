@@ -20,8 +20,9 @@ Item.Item_stock,
 Item.Delivery_Time,
 B.Description AS Brand,
 IP.Price,
-(SELECT Image_Url FROM Item_Image WHERE Item_id=Item.ID AND isActive=1 LIMIT 1) AS ImageUrl
-
+(SELECT Image_Url FROM Item_Image WHERE Item_id=Item.ID AND isActive=1 LIMIT 1) AS ImageUrl,
+(SELECT (SUM(Rating)/count(ID)) FROM `Item_review` WHERE Item_id=Item.ID) rating,
+(SELECT Count(Rating) FROM `Item_review` WHERE Item_id=Item.ID) rateCount
 FROM Item Item
 LEFT JOIN Brand B ON B.ID=Item.Brand_id
 LEFT JOIN Item_Price IP ON IP.Item_id=Item.ID
@@ -74,6 +75,7 @@ if($query){
 								<p><b>Availability:</b> <?php echo $result['Item_stock'];?> In Stock</p>
 								<p><b>Delivery:</b> <?php echo $result['Delivery_Time'];?> hrs After Order</p>
 								<p><b>Brand:</b> <?php echo $result['Brand'];?></p>
+								<p><b>Rating: <i class="fa fa-star"></i></b> <?php echo $result['rating'];?>/5(<?php echo $result['rateCount'];?>)</p>
 								
 							</div><!--/product-information-->
 						</div>
@@ -83,7 +85,7 @@ if($query){
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
 								<li ><a href="#details" data-toggle="tab">Details</a></li>
-								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Reviews</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
@@ -125,25 +127,33 @@ if($query){
 							
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-sm-12">
-									<ul>
-										<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-										<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								<ul >
+								<li id="reviewData">
+								<?php
+								$data['itemID']=$ItemID;
+								$this->load->view('data/reviewData',$data);?>
+								</li>
+								</ul>
+									
 									<p><b>Write Your Review</b></p>
 									
-									<form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
-										<textarea name="" ></textarea>
-										<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-										<button type="button" class="btn btn-default pull-right">
+										<textarea id="reviewText" placeholder="Review"></textarea>
+											<div class="stars">
+											    <input value="5" class="star star-5" id="star-5" type="radio" name="star"/>
+											    <label class="star star-5" for="star-5"></label>
+											    <input value="4" class="star star-4" id="star-4" type="radio" name="star"/>
+											    <label class="star star-4" for="star-4"></label>
+											    <input value="3"  class="star star-3" id="star-3" type="radio" name="star"/>
+											    <label class="star star-3" for="star-3"></label>
+											    <input value="2" class="star star-2" id="star-2" type="radio" name="star"/>
+											    <label  class="star star-2" for="star-2"></label>
+											    <input value="1" class="star star-1" id="star-1" type="radio" name="star"/>
+											    <label class="star star-1" for="star-1"></label>
+											</div>
+										<button type="button" onclick="submitReview()" class="btn btn-default pull-right">
 											Submit
 										</button>
-									</form>
+							
 								</div>
 							</div>
 							
@@ -155,90 +165,11 @@ if($query){
 						<h2 class="title text-center">recommended items</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="carousel-inner">	
+									<?php $this->load->view('data/recomended_item');?>
+							
 							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
+									
 						</div>
 					</div><!--/recommended_items-->
 					
@@ -247,3 +178,65 @@ if($query){
 		</div>
 	</section>
 	<?php $this->load->view('data/global_footer');?>
+	<script type="text/javascript">
+	<?php if($this->session->userdata("LOGIN")){?>
+	var rate="0";
+	var ITEM_ID="<?php echo $ItemID;?>"	
+	function submitReview() {
+		
+		  //run form validation
+		  if(document.getElementById('reviewText').value.trim()==""){
+
+			  popupmsg("Please write some review first!");
+	        return;
+		 }
+		  else if(rate=="0"){
+			  popupmsg("Please give your rating.");
+			  return;
+		  }	 
+			 else{
+			 document.getElementById('msgbox').innerHTML="";
+			 
+			 }
+		  //end form validation
+		  
+		  $('#loading').show();
+		  var url = '<?php echo base_url();?>product_data/addReview?review='+document.getElementById('reviewText').value+'&rate='+rate+"&item_id="+ITEM_ID;
+		  	var xmlHttp = GetXmlHttpObject();
+		  	if (xmlHttp != null) {
+		  		try {
+		  			xmlHttp.onreadystatechange=function() {
+		  			if(xmlHttp.readyState == 4) {
+		  				if(xmlHttp.responseText != null){
+		  					$('#loading').hide();
+		  					document.getElementById('reviewData').innerHTML = xmlHttp.responseText;
+		  				
+		  				}else{
+		  					alert("Error");
+		  				}
+		  			}
+		  		}
+		  		xmlHttp.open("GET", url, true);
+		  		xmlHttp.send(null);
+		  	}
+		  	catch(error) {}
+		  	}
+	}
+	 $(':radio').change(function() {
+		 rate=this.value;
+		});
+		
+	 function popupmsg(message){
+			var msg="<div class='msgbox alert alert-danger ' >"+
+			   message+"</div>";
+		     document.getElementById('msgbox').innerHTML=msg;
+		     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
+		}
+	<?php }else{?>
+	function submitReview() {
+         window.open("<?php echo base_url();?>login","_self");
+		}
+	<?php }?>
+	</script>
+	
+	

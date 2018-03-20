@@ -21,11 +21,29 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('msg','Email already exist!');
 		}
 		else {
-			$key = $this->KeyGenerator(10);
+			$key = $this->KeyGenerator(30);
+			
+			
 			$sql="INSERT INTO `Customer_login`( `Email`, `Name`,`Password`, `Key`, `isActive`) 
 					VALUES ('$userEmail','$userName','$userPass','$key',0)";
 			$query = $this->db->query($sql);
 			if($query){
+				
+				$this->load->library('email');
+				$this->email->from('no-reply@murolen.com','no-reply@murolen.com');
+				
+				$this->email->to($userEmail);
+				$this->email->subject('Confirm Email');
+				
+				$url=base_url()."login/activate?email=".$userEmail."&key=".$key;
+				$logo=base_url()."assets/images/home/logo.png";
+				$data['url']=$url;
+				$data['logo']=$logo;
+				$msg = $this->load->view('emailtemplate/confirmation_email',$data,TRUE);
+				$this->email->message($msg);
+				$this->email->set_mailtype("html");
+				$this->email->send();
+				
 				$this->session->set_userdata('msg','Successfully Created!');
 				redirect('login');
 			}
@@ -87,6 +105,32 @@ class Login extends CI_Controller {
 		$this->session->set_userdata('ID', "0");
 		$this->session->set_userdata('LOGIN', false);
 		redirect('home');
+	}
+	
+	public function activate(){
+		$email = mysql_real_escape_string(trim($_GET['email']));
+		$key = mysql_real_escape_string(trim($_GET['key']));
+		
+		$sql="SELECT ID FROM Customer_login WHERE Customer_login.Email='$email' AND Customer_login.Key='$key' ";
+		$flag=$this->db->query($sql);
+		if($flag->num_rows()>0){
+			$sql1="UPDATE Customer_login SET isActive=1
+			       WHERE Customer_login.Email='$email' AND Customer_login.Key='$key'";
+			 $query=$this->db->query($sql1);
+			 if($query){
+			 	$data["msg"]="Your account is activated!";
+			 	$this->load->view("welcome",$data);
+			 }else{
+			 	$data["msg"]="Something went wrong is your account activation please try again.";
+			 	$this->load->view("welcome",$data);
+			 }
+					
+		}else{
+			$data["msg"]="Account activation failed. Incorrect key.";
+			$this->load->view("welcome",$data);
+		}
+		
+		
 	}
 	
 
