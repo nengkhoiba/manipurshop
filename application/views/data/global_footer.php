@@ -100,5 +100,6 @@
     <script src="<?php echo base_url();?>assets/js/jquery.prettyPhoto.js"></script>
     <script src="<?php echo base_url();?>assets/js/main.js"></script>
     <script src="<?php echo base_url();?>assets/js/service.js"></script>
+    
 </body>
 </html>

@@ -37,8 +37,8 @@ if($query){
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
-							<div class="view-product">
-								<img src="<?php echo base_url();?><?php echo $result['ImageUrl']; ?>" alt="" />
+							<div class="view-product mag">
+								<img  id="thumb" data-toggle="magnify" src="<?php echo base_url();?><?php echo $result['ImageUrl']; ?>" alt="" />
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
@@ -49,7 +49,9 @@ if($query){
 										while ($image = mysql_fetch_array($query1->result_id)){
 									?>
 																	   
-									  <a href=""><img src="<?php echo base_url();?><?php echo $image['Image_Url']; ?>" alt=""></a>
+									  <a ><img onclick="loadImage('<?php echo base_url();?><?php echo $image['Image_Url']; ?>')" src="<?php echo base_url();?><?php echo $image['Image_Url']; ?>"  
+									 
+									   alt=""></a>
 																	
 									<?php }}?>
 								</div>
@@ -59,8 +61,7 @@ if($query){
 
 						</div>
 						<div class="col-sm-7">
-							<div class="product-information"><!--/product-information-->
-								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+							<div id="preview"  class="product-information"><!--/product-information-->
 								<h2><?php echo $result['Title']; ?></h2>
 								<p>Web ID: <?php echo $result['ID'];?></p>
 								<span>
@@ -237,6 +238,10 @@ if($query){
          window.open("<?php echo base_url();?>login","_self");
 		}
 	<?php }?>
+	function loadImage(src){
+		document.getElementById("thumb").src=src;
+		$("#magLarge").css("background","url('" + src+ "') no-repeat");
+		}
 	</script>
 	
 	
