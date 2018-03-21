@@ -51,6 +51,9 @@ class Nav extends CI_Controller {
 	{
 		$this->load->view('admin/item.php');
 	}
+	public function order(){
+		$this->load->view('admin/order');
+	}
 }
 
 	
