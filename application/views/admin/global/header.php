@@ -9,6 +9,7 @@
     <title>Admin Murolen</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo base_url();?>adminassets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo base_url();?>adminassets/datetimepicker.css" rel="stylesheet">
     <!-- FONT AWESOME ICONS  -->
     <link href="<?php echo base_url();?>adminassets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->

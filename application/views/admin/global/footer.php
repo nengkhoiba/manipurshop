@@ -18,5 +18,6 @@
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo base_url();?>adminassets/js/bootstrap.js"></script>
     <script src="<?php echo base_url();?>adminassets/js/service.js"></script>
+    <script src="<?php echo base_url();?>adminassets/bootstrap-datetimepicker.js"></script> 
 </body>
 </html>

@@ -603,6 +603,38 @@ class Data_controller extends CI_Controller {
 		}
 	}
 	//end item unpublish save 
-	
+	//user creat 
+	function KeyGenerator($size=5){
+		$character='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$randomString='';
+		for($i=0;$i<$size ;$i++){
+			$randomString.=$character[rand(0,strlen($character)-1)];
+		}
+		return $randomString;
+		
+	}
+	public function userCreat(){
+		$username = mysql_real_escape_string(trim($_GET['username']));
+		$address = mysql_real_escape_string(trim($_GET['address']));
+		$role	= mysql_real_escape_string(trim($_GET['userRole']));
+		$gender = mysql_real_escape_string(trim($_GET['gender']));
+		$mobile = mysql_real_escape_string(trim($_GET['mobile']));
+		$email = mysql_real_escape_string(trim($_GET['email']));
+		$password = mysql_real_escape_string(trim($_GET['password']));
+		
+		$sql="INSERT INTO `User_Details`( `Name`, `Address`,`Gender`, `Mobile`) 
+				VALUES ('$username','$address','$gender','$mobile')";
+		$query = $this->db->query($sql);
+		if($query){
+			$key = $this->KeyGenerator(5);
+			$sql1="INSERT INTO `Login`(`Email`, `Password`, `Key`, `Role`, `isActive`) 
+				VALUES ('$email','$password','$key','$role',1)";
+			$query1 = $this->db->query($sql1);
+			if($query1){
+				$this->load->view('admin/data_fragment/user_data');
+			}
+		}
+	}
+	//end user creat 
 }
 
