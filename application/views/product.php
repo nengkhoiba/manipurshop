@@ -67,8 +67,8 @@ if($query){
 								<span>
 									<span>₹<?php echo $result['Price']; ?></span>
 									<label>Quantity:</label>
-									<input type="text" value="1" />
-									<button type="button" class="btn btn-fefault cart">
+									<input type="text" value="1"  name="qty" id="qty"/>
+									<button type="button" onclick="addToCart(<?php echo $result['ID']?>)" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
@@ -227,12 +227,7 @@ if($query){
 		 rate=this.value;
 		});
 		
-	 function popupmsg(message){
-			var msg="<div class='msgbox alert alert-danger ' >"+
-			   message+"</div>";
-		     document.getElementById('msgbox').innerHTML=msg;
-		     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
-		}
+	 
 	<?php }else{?>
 	function submitReview() {
          window.open("<?php echo base_url();?>login","_self");
@@ -242,6 +237,12 @@ if($query){
 		document.getElementById("thumb").src=src;
 		$("#magLarge").css("background","url('" + src+ "') no-repeat");
 		}
+	function popupmsg(message){
+		var msg="<div class='msgbox alert alert-danger ' >"+
+		   message+"</div>";
+	     document.getElementById('msgbox').innerHTML=msg;
+	     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
+	}
 	</script>
 	
 	

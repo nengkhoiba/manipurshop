@@ -90,7 +90,44 @@
 		</div>
 		
 	</footer><!--/Footer-->
-	
+	<script>
+	function addToCart(id){
+			  //run form validation
+			
+			  if(document.getElementById('qty').value.trim()==""){				
+		        return;
+			 }
+				 if(id==""){
+						return;
+					 }
+				 else{
+				 document.getElementById('msgbox').innerHTML="";
+				 }
+			  var url = '<?php echo base_url();?>product_data/addToCart?qty='+document.getElementById('qty').value+'&prodID='+id;
+			  callServiceToFetchData(url,addToCartReply);
+		}
+
+
+
+function addToCartReply(response){
+var sqlresponse = JSON.parse(response);
+	  if(sqlresponse.status === "success"){		  
+		  popupmsg("Successfully Added!");
+	  }
+	  if(sqlresponse.status === "add_fail"){
+		  	popupmsg("Something went wrong!");
+		  
+	  }
+	  if(sqlresponse.status === "login_first"){
+		  window.open("<?php echo base_url();?>login","_self");  
+		  }
+	  
+	  if(sqlresponse.status === "already_added"){
+		  	popupmsg("Item Already Exist!");
+	  }
+}
+		
+	</script>
 
   
     <script src="<?php echo base_url();?>assets/js/jquery.js"></script>

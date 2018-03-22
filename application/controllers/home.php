@@ -22,6 +22,15 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('login.php');
 	}
+	public function cart(){
+		if($this->session->userdata('LOGIN')){
+			$data['UserID'] = $this->session->userdata('ID');
+			$this->load->view('cart.php',$data);
+		}
+		else{
+			redirect('login');
+		}
+	}
 
 }
 

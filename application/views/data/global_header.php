@@ -54,7 +54,7 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="<?php echo base_url();?>home/cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<?php if($this->session->userdata('LOGIN')){?>
 									<li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-lock"></i> Logout (<?php echo $this->session->userdata('USERNAME');?>)</a></li>
 								<?php } else {?>
