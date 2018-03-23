@@ -61,3 +61,10 @@
 	                                </table>
 </div>
 <?php $this->load->view('admin/global/footer.php')?>
+ <script>
+ $(document).ready (function(){
+	  $('#order').addClass('menu-top-active');
+	
+	 // $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);});
+ });
+ </script>

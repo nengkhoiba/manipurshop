@@ -89,6 +89,8 @@
                             <li><a id="brand" href="<?php echo base_url();?>admin/nav/brand">Brand</a></li>
                             <li><a id="shipping" href="<?php echo base_url();?>admin/nav/shipping">Pincode</a></li>
                             <li><a id="item" href="<?php echo base_url();?>admin/nav/item">Item</a></li>
+                             <li><a id="order" href="<?php echo base_url();?>admin/nav/order">Order</a></li>
+                              <li><a id="user" href="<?php echo base_url();?>admin/nav/user">User</a></li>
 
                         </ul>
                     </div>

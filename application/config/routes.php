@@ -41,6 +41,7 @@
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 $route['login']="home/login";
+$route['product']="home/product";
 
 
 /* End of file routes.php */

@@ -4,7 +4,7 @@
 	<div class="Compose-Message">               
 			                	<div class="panel panel-warning">
 				                    <div class="panel-heading">
-				                      User Creat
+				                      User Master
 				                    </div>
 				                    <div class="panel-body">
 				                     
@@ -19,7 +19,7 @@
 										  </div>
 										  <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">DOB</span>
-										  <input id="dob" name="dob" class="form-control"  aria-describedby="sizing-addon1">
+										  <input id="dob" name="dob" type="date" class="form-control"  aria-describedby="sizing-addon1">
 										</div>
 					                     <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1"> User Role</span>
@@ -40,9 +40,9 @@
 										<div class="input-group form-group input-group-sm">
 											<span class="input-group-addon" id="sizing-addon1">Gender</span>
 											<select id="gender" name="gender" class="form-control" aria-describedby="sizing-addon1">
-												<option value="0">--Select--</option>
-												<option value="1">Male</option>
-												<option value="2">Female</option>
+												
+												<option value="MALE">MALE</option>
+												<option value="FEMALE">FEMALE</option>
 											</select>
 										</div>
 										 <div class="input-group form-group input-group-sm">
@@ -61,11 +61,7 @@
 										  <span class="input-group-addon" id="sizing-addon1">Confirm Password</span>
 										  <input id="cpassword" name="cpassword" type="password" class="form-control" placeholder="Confirmation Password" aria-describedby="sizing-addon1">
 										</div>
-										 <div class="input-group form-group input-group-sm">
-										 	 <span class="input-group-addon" id="sizing-addon1">DOB</span>
-										 	<div class="col-sm-10">
-					  							<div class="bfh-datepicker" data-name="date" id="date" data-format="y-m-d"></div>
-										 </div>
+										
 					              		 <a style="cursor:pointer" onclick="userCreat()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save</a>                   
 				                     		
 				                     		<!-- GIF SAVING  -->
@@ -81,12 +77,26 @@
 			                </div>
 			  			</div>
 </div>
+<div class="container">
+<div class="panel panel-warning">
+				                    <div class="panel-heading">
+				                      User List
+				                    </div>
+				                    <div class="panel-body">
 <div class="" id="userContainer">
+<?php $this->load->view('admin/data_fragment/user_data')?>
 </div>
-
+</div>
+</div>
 </div>
 <?php $this->load->view('admin/global/footer.php');?>
  <script >
+
+ $(document).ready (function(){
+	  $('#user').addClass('menu-top-active');
+	
+	 // $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);});
+ });
 
 function userCreat() {
 	  //run form validation
