@@ -91,4 +91,60 @@ class Product_data extends CI_Controller {
 		}
 	}
 	//end delete from cart
+	//shipping details
+	public function shippingDetails(){
+		if($this->session->userdata("LOGIN")){
+			$name = mysql_real_escape_string(trim($_GET['name']));
+			$address = mysql_real_escape_string(trim($_GET['address']));
+			$state = mysql_real_escape_string(trim($_GET['state']));
+			$city = mysql_real_escape_string(trim($_GET['city']));
+			$pincode = mysql_real_escape_string(trim($_GET['pincode']));
+			$mobile = mysql_real_escape_string(trim($_GET['mobile']));
+			$userID = $this->session->userdata('ID');
+			$data['UserID'] = $userID;
+			$sql = "INSERT INTO `Shipping_Details`(`Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Added_by`, `Added_on`,`isActive`)
+					 VALUES ('$name','$address','$state','$city','$pincode','$mobile','$userID',NOW(),1)";
+			$query = $this->db->query($sql);
+			if($query){
+				$this->load->view('data/checkout_data',$data);
+			}
+		}
+		else{
+			redirect('login');
+		}
+		
+	}
+	//end shipping details 
+	//select Shipping
+	public function selectShipping(){
+		if($this->session->userdata("LOGIN")){
+			$shippingID = mysql_real_escape_string(trim($_GET['id']));
+			$sql = "SELECT Name, Address, State, City, Pincode, Mobile
+					 FROM Shipping_Details` 
+					WHERE ID ='$shippingID' 
+					AND isActive=1";
+			$query = $this->db->query($sql);
+			if($query){
+				while ($result = mysql_fetch_array($query->result_id)){
+					$pincode = $result['Pincode'];
+				}
+				$sql1 ="SELECT Pincode,Time,Rate 
+						FROM Shipping 
+						 WHERE Pincode = '$pincode' 
+						AND isActive=1";
+				$query1 = $this->db->query($sql1);
+				if($query1->num_rows()>0){
+					while($result1 = mysql_fetch_array($query1->result_id)){
+						$time = $result1['Time'];
+						$rate = $result1['Rate'];
+					}
+				}
+				else{
+					
+				}
+			}
+			
+		}
+	}
+	//end select shipping
 }

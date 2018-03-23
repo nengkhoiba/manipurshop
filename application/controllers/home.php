@@ -31,6 +31,15 @@ class Home extends CI_Controller {
 			redirect('login');
 		}
 	}
+	public function checkout(){
+		if($this->session->userdata('LOGIN')){
+			$data['UserID'] = $this->session->userdata('ID');
+			$this->load->view('checkout.php',$data);
+		}
+		else {
+			redirect('login');
+		}
+	}
 
 }
 
