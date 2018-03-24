@@ -20,7 +20,8 @@ WHERE
 
 Login.Email='$loginId'
 AND Login.Password='$password'
-AND Login.isActive=1";
+AND Login.isActive=1
+AND Login.Status=1";
 	
 		$query = $this->db->query($sql);
 	

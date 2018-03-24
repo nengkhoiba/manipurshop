@@ -43,7 +43,7 @@ class Data_controller extends CI_Controller {
 		
 		if( $flag == null){
 			
-			$sql = "INSERT INTO `Shipping`(`Pincode`, `Time`, `Rate`, `Added_by`, `Added_on`,`isActive`) 
+			$sql = "INSERT INTO Shipping(Pincode, Time, Rate, Added_by, Added_on,isActive) 
 					VALUES ('$pincode','$time','$rate','$added_by',NOW(),1)";
 			$query = $this->db->query($sql);
 			if( $query){
@@ -56,12 +56,12 @@ class Data_controller extends CI_Controller {
 			}
 		}
 		else {
-			$sql = "UPDATE `Shipping` SET 
-					`Pincode`='$pincode',
-					`Time`='$time',
-					`Rate`='$rate',
-					`Modified_by`='$added_by',
-					`Modified_on`=NOW()
+			$sql = "UPDATE Shipping SET 
+					Pincode='$pincode',
+					Time='$time',
+					Rate='$rate',
+					Modified_by='$added_by',
+					Modified_on=NOW()
 					WHERE ID='$flag' AND isActive=1";
 			$query= $this->db->query($sql);
 			if($query){
@@ -109,7 +109,7 @@ class Data_controller extends CI_Controller {
 		$added_by = $this->session->userdata("USERID");
 		if($flag== null){
 			
-			$sql = "INSERT INTO `Brand`(`Code`, `Description`, `Added_by`, `Added_on`,  `isActive`) 
+			$sql = "INSERT INTO Brand(Code, Description, Added_by, Added_on,  isActive) 
 			VALUES ('$code','$description','$added_by',NOW(),1)";
 			
 			$query = $this->db->query($sql);
@@ -122,11 +122,11 @@ class Data_controller extends CI_Controller {
 			}
 		}
 		else {
-			$sql = "UPDATE `Brand` SET 
-				`Code`='$code',
-				`Description`='$description',
-				`Modified_by`='$added_by',
-				`Modified_on`=NOW()
+			$sql = "UPDATE Brand SET 
+				Code='$code',
+				Description='$description',
+				Modified_by='$added_by',
+				Modified_on=NOW()
 				WHERE ID='$flag' AND isActive='1'";
 			$query = $this->db->query($sql);
 			if($query){
@@ -175,7 +175,7 @@ class Data_controller extends CI_Controller {
 		
 		if($flag== null){
 				
-			$sql = "INSERT INTO `Category`(`Code`, `Description`, `Added_by`, `Added_on`,  `isActive`)
+			$sql = "INSERT INTO Category(Code, Description, Added_by, Added_on,  isActive)
 			VALUES ('$code','$description','$addedBy',NOW(),1)";	
 			$query = $this->db->query($sql);
 			if($query){
@@ -242,11 +242,11 @@ class Data_controller extends CI_Controller {
 		$addedBy=$this->session->userdata("USERID");
 		
 		if($flag== 0){
-			$sql = "INSERT INTO `Item`(`Code`, `Title`, `Category_id`, `Brand_id`, `Description`, `Item_stock`, `Delivery_Time`, `Added_by`, `Added_on`, `isActive`)
+			$sql = "INSERT INTO Item(Code, Title, Category_id, Brand_id, Description, Item_stock, Delivery_Time, Added_by, Added_on, isActive)
 					 VALUES ('$itemCode','$itemName','$itemCategory','$itemBrand','$itemDesc','$itemStock','$itemDelivery','$addedBy',NOW(),1)";
 			$query= $this->db->query($sql);
 			if($query){
-				$sql1="SELECT ID FROM `Item`
+				$sql1="SELECT ID FROM Item
                        ORDER BY Item.ID DESC limit 1";
 				$query1 = $this->db->query($sql1);
 				if($query1){
@@ -302,10 +302,10 @@ class Data_controller extends CI_Controller {
 		$temp = $_GET['id'];
 		$addedBy=$this->session->userdata("USERID");
 		
-		$sql ="UPDATE `Item` SET
-		`isActive`='0'
-		`Modified_by`='$addedBy',
-		`Modified_on`=Now(),
+		$sql ="UPDATE Item SET
+		isActive='0'
+		Modified_by='$addedBy',
+		Modified_on=Now(),
 		WHERE ID='$flag'";
 		$query = $this->db->query($sql);
 		if($query){
@@ -319,7 +319,7 @@ class Data_controller extends CI_Controller {
 	}
 	public function load_itemDetail(){
 		$itemId= mysql_real_escape_string(trim($_GET['id']));
-		$sql ="Select `Code`, `Title`, `Category_id`, `Brand_id`, `Description`, `Item_stock`, `Delivery_Time`, `isPublish` from Item where ID ='$itemId'";
+		$sql ="Select Code, Title, Category_id, Brand_id, Description, Item_stock, Delivery_Time, isPublish from Item where ID ='$itemId'";
 		$query = $this->db->query($sql);
 		if($query){
 			$data=array();
@@ -363,7 +363,7 @@ class Data_controller extends CI_Controller {
 		$addedBy=$this->session->userdata("USERID");
 		
 		if($priceID == 0){
-			$sql ="INSERT INTO `Item_Price`(`Item_id`, `Price`, `isCurrent`, `Added_by`, `Added_on`,`isActive`)
+			$sql ="INSERT INTO Item_Price(Item_id, Price, isCurrent, Added_by, Added_on,isActive)
 			VALUES ('$itemId','$price',0,'$addedBy',NOW(),1)";
 			$query =$this->db->query($sql);
 			$data["ItemID"]=$itemId;
@@ -436,7 +436,7 @@ class Data_controller extends CI_Controller {
 		$addedBy=$this->session->userdata("USERID");
 		
 		if($detailId== 0){
-			$sql ="INSERT INTO `Item_Details`( `Item_id`, `Title`, `Description`, `Added_by`, `Added_on`, `isActive`)
+			$sql ="INSERT INTO Item_Details( Item_id, Title, Description, Added_by, Added_on, isActive)
 			VALUES ('$itemId','$itemTitle','$itemDesc','$addedBy',NOW(),1)";
 			$query =$this->db->query($sql);
 			$data["ItemID"]=$itemId;
@@ -499,7 +499,7 @@ class Data_controller extends CI_Controller {
 		$imageURl = mysql_real_escape_string($location);
 		/* Upload file */
 		move_uploaded_file($_FILES['file']['tmp_name'],$location);
-		$sql ="INSERT INTO `Item_Image`(`Item_id`, `Image_Url`,`Added_by`, `Added_on`, `isActive`)
+		$sql ="INSERT INTO Item_Image(Item_id, Image_Url,Added_by, Added_on, isActive)
 		VALUES ('$itemID','$imageURl','$addedBy',NOW(),1)";
 		$query=$this->db->query($sql);
 		$this->output->set_output(json_encode(array (
@@ -582,7 +582,7 @@ class Data_controller extends CI_Controller {
 	//item publish save 
 	public function itemPublishSave(){
 		$itemID = mysql_real_escape_string(trim($_GET['itemid']));
-		$sql="UPDATE `Item` SET isPublish=1 WHERE ID='$itemID' ";
+		$sql="UPDATE Item SET isPublish=1 WHERE ID='$itemID' ";
 		$query = $this->db->query($sql);
 		if($query){
 			$this->output->set_output(json_encode(array (
@@ -594,7 +594,7 @@ class Data_controller extends CI_Controller {
 	//item unpublidh save 
 	public function itemUnpublishSave(){
 		$itemID = mysql_real_escape_string(trim($_GET['itemid']));
-		$sql = "UPDATE `Item` SET isPublish=0 WHERE ID='$itemID'";
+		$sql = "UPDATE Item SET isPublish=0 WHERE ID='$itemID'";
 		$query = $this->db->query($sql);
 		if($query){
 			$this->output->set_output(json_encode(array (
@@ -621,20 +621,108 @@ class Data_controller extends CI_Controller {
 		$mobile = mysql_real_escape_string(trim($_GET['mobile']));
 		$email = mysql_real_escape_string(trim($_GET['email']));
 		$password = mysql_real_escape_string(trim($_GET['password']));
-		
-		$sql="INSERT INTO `User_Details`( `Name`, `Address`,`Gender`, `Mobile`) 
-				VALUES ('$username','$address','$gender','$mobile')";
-		$query = $this->db->query($sql);
-		if($query){
-			$key = $this->KeyGenerator(5);
-			$sql1="INSERT INTO `Login`(`Email`, `Password`, `Key`, `Role`, `isActive`) 
+		$userId =mysql_real_escape_string(trim($_GET['userID']));
+		if($userId == "0"){
+			
+			$sql="INSERT INTO User_Details( Name, Address,Gender, Mobile)
+			VALUES ('$username','$address','$gender','$mobile')";
+			$query = $this->db->query($sql);
+			if($query){
+				$key = $this->KeyGenerator(5);
+				$sql1="INSERT INTO Login(Email, Password, `Key`, Role, isActive)
 				VALUES ('$email','$password','$key','$role',1)";
+				$query1 = $this->db->query($sql1);
+				if($query1){
+					$this->load->view('admin/data_fragment/user_data');
+				}
+			}
+		}
+		else{
+			$key = $this->KeyGenerator(5);
+			$sql1 = "UPDATE User_Details SET 
+					Name='$username',
+					Address='$address',
+					Gender='$gender',
+					Mobile='$mobile' 
+					WHERE ID ='$userId'";
 			$query1 = $this->db->query($sql1);
 			if($query1){
-				$this->load->view('admin/data_fragment/user_data');
+				$sql ="UPDATE Login SET
+				Email='$email',
+				Password='$password',
+				`Key`='$key',
+				Role='$role'
+				WHERE ID='$userId'
+				AND isActive=1";
+				$query =  $this->db->query($sql);
+				if($query){
+					$this->load->view('admin/data_fragment/user_data');
+				}
 			}
+			
 		}
 	}
 	//end user creat 
+	//delete user
+	public function delete_user(){
+		$id = mysql_real_escape_string(trim($_GET['id']));
+		$sql = "UPDATE Login SET
+				isActive=0
+				WHERE ID='$id'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->load->view('admin/data_fragment/user_data');
+		}
+		else{
+			
+		}
+	}
+	//end delete user
+	//enable user
+	public function enableUser(){
+		$id = mysql_real_escape_string(trim($_GET['id']));
+		$sql = "UPDATE Login SET
+		Status=1
+		WHERE ID='$id'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->load->view('admin/data_fragment/user_data');
+		}
+	}
+	//end enable user
+	//disable user
+	public function disableUser(){
+		$id = mysql_real_escape_string(trim($_GET['id']));
+		$sql = "UPDATE Login SET
+		Status= 0 
+		WHERE ID='$id'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->load->view('admin/data_fragment/user_data');
+		}
+	}
+	//end disable user
+	public function editUserData(){
+		$id = mysql_real_escape_string(trim($_GET['id']));
+		$sql = "SELECT UD.ID AS ID, UD.Name AS Name, UD.Address AS Address, UD.Gender AS Gender, UD.Mobile AS Mobile , Login.Email AS Email, Login.Password AS Password ,Login.Role AS Role
+				FROM User_Details UD 
+                LEFT JOIN Login Login ON Login.ID = UD.ID
+				WHERE UD.ID='$id'";
+		$query =$this->db->query($sql);
+		if($query){
+				$data=array();
+				while ($result = mysql_fetch_array($query->result_id)){
+					$data['name']=$result['Name'];
+					$data['address']=$result['Address'];
+					$data['gender']=$result['Gender'];
+					$data['mobile']=$result['Mobile'];
+					$data['email']=$result['Email'];
+					$data['password']=$result['Password'];
+					$data['role']=$result['Role'];
+					$data['userid'] =$result['ID'];
+				}
+				$this->output->set_output(json_encode($data));
+		}
+	}
 }
 

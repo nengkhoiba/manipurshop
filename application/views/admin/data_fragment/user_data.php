@@ -5,6 +5,7 @@
 <th>Email</th>
 <th>Mobile</th>
 <th>Role</th>
+<th>Status</th>
 <th>Edit</th>
 <th>Delete</th>
 </tr>
@@ -13,7 +14,7 @@
 <?php
 
 
-$sql="SELECT Login.ID, Name, Address,Mobile,Login.Email,UR.Description AS Role FROM User_Details UD
+$sql="SELECT Login.ID AS ID,Login.Status AS Status, Name, Address,Mobile,Login.Email,UR.Description AS Role FROM User_Details UD
 LEFT JOIN  Login Login on Login.ID=UD.ID
 LEFT JOIN User_Role UR ON UR.ID=Login.Role
 WHERE Login.isActive=1
@@ -28,9 +29,13 @@ if($query){
 			                                        	<td><?php echo $result['Email']; ?></td>
 			                                        	<td><?php echo $result['Mobile'];?></td>
 			                                        	<td><a  class="label label-warning" ><?php echo $result['Role'];?></a></td>
-			                                        	
-			                                        	<td><i style="cursor: pointer;" class="fa fa-edit" onclick="loadItem('<?php echo $result['ID']; ?>')" ></i></td>
-			                                        	<td><i style="cursor: pointer" onclick="removeItemMaster('<?php echo $result['ID']; ?>')" class="fa fa-remove"></i></td>
+			                                        	<?php if($result['Status']==0){ ?>
+			                                           	<td><a  class="label label-info" onclick="enableUser(<?php echo $result['ID'];?>)" >Inactive</a></td>
+			                                        	<?php }else{?>
+			                                           	<td><a  class="label label-success" onclick="disableUser(<?php echo $result['ID'];?>)" >Active</a></td>	
+			                                           	<?php }?>		                                        	
+			                                        	<td><i style="cursor: pointer;" class="fa fa-edit" onclick="editUser('<?php echo $result['ID'];?>','<?php echo $result['Name'];?>','<?php echo $result['Email'];?>','<?php echo $result['Mobile'];?>','<?php echo $result['Role'];?>')" ></i></td>
+			                                        	<td><i style="cursor: pointer" onclick="removeUser('<?php echo $result['ID']; ?>')" class="fa fa-remove"></i></td>
 			                                        </tr>
                                        				
                                        				<?php

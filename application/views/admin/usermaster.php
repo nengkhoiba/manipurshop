@@ -7,6 +7,9 @@
 				                      User Master
 				                    </div>
 				                    <div class="panel-body">
+				                      <div id="msgbox" class="col-md-12">
+                    
+                						</div>
 				                     
 				                       <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Username</span>
@@ -17,10 +20,6 @@
 										  <span class="input-group-addon" id="sizing-addon1">Address</span>
 										  <input id="address" name="address" class="form-control" placeholder="Enter Address"  aria-describedby="sizing-addon1">
 										  </div>
-										  <div class="input-group form-group input-group-sm">
-										  <span class="input-group-addon" id="sizing-addon1">DOB</span>
-										  <input id="dob" name="dob" type="date" class="form-control"  aria-describedby="sizing-addon1">
-										</div>
 					                     <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1"> User Role</span>
 										  <select id="userRole" name="userRole" class="form-control" aria-describedby="sizing-addon1">
@@ -57,12 +56,7 @@
 										  <span class="input-group-addon" id="sizing-addon1">Password</span>
 										  <input id="password" name="password" type="password" class="form-control" placeholder="Enter Password" aria-describedby="sizing-addon1">
 										</div>
-					                     <div class="input-group form-group input-group-sm">
-										  <span class="input-group-addon" id="sizing-addon1">Confirm Password</span>
-										  <input id="cpassword" name="cpassword" type="password" class="form-control" placeholder="Confirmation Password" aria-describedby="sizing-addon1">
-										</div>
-										
-					              		 <a style="cursor:pointer" onclick="userCreat()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save</a>                   
+					               <a style="cursor:pointer" onclick="userCreat()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save</a>                   
 				                     		
 				                     		<!-- GIF SAVING  -->
 				                     		<div id="SavingGIF" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
@@ -125,22 +119,12 @@ function userCreat() {
 		  popupmsg("Please enter Password!");
      return;
 	 }
-	 if(document.getElementById('cpassword').value.trim()==""){
-			
-		  popupmsg("Please enter Confirmation Password!");
-    return;
-	 }
-	// if(document.getElementById('password').value == document.getElementById('cpassword').value){
-			
-	//	  popupmsg("Password and Confirmation Password are not equal!");
-   //return;
-//	 }
 		 else{
 		// document.getElementById('msgbox').innerHTML="";
 		 }
 	  //end form validation
 	    $('#loading').show();
-	  var url = '<?php echo base_url();?>admin/data_controller/userCreat?username='+document.getElementById('username').value+'&address='+document.getElementById('address').value+'&userRole='+document.getElementById('userRole').value+'&mobile='+document.getElementById('mobile').value+'&email='+document.getElementById('email').value+'&gender='+document.getElementById('gender').value+'&password='+document.getElementById('password').value;
+	  var url = '<?php echo base_url();?>admin/data_controller/userCreat?username='+document.getElementById('username').value+'&address='+document.getElementById('address').value+'&userRole='+document.getElementById('userRole').value+'&mobile='+document.getElementById('mobile').value+'&email='+document.getElementById('email').value+'&gender='+document.getElementById('gender').value+'&password='+document.getElementById('password').value+'&userID='+document.getElementById('userID').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -154,7 +138,6 @@ function userCreat() {
 	  					document.getElementById('userRole').value="";
 	  					document.getElementById('mobile').value="";
 	  					document.getElementById('password').value="";
-	  					document.getElementById('cpassword').value="";
 	  					document.getElementById('gender').value="";
 	  					document.getElementById('email').value="";
 	  				}else{
@@ -169,5 +152,102 @@ function userCreat() {
 	  	}
 }
 
+function editUser(id){
+	  $('#loading').show();
+	  var url = '<?php echo base_url();?>admin/data_controller/editUserData?id='+id;
+	  callServiceToFetchData(url,userEditReply);
+}
+function userEditReply(response){
+	  var sqlresponse = JSON.parse(response);
+	  $('#loading').hide();
+			     document.getElementById('username').value=sqlresponse.name;
+			     document.getElementById('address').value=sqlresponse.address;
+			     document.getElementById('userRole').value=sqlresponse.role;
+			     document.getElementById('gender').value=sqlresponse.gender;
+			     document.getElementById('mobile').value=sqlresponse.mobile;
+			     document.getElementById('email').value=sqlresponse.email;
+			     document.getElementById('password').value=sqlresponse.password;
+			     document.getElementById('userID').value=sqlresponse.userid;
+	  }
+
+
+function removeUser(id){
+	$('#loading').show();
+	if(confirm("Confirm Delete?")){
+  	var url = "<?php echo site_url('admin/data_controller/delete_user?id=');?>"+id;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+  					$('#loading').hide();
+  					document.getElementById('userContainer').innerHTML = xmlHttp.responseText;
+  					 itemPublishCheck();
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+	}
+} 	
+function enableUser(id){
+	$('#loading').show();
+  	var url = "<?php echo site_url('admin/data_controller/enableUser?id=');?>"+id;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+  					$('#loading').hide();
+  					document.getElementById('userContainer').innerHTML = xmlHttp.responseText;
+  					 itemPublishCheck();
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+} 	
+
+function disableUser(id){
+	$('#loading').show();
+  	var url = "<?php echo site_url('admin/data_controller/disableUser?id=');?>"+id;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+  					$('#loading').hide();
+  					document.getElementById('userContainer').innerHTML = xmlHttp.responseText;
+  					 itemPublishCheck();
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+} 	
+function popupmsg(message){
+	var msg="<div class='msgbox alert alert-danger ' >"+
+	   message+"</div>";
+     document.getElementById('msgbox').innerHTML=msg;
+     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
+}
 </script>
     
