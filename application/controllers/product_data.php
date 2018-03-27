@@ -98,12 +98,11 @@ class Product_data extends CI_Controller {
 			if($qty<1){
 				$qty=1;
 			}
+			
 			$sql = "UPDATE Cart SET Cart.Qty='$qty',
 					Cart.Charge=(SELECT Price FROM Item_Price WHERE Item_id=Cart.Item_id AND isCurrent=1),
-					Cart.Net_Charge=(SELECT Price FROM Item_Price WHERE Item_id=Cart.Item_id AND isCurrent=1)*'$qty'
+					Cart.Net_Charge=(SELECT Price FROM Item_Price WHERE Item_id=Cart.Item_id AND isCurrent=1)*$qty
 					
-					FROM 
-					 Cart
 					 WHERE Cart.ID='$cartID'
 					";
 			$data['UserId'] = $userID;
