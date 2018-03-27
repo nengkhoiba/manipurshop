@@ -248,8 +248,19 @@ class Product_data extends CI_Controller {
 						}
 					}
 				}
-				$sql4="INSERT INTO `Order_Header`(`Order_No`, `Qty`, `Item_id`, `Item_price`, `Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Order_status`, `Shipping_charge`, `Total_amount`, `Added_by`, `Added_on`, `isActive`) 
-						VALUES ('$orderNo','$qty','$itemID','$charge','$name','$address','$state','$city','$pincode','$mobile','','$rate','$netCharge','$userID',NOW(),1)";
+				$sql4 ="SELECT `ID`, `Code`, `Description` FROM `Order_Status` WHERE ID=1";
+				$query4= $this->db->query($sql4);
+				if($query4){
+					while($result4 = mysql_fetch_array($query4->result_id)){
+						$desc = $result4['Description'];
+					}
+					$sql5="INSERT INTO `Order_Header`(`Order_No`, `Qty`, `Item_id`, `Item_price`, `Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Order_status`, `Shipping_charge`, `Total_amount`, `Added_by`, `Added_on`, `isActive`)
+					VALUES ('$orderNo','$qty','$itemID','$charge','$name','$address','$state','$city','$pincode','$mobile','$desc','$rate','$netCharge','$userID',NOW(),1)";
+					$query5 = $this->db->query($sql5);
+					if($sql5){
+						///order reply 
+					}
+				}
 			}
 		}
 	}

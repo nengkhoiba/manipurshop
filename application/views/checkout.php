@@ -36,7 +36,7 @@
 								<input type="text" name="pincodeShipping" id="pincodeShipping" placeholder="Pincode">
 								<input type="text" name="mobileShipping" id="mobileShipping" placeholder="Mobile">
 							<a class="btn btn-primary" onClick="saveShippingAddress()">Save</a>
-							<a class="btn btn-primary" onClick="shippingOrderDetails('')" >Continue</a>
+							<a class="btn btn-primary" onClick="shippingOrderDetails()" >Continue</a>
 						</div>
 					</div>
 					<div class="col-sm-5 clearfix">
@@ -54,6 +54,7 @@
 				</div>
 			</div>
 		</div>
+		<br>
 		<?php $this->load->view('data/global_footer.php');?>
 		<script>
 		var shippingId=0;
@@ -109,28 +110,20 @@
 				
 			}
 
-			function shippingOrderDetails(id){
+			function shippingOrderDetails(){
+				var id = shippingId;
 				var url = '<?php echo base_url();?>product_data/selectShippingOrderDetails?id='+id;
-				var xmlHttp = GetXmlHttpObject();
-			  	if (xmlHttp != null) {
-			  		try {
-			  			xmlHttp.onreadystatechange=function() {
-			  			if(xmlHttp.readyState == 4) {
-			  				if(xmlHttp.responseText != null){
-			  					$('#loading').hide();
-			  					document.getElementById('#####').innerHTML = xmlHttp.responseText;
-			  				
-			  				}else{
-			  					alert("Error");
-			  				}
-			  			}
-			  		}
-			  		xmlHttp.open("GET", url, true);
-			  		xmlHttp.send(null);
-			  	}
-			  	catch(error) {}
-			  	}
-				
+				callServiceToFetchData(url,orderReceivedReply);
 			}
+	  
+		  function orderReceivedReply(response){
+			  $('#loading').hide();
+		  var sqlresponse = JSON.parse(response);
+			  if(sqlresponse.status === "success"){
+				  	  ITEM_ID=sqlresponse.itemID;
+				  	popupmsg("Successfully saved!");
+			  }
+			 
+		  }
 				
 		</script>
