@@ -239,7 +239,17 @@ class Product_data extends CI_Controller {
 						$charge = $result2['Charge'];
 						$netCharge =$result2['Net_Charge'];
 					}
+					$sql3="SELECT `Pincode`, `Time`, `Rate` FROM `Shipping` WHERE isActive=1 AND Pincode='$pincode'";
+					$query3 = $this->db->query($sql3);
+					if($query3){
+						while ($result3 = mysql_fetch_array($query3->result_id)){
+							$rate = $result3['Rate'];
+							$time = $result3['Time'];
+						}
+					}
 				}
+				$sql4="INSERT INTO `Order_Header`(`Order_No`, `Qty`, `Item_id`, `Item_price`, `Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Order_status`, `Shipping_charge`, `Total_amount`, `Added_by`, `Added_on`, `isActive`) 
+						VALUES ('$orderNo','$qty','$itemID','$charge','$name','$address','$state','$city','$pincode','$mobile','','','$netCharge','$userID',NOW(),1)";
 			}
 		}
 	}
