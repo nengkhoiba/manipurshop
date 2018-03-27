@@ -140,6 +140,7 @@ function userCreat() {
 	  					document.getElementById('password').value="";
 	  					document.getElementById('gender').value="";
 	  					document.getElementById('email').value="";
+	  					document.getElementById('userID').value="";
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -183,7 +184,7 @@ function removeUser(id){
   				if(xmlHttp.responseText != null){
   					$('#loading').hide();
   					document.getElementById('userContainer').innerHTML = xmlHttp.responseText;
-  					 itemPublishCheck();
+  					
   				}else{
   					alert("Error");
   				}
@@ -207,7 +208,7 @@ function enableUser(id){
   				if(xmlHttp.responseText != null){
   					$('#loading').hide();
   					document.getElementById('userContainer').innerHTML = xmlHttp.responseText;
-  					 itemPublishCheck();
+  					
   				}else{
   					alert("Error");
   				}
@@ -231,7 +232,7 @@ function disableUser(id){
   				if(xmlHttp.responseText != null){
   					$('#loading').hide();
   					document.getElementById('userContainer').innerHTML = xmlHttp.responseText;
-  					 itemPublishCheck();
+  					
   				}else{
   					alert("Error");
   				}

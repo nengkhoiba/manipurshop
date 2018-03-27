@@ -36,7 +36,7 @@
 								<input type="text" name="pincodeShipping" id="pincodeShipping" placeholder="Pincode">
 								<input type="text" name="mobileShipping" id="mobileShipping" placeholder="Mobile">
 							<a class="btn btn-primary" onClick="saveShippingAddress()">Save</a>
-							<a class="btn btn-primary" href="">Continue</a>
+							<a class="btn btn-primary" onClick="shippingOrderDetails('<?php echo $result['ID'];?>')" href="">Continue</a>
 						</div>
 					</div>
 					<div class="col-sm-5 clearfix">
@@ -92,6 +92,30 @@
 			  				if(xmlHttp.responseText != null){
 			  					$('#loading').hide();
 			  					document.getElementById('selectShippingContainer').innerHTML = xmlHttp.responseText;
+			  				
+			  				}else{
+			  					alert("Error");
+			  				}
+			  			}
+			  		}
+			  		xmlHttp.open("GET", url, true);
+			  		xmlHttp.send(null);
+			  	}
+			  	catch(error) {}
+			  	}
+				
+			}
+
+			function shippingOrderDetails(id){
+				var url = '<?php echo base_url();?>product_data/selectShippingOrderDetails?id='+id;
+				var xmlHttp = GetXmlHttpObject();
+			  	if (xmlHttp != null) {
+			  		try {
+			  			xmlHttp.onreadystatechange=function() {
+			  			if(xmlHttp.readyState == 4) {
+			  				if(xmlHttp.responseText != null){
+			  					$('#loading').hide();
+			  					document.getElementById('#####').innerHTML = xmlHttp.responseText;
 			  				
 			  				}else{
 			  					alert("Error");
