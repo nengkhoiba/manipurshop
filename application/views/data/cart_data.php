@@ -2,7 +2,8 @@
 <?php 
 						$sql = "SELECT Cart.ID AS ID , Cart.Item_id AS ItemID, Cart.Qty AS Quality, Cart.Charge AS Charge, Cart.Net_Charge AS Net_Charge, Cart.Added_on AS Time,
 								(SELECT Image_Url FROM Item_Image WHERE Item_id=Cart.Item_id AND isActive=1 LIMIT 1) AS ImageUrl,
-								Item.Description as Description, Item.Title AS Title
+								Item.Description as Description, Item.Title AS Title,
+								(SELECT SUM(Net_Charge) FROM Cart WHERE Cart.Added_by='$UserId') AS Total
 								FROM Cart Cart 
 								LEFT JOIN Item Item ON Item.ID = Cart.Item_id
 								WHERE Cart.Added_by='$UserId'";
@@ -25,7 +26,9 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php 	while ($result = mysql_fetch_array($query->result_id)){?>
+					<?php 	
+					$total=0;
+					while ($result = mysql_fetch_array($query->result_id)){?>
 						<tr>
 							<td class="text-center" >
 								<a><img style="width: 100px" src="<?php  echo base_url();?><?php echo $result['ImageUrl'];?>" alt=""></a>
@@ -35,13 +38,13 @@
 								<p>Web ID: <?php echo $result['ItemID'];?></p>
 							</td>
 							<td >
-								<p >&#8377; <span id="price<?php echo $result['ItemID'];?>"><?php echo $result['Net_Charge']?></span></p>
+								<p >&#8377; <span id="price<?php echo $result['ItemID'];?>"><?php echo $result['Charge']?></span></p>
 							</td>
 							<td class="">
 								<div class="cart_quantity_button">
-									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','add')" class="cart_quantity_up" > + </a>
+									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','add','<?php echo $result['ID']; ?>')" class="cart_quantity_up" > + </a>
 									<label id="qty<?php echo $result['ItemID'];?>" class="cart_quantity_input"><?php echo $result['Quality'];?></label>
-									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','sub')" class="cart_quantity_down"> - </a>
+									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','sub','<?php echo $result['ID']; ?>')" class="cart_quantity_down"> - </a>
 								</div>
 							</td>
 							<td class="">
@@ -53,8 +56,32 @@
 						</tr>
 
 					
-						<?php }?>
+						<?php
+						$total=$result['Total'];
+					}?>
 					</tbody>
+					<tfoot>
+					<tr>
+						<td colspan="5">
+						
+						</td>
+					</tr>
+					<tr>
+					<td>     
+					</td>
+					<td>     
+					</td>
+					<td>     
+					</td>
+					<th>    
+					Total: 
+					</th>
+					
+					 <td >
+								<p  class="">&#8377; <span id=""><?php echo $total;?></span></p>
+							</td>
+					</tr>
+					</tfoot>
 				</table>
 				<?php }else{
 					?>

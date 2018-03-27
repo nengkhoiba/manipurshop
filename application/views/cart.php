@@ -55,22 +55,47 @@ function removeCart(id){
 	  	catch(error) {}
 	  	}
 }
-function qtyCount(id,con){
+function qtyCount(id,con,cartID){
 	var qty=parseInt(document.getElementById('qty'+id).innerHTML);
 	var price=parseFloat(document.getElementById('price'+id).innerHTML);
 
 	   if(con=="add"){
 		   qty=qty+1;
-		   document.getElementById('qty'+id).innerHTML=qty;
-		   document.getElementById('Netprice'+id).innerHTML=(qty*price);
+		   updateCart(cartID,qty);
+		   //document.getElementById('qty'+id).innerHTML=qty;
+		   //document.getElementById('Netprice'+id).innerHTML=(qty*price);
 		}else{
 			if(qty<=1){
 				popupmsg("Quantity cannot be less then 1");
 				}else{
 					qty=qty-1;
-					document.getElementById('qty'+id).innerHTML=qty;
-					document.getElementById('Netprice'+id).innerHTML=(qty*price);
+					 updateCart(cartID,qty);
+					//document.getElementById('qty'+id).innerHTML=qty;
+					//document.getElementById('Netprice'+id).innerHTML=(qty*price);
 					}
 			}
+}
+function updateCart(id,qty){
+	  var url = '<?php echo base_url();?>product_data/updateCart?id='+id+'&qty='+qty;
+	  $('#loading').show();
+	   	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+	  					$('#loading').hide();
+	  					document.getElementById('cartContainer').innerHTML = xmlHttp.responseText;
+	  				
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
 }
 		</script>

@@ -90,6 +90,32 @@ class Product_data extends CI_Controller {
 			
 		}
 	}
+	public function updateCart(){
+		$cartID = mysql_real_escape_string(trim($_GET['id']));
+		$qty = mysql_real_escape_string(trim($_GET['qty']));
+		if($this->session->userdata("LOGIN")){
+			$userID=$this->session->userdata('ID');
+			if($qty<1){
+				$qty=1;
+			}
+			
+			$sql = "UPDATE Cart SET Cart.Qty='$qty',
+					Cart.Charge=(SELECT Price FROM Item_Price WHERE Item_id=Cart.Item_id AND isCurrent=1),
+					Cart.Net_Charge=(SELECT Price FROM Item_Price WHERE Item_id=Cart.Item_id AND isCurrent=1)*$qty
+					
+					 WHERE Cart.ID='$cartID'
+					";
+			$data['UserId'] = $userID;
+			$query = $this->db->query($sql);
+				
+			if($query){
+				$this->load->view('data/cart_data',$data);
+			}
+		}
+		else{
+				
+		}
+	}
 	//end delete from cart
 	//shipping details
 	public function shippingDetails(){
