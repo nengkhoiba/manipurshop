@@ -622,7 +622,7 @@ class Data_controller extends CI_Controller {
 		$email = mysql_real_escape_string(trim($_GET['email']));
 		$password = mysql_real_escape_string(trim($_GET['password']));
 		$userId =mysql_real_escape_string(trim($_GET['userID']));
-		if($userId == "0"){
+		if($userId == ""){
 			
 			$sql="INSERT INTO User_Details( Name, Address,Gender, Mobile)
 			VALUES ('$username','$address','$gender','$mobile')";

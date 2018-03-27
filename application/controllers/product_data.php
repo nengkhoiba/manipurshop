@@ -174,6 +174,52 @@ class Product_data extends CI_Controller {
 		}
 	}
 	//end select shipping
+
+	//shipping order details
+	public function selectShippingOrderDetails(){
+		if($this->session->userdata('LOGIN')){
+			$userID = $this->session->userdata('ID');
+			$shippingID = mysql_real_escape_string(trim($_GET['id']));
+			$sql="SELECT Name, Address, State, City, Pincode, Mobile,isActive
+			FROM Shipping_Details
+			WHERE ID='$shippingID'";
+			$query=$this->db->query($sql);
+			if($query){
+				while($result = mysql_fetch_array($query->result_id)){
+					$name = $result['Name'];
+					$address =$result['Address'];
+					$state = $result['State'];
+					$city = $result['City'];
+					$pincode =$result['Pincode'];
+					$mobile= $result['Mobile'];
+					$orderNo="";
+					$sql1="SELECT CONCAT(CAST('ODR' AS CHAR),YEAR(NOW()),CASE WHEN COUNT(*)=0 THEN 1 ELSE COUNT(*) END) AS OrderNo FROM Order_Header WHERE YEAR(Added_on)=YEAR(NOW())";
+					$query1=$this->db->query($sql1);
+					if($query1){
+						while($result1 = mysql_fetch_array($query1->result_id)){
+							$orderNo=$result1['OrderNo'];
+						}
+					}
+					
+				}
+				$sql2 = "SELECT `ID`, `Item_id`, `Qty`, `Charge`, `Net_Charge` 
+						FROM `Cart` 
+						WHERE Added_by='$userID'
+						AND isActive = 1";
+				$query2 = $this->db->query($sql2);
+				if($query2){
+					while($result2 = mysql_fetch_array($query2->result_id)){
+						$itemID = $result2['Item_id'];
+						$qty = $result2['Qty'];
+						$charge = $result2['Charge'];
+						$netCharge =$result2['Net_Charge'];
+					}
+				}
+			}
+		}
+	}
+	//end order shipping details
+
 	//search item 
 	public function itemSearch(){
 		$searchValue= mysql_real_escape_string(trim($_GET['searchValue']));
@@ -208,4 +254,5 @@ class Product_data extends CI_Controller {
 		}
 	}
 	//end search item
+
 }
