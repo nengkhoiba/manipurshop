@@ -145,14 +145,28 @@ class Product_data extends CI_Controller {
 	public function selectShipping(){
 		if($this->session->userdata("LOGIN")){
 			$shippingID = mysql_real_escape_string(trim($_GET['id']));
-			$sql = "SELECT Name, Address, State, City, Pincode, Mobile
-					 FROM Shipping_Details` 
+			$sql = "SELECT Name, Address, State, City, Pincode, Mobile,(SELECT SUM(Net_Charge) FROM Cart WHERE Cart.Added_by=Shipping_Details.Added_by) AS Total
+					 FROM Shipping_Details 
 					WHERE ID ='$shippingID' 
 					AND isActive=1";
 			$query = $this->db->query($sql);
 			if($query){
+				$pincode=0;
+				$city="";
+				$address="";
+				$state="";
+				$city="";
+				$mobile="";
+				$Total=0;
+				
 				while ($result = mysql_fetch_array($query->result_id)){
+					$name = $result['Name'];
+					$address = $result['Address'];
+					$state = $result['State'];
+					$city = $result['City'];
 					$pincode = $result['Pincode'];
+					$mobile = $result['Mobile'];
+					$Total = $result['Total'];
 				}
 				$sql1 ="SELECT Pincode,Time,Rate 
 						FROM Shipping 
@@ -164,9 +178,21 @@ class Product_data extends CI_Controller {
 						$time = $result1['Time'];
 						$rate = $result1['Rate'];
 					}
+					echo $name."<br>";
+					echo $address."<br>";
+					echo $state."<br>";
+					echo $city."<br>";
+					echo $pincode."<br>";
+					echo $mobile."<br><br>";
+					
+					echo "Total    : ".$Total."<br>";
+					echo "Shipping : ".$rate;
+					echo "<hr>";
+					echo "Sub Total: ".($rate+$Total)."<br>";
+					
 				}
 				else{
-					
+					echo "Cannot Ship to this pincode!";
 				}
 			}
 			

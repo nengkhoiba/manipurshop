@@ -13,8 +13,11 @@
 										<?php echo $result['City'];?><br>
 										<?php echo $result['State'];?><br>
 										<?php echo $result['Pincode']?><br> 
-										<?php echo $result['Mobile'];?></p>
-										<a href=""><i class="fa fa-times"></i>Remove</a>
+										<?php echo $result['Mobile'];?><br>
+										<a onClick="removeShipping('<?php echo $result['ID'];?>')" class="btn btn-danger btn-xs" ><i class="fa fa-times"></i> Remove</a>
+										</p>
+										
+										
 							</div>
 						
 							<?php 	

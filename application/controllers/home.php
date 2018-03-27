@@ -18,10 +18,7 @@ class Home extends CI_Controller {
 	}
 		
 	}
-	public function login()
-	{
-		$this->load->view('login.php');
-	}
+
 	public function cart(){
 		if($this->session->userdata('LOGIN')){
 			$data['UserID'] = $this->session->userdata('ID');
@@ -63,9 +60,9 @@ class Home extends CI_Controller {
 			redirect('login');
 		}
 	}
-	public function shop()
+	public function login()
 	{
-		$this->load->view('shop.php');
+		$this->load->view('login.php');
 	}
 }
 
