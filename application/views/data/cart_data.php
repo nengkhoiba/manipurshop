@@ -35,13 +35,13 @@
 								<p>Web ID: <?php echo $result['ItemID'];?></p>
 							</td>
 							<td >
-								<p >&#8377; <span id="price<?php echo $result['ItemID'];?>"><?php echo $result['Net_Charge']?></span></p>
+								<p >&#8377; <span id="price<?php echo $result['ItemID'];?>"><?php echo $result['Charge']?></span></p>
 							</td>
 							<td class="">
 								<div class="cart_quantity_button">
-									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','add')" class="cart_quantity_up" > + </a>
+									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','add','<?php echo $result['ID']; ?>')" class="cart_quantity_up" > + </a>
 									<label id="qty<?php echo $result['ItemID'];?>" class="cart_quantity_input"><?php echo $result['Quality'];?></label>
-									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','sub')" class="cart_quantity_down"> - </a>
+									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','sub','<?php echo $result['ID']; ?>')" class="cart_quantity_down"> - </a>
 								</div>
 							</td>
 							<td class="">
