@@ -7,6 +7,19 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
+			<?php 
+     		if($this->session->userdata('status')!=null){
+     		
+     			$msg=$this->session->userdata('status');
+     			?>
+     			<div class="alert alert-warning alert-dismissible" role="alert">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  <strong>Message: </strong> <?php echo $msg;?>
+				</div>
+     			<?php 
+     			$this->session->set_userdata('status', null);
+     		}
+     		?>
 			<div id="cartContainer" class="table-responsive cart_info">
 				
 				<?php
@@ -25,7 +38,7 @@
 			</div>
 			<div class="row pull-right">
 				
-							<a class="btn btn-default check_out" href="">Check Out</a>
+							<a class="btn btn-default check_out" href="<?php echo base_url();?>home/checkout">Check Out</a>
 				
 			</div>
 		</div>

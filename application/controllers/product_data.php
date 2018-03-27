@@ -223,7 +223,7 @@ class Product_data extends CI_Controller {
 					}
 				}
 				$sql4="INSERT INTO `Order_Header`(`Order_No`, `Qty`, `Item_id`, `Item_price`, `Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Order_status`, `Shipping_charge`, `Total_amount`, `Added_by`, `Added_on`, `isActive`) 
-						VALUES ('$orderNo','$qty','$itemID','$charge','$name','$address','$state','$city','$pincode','$mobile','','','$netCharge','$userID',NOW(),1)";
+						VALUES ('$orderNo','$qty','$itemID','$charge','$name','$address','$state','$city','$pincode','$mobile','','$rate','$netCharge','$userID',NOW(),1)";
 			}
 		}
 	}
