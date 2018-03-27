@@ -237,12 +237,7 @@ if($query){
 		document.getElementById("thumb").src=src;
 		$("#magLarge").css("background","url('" + src+ "') no-repeat");
 		}
-	function popupmsg(message){
-		var msg="<div class='msgbox alert alert-danger ' >"+
-		   message+"</div>";
-	     document.getElementById('msgbox').innerHTML=msg;
-	     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
-	}
+	
 	</script>
 	
 	

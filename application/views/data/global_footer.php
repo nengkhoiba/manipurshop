@@ -126,8 +126,25 @@ var sqlresponse = JSON.parse(response);
 		  	popupmsg("Item Already Exist!");
 	  }
 }
-
-
+function popupmsg(message){
+	var msg="<div class='msgbox alert alert-danger ' >"+
+	   message+"</div>";
+     document.getElementById('msgbox').innerHTML=msg;
+     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
+}
+function itemSearch(){
+	  var url = '<?php echo base_url();?>product_data/itemSearch?searchValue='+document.getElementById('itemSearch').value;
+	  callServiceToFetchData(url,searchItemReply);	
+}
+function searchItemReply(response){
+	var sqlresponse = JSON.parse(response);
+		  if(sqlresponse.status === "success"){		  
+			  popupmsg("Successfully Added!");
+		  }
+		  if(sqlresponse.status === "fail"){
+			  popupmsg("Item not found!");
+		  }
+	}
 	</script>
 
   

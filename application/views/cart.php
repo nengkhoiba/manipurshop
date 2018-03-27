@@ -55,5 +55,22 @@ function removeCart(id){
 	  	catch(error) {}
 	  	}
 }
+function qtyCount(id,con){
+	var qty=parseInt(document.getElementById('qty'+id).innerHTML);
+	var price=parseFloat(document.getElementById('price'+id).innerHTML);
 
+	   if(con=="add"){
+		   qty=qty+1;
+		   document.getElementById('qty'+id).innerHTML=qty;
+		   document.getElementById('Netprice'+id).innerHTML=(qty*price);
+		}else{
+			if(qty<=1){
+				popupmsg("Quantity cannot be less then 1");
+				}else{
+					qty=qty-1;
+					document.getElementById('qty'+id).innerHTML=qty;
+					document.getElementById('Netprice'+id).innerHTML=(qty*price);
+					}
+			}
+}
 		</script>
