@@ -36,7 +36,7 @@
 								<input type="text" name="pincodeShipping" id="pincodeShipping" placeholder="Pincode">
 								<input type="text" name="mobileShipping" id="mobileShipping" placeholder="Mobile">
 							<a class="btn btn-primary" onClick="saveShippingAddress()">Save</a>
-							<a class="btn btn-primary" onClick="shippingOrderDetails('<?php echo $result['ID'];?>')" href="">Continue</a>
+							<a class="btn btn-primary" onClick="shippingOrderDetails('')" >Continue</a>
 						</div>
 					</div>
 					<div class="col-sm-5 clearfix">
@@ -45,9 +45,10 @@
 					<div class="col-sm-4">
 						<div class="order-message">
 							<p>Shipping Order</p>
-							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-							<div id="selectShippingContainer"></div>
-							<label><input type="checkbox"> Shipping to bill address</label>
+							<div id="shippingSelectContainer" style="padding: 10px;color: #6f6d6d;" class="shipping order-message">
+							Select your shipping address
+							</div>
+						
 						</div>	
 					</div>					
 				</div>
@@ -55,6 +56,7 @@
 		</div>
 		<?php $this->load->view('data/global_footer.php');?>
 		<script>
+		var shippingId=0;
 			function saveShippingAddress(){
 				
 				  var url = '<?php echo base_url();?>product_data/shippingDetails?name='+document.getElementById('nameShipping').value+'&address='+document.getElementById('addressShipping').value+
@@ -82,6 +84,7 @@
 						  	}
 				}
 			function selectShipping(id){
+				shippingId=id;
 				var url = '<?php echo base_url();?>product_data/selectShipping?id='+id;
 	  			
 	  			var xmlHttp = GetXmlHttpObject();
@@ -91,7 +94,7 @@
 			  			if(xmlHttp.readyState == 4) {
 			  				if(xmlHttp.responseText != null){
 			  					$('#loading').hide();
-			  					document.getElementById('selectShippingContainer').innerHTML = xmlHttp.responseText;
+			  					document.getElementById('shippingSelectContainer').innerHTML = xmlHttp.responseText;
 			  				
 			  				}else{
 			  					alert("Error");
