@@ -147,7 +147,7 @@ class Product_data extends CI_Controller {
 		}
 	}
 	//end select shipping
-<<<<<<< HEAD
+
 	//shipping order details
 	public function selectShippingOrderDetails(){
 		if($this->session->userdata('LOGIN')){
@@ -192,7 +192,7 @@ class Product_data extends CI_Controller {
 		}
 	}
 	//end order shipping details
-=======
+
 	//search item 
 	public function itemSearch(){
 		$searchValue= mysql_real_escape_string(trim($_GET['searchValue']));
@@ -227,5 +227,5 @@ class Product_data extends CI_Controller {
 		}
 	}
 	//end search item
->>>>>>> d15d7cfd69be62a8d261b16317631baba9f55453
+
 }
