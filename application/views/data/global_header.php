@@ -78,7 +78,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input type="text" id="itemSearch" name="itemSearch" placeholder="Search"/><span onclick="itemSearch()" class="fa fa-search"></span>
 						</div>
 					</div>
 				</div>

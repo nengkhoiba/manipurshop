@@ -147,4 +147,38 @@ class Product_data extends CI_Controller {
 		}
 	}
 	//end select shipping
+	//search item 
+	public function itemSearch(){
+		$searchValue= mysql_real_escape_string(trim($_GET['searchValue']));
+		$sql = "SELECT Item.ID AS ID, Item.Code AS Code, Item.Title AS Title, Item.Category_id AS CategoryID, Item.Brand_id AS BrandID, Item.Description AS Description,
+				Brand.Description AS Brand_Name,
+                Category.Description AS Category_Name
+				FROM Item Item 
+                LEFT JOIN Brand Brand ON Brand.ID = Item.Brand_id
+                LEFT JOIN Category Category ON Category.ID = Item.Category_id
+				WHERE Item.isActive=1
+				AND Item.isPublish
+				AND ";
+		$query = $this->db->query($sql);
+		if($query->num_rows()>0){
+			$data=array();
+			while ($result = mysql_fetch_array($query->result_id)){
+				$data['id']=$result['ID'];
+				$data['code']=$result['Code'];
+				$data['title']=$result['Title'];
+				$data['categoryId']=$result['CategoryID'];
+				$data['brandId']=$result['BrandID'];
+				$data['description']=$result['Description'];
+				$data['brandName']=$result['Brand_Name'];
+				$data['categoryName']=$result['Category_Name'];
+			}
+			$this->output->set_output(json_encode($data));
+		}
+		else{
+			$this->output->set_output(json_encode(array(
+					"status"=> "fail"
+			)));
+		}
+	}
+	//end search item
 }

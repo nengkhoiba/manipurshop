@@ -40,7 +40,10 @@ class Home extends CI_Controller {
 			redirect('login');
 		}
 	}
-
+	public function shop()
+	{
+		$this->load->view('shop.php');
+	}
 }
 
 	

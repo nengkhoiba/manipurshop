@@ -35,17 +35,17 @@
 								<p>Web ID: <?php echo $result['ItemID'];?></p>
 							</td>
 							<td >
-								<p>&#8377; <?php echo $result['Net_Charge']?></p>
+								<p >&#8377; <span id="price<?php echo $result['ItemID'];?>"><?php echo $result['Net_Charge']?></span></p>
 							</td>
 							<td class="">
-								<div class="">
-								
-									<input style="width:40px;" type="number" name="quantity" value="1" autocomplete="off" size="2">
-								
+								<div class="cart_quantity_button">
+									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','add')" class="cart_quantity_up" > + </a>
+									<label id="qty<?php echo $result['ItemID'];?>" class="cart_quantity_input"><?php echo $result['Quality'];?></label>
+									<a onclick="qtyCount('<?php echo $result['ItemID'];?>','sub')" class="cart_quantity_down"> - </a>
 								</div>
 							</td>
 							<td class="">
-								<p class="">&#8377; <?php echo $result['Net_Charge']?></p>
+								<p  class="">&#8377; <span id="Netprice<?php echo $result['ItemID'];?>"><?php echo $result['Net_Charge']?></span></p>
 							</td>
 							<td>
 								<a style="cursor: pointer" onclick="removeCart('<?php echo $result['ID']; ?>')" class="cart_quantity_delete" ><i class="fa fa-times"></i></a>
@@ -58,7 +58,7 @@
 				</table>
 				<?php }else{
 					?>
-					YOUR CART IS EMPTY
+					<label>YOUR CART IS EMPTY</label>
 					<?php 
 					
 				}?>
