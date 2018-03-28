@@ -724,5 +724,30 @@ class Data_controller extends CI_Controller {
 				$this->output->set_output(json_encode($data));
 		}
 	}
+	// analytics search
+	public function searchLocation(){
+		$category = mysql_real_escape_string(trim($_GET['category']));
+		$brand = mysql_real_escape_string(trim($_GET['brand']));
+		$date = mysql_real_escape_string(trim($_GET['date']));
+		 
+		$sql="SELECT `ID`, `Order_No`, `Qty`, `Item_id`, `Item_price`, `Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Order_status`, `Shipping_charge`, `Total_amount`, `Added_by`
+			  FROM `Order_Header` 
+				WHERE DATE(Added_on)='$date'
+				AND isActive=1";
+		$query = $this->db->query($sql);
+		if($query){
+			$output=array();
+			while ($result = mysql_fetch_array($query->result_id)){
+				$data=array();
+				$data['pincode']=$result['Pincode'];
+				$data['itemID']=$result['Item_id'];
+				$output[]=$data;
+			}
+			$jsonOutput['mapdata']=$output;
+			$this->output->set_output(json_encode($jsonOutput));
+			
+		}
+	}
+	//analytics search end
 }
 
