@@ -60,6 +60,12 @@ class Nav extends CI_Controller {
 	public function analytics(){
 		$this->load->view('admin/analytics');
 	}
+	public function advertise(){
+		$this->load->view('admin/advertise');
+	}
+	public function ads(){
+		$this->load->view('admin/ads');
+	}
 }
 
 	

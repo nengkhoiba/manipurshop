@@ -749,5 +749,77 @@ class Data_controller extends CI_Controller {
 		}
 	}
 	//analytics search end
+	//advertisement detail save
+	public function adsDetailsSave(){
+		$title = mysql_real_escape_string(trim($_GET['adsTit']));
+		$desc = mysql_real_escape_string(trim($_GET['adsDesc']));
+		$adsid = mysql_real_escape_string(trim($_GET['adsID']));
+		if(isset($adsid)){
+			$sql ="INSERT INTO `Advertise`(`Title`, `Description`) 
+				VALUES ('$title','$desc')";
+			$query = $this->db->query($sql);
+			if($query){
+				$sql1="SELECT ID FROM Advertise
+                       ORDER BY Advertise.ID DESC limit 1";
+				$query1 = $this->db->query($sql1);
+				if($query1){
+					while ($result = mysql_fetch_array($query1->result_id)){
+						$Adsid = $result['ID'];
+					}
+					$this->output->set_output(json_encode(array (
+							"status"=>"success",
+							"adsID"=>$Adsid
+					)));
+				}
+			}
+		}
+		else{
+			//update
+		}
+	}
+	//end advertisement detail save
+	//Advertisement Image upload 
+	public function imageAdsUpload(){
+		$addedBy=$this->session->userdata("USERID");
+		
+		/* Getting file name */
+		$filename = $_FILES['file']['name'];
+		
+		/* Getting File size */
+		$filesize = $_FILES['file']['size'];
+		$AdsID = $_POST['adsID'];
+		/* Location */
+		$location = "upload/".$filename;
+		
+		$return_arr = array();
+		$imageURl = mysql_real_escape_string($location);
+		/* Upload file */
+		move_uploaded_file($_FILES['file']['tmp_name'],$location);
+		$sql ="INSERT INTO `Advertise`(`Title`, `Description`, `Image`, `url`, `Added_by`, `Added_on`,`Status`, `isActive`) 
+				VALUES ('$filename','$imageURl','$addedBy',NOW(),0,1)";
+		$query=$this->db->query($sql);
+		$this->output->set_output(json_encode(array (
+				"status"=>"success"
+		)));
+	}
+	
+	public function loadAdsImage(){
+		$asdId = mysql_real_escape_string(trim($_GET['id']));
+		$data["ItemID"]=$itemId;
+		$this->load->view('admin/data_fragment/image_data',$data);
+	}
+	public function delete_AdsImage(){
+		$itemId=mysql_real_escape_string(trim($_GET['itemID']));
+		$imageID=mysql_real_escape_string(trim($_GET['id']));
+		$sql="Update Item_Image Set isActive=0 where ID='$imageID' ";
+		$query=$this->db->query($sql);
+		$data["ItemID"]=$itemId;
+		if($query){
+			
+			$this->load->view('admin/data_fragment/image_data',$data);
+		}
+		
+	}
+	//end advertisement Image upload 
 }
 
