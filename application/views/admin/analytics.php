@@ -83,6 +83,11 @@
 </div><br>
 <?php $this->load->view('admin/global/footer.php');?>
 <script>
+$(document).ready (function(){
+	  $('#analytics').addClass('menu-top-active');
+	
+	 // $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);});
+});
 	function initMap() {
 	    var uluru = {lat: -25.363, lng: 131.044};
 	    var map = new google.maps.Map(document.getElementById('map'), {

@@ -76,6 +76,11 @@
 <?php $this->load->view('admin/global/footer.php');?>
 <script>
 var AdsID=0;
+$(document).ready (function(){
+	  $('#advertise').addClass('menu-top-active');
+	
+	 // $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);});
+});
 function adsDetailsSave() {
 	  
 	  //run form validation
