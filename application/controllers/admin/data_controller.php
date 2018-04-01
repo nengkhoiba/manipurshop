@@ -749,14 +749,20 @@ class Data_controller extends CI_Controller {
 		}
 	}
 	//analytics search end
+	//load ads 
+	public function loadAdsList(){
+		$this->load->view('admin/data_fragment/ads');
+	}
 	//advertisement detail save
 	public function adsDetailsSave(){
+		$addedBy=$this->session->userdata("USERID");
 		$title = mysql_real_escape_string(trim($_GET['adsTit']));
 		$desc = mysql_real_escape_string(trim($_GET['adsDesc']));
+		$link = mysql_real_escape_string(trim($_GET['link']));
 		$adsid = mysql_real_escape_string(trim($_GET['adsID']));
-		if(isset($adsid)){
-			$sql ="INSERT INTO `Advertise`(`Title`, `Description`) 
-				VALUES ('$title','$desc')";
+		if($adsid==""){
+			$sql ="INSERT INTO `Advertise`(`Title`, `Description`, `url`, `Added_by`, `Added_on`,`Status`, `isActive`) 
+				VALUES ('$title','$desc','$link','$addedBy',NOW(),0,1)";
 			$query = $this->db->query($sql);
 			if($query){
 				$sql1="SELECT ID FROM Advertise
@@ -774,10 +780,28 @@ class Data_controller extends CI_Controller {
 			}
 		}
 		else{
-			//update
+			$sql = "UPDATE `Advertise` SET 
+					`Title`='$title',
+					`Description`='$desc',
+					`url`='$link',
+					`Modified_on`=$addedBy,
+					`Modified_by`=NOW(),
+					`Status`=0,
+					 WHERE `isActive`=1 
+					AND ID='$adsid'";
 		}
 	}
 	//end advertisement detail save
+	//delete ads Details
+	public function deleteAdsDetail(){
+		$adsid = mysql_real_escape_string(trim($_GET['id']));
+		$sql = "UPDATE Advertise SET isActive = 0 WHERE ID ='$adsid'";
+		$query = $this->db->query($sql);
+		if($sql){
+			$this->load->view('admin/data_fragment/ads');
+		}
+	}
+	//end ads details
 	//Advertisement Image upload 
 	public function imageAdsUpload(){
 		$addedBy=$this->session->userdata("USERID");
@@ -795,8 +819,7 @@ class Data_controller extends CI_Controller {
 		$imageURl = mysql_real_escape_string($location);
 		/* Upload file */
 		move_uploaded_file($_FILES['file']['tmp_name'],$location);
-		$sql ="INSERT INTO `Advertise`(`Title`, `Description`, `Image`, `url`, `Added_by`, `Added_on`,`Status`, `isActive`) 
-				VALUES ('$filename','$imageURl','$addedBy',NOW(),0,1)";
+		$sql ="UPDATE  Advertise set  `Image`='$imageURl' where ID='$AdsID'";
 		$query=$this->db->query($sql);
 		$this->output->set_output(json_encode(array (
 				"status"=>"success"
@@ -805,8 +828,8 @@ class Data_controller extends CI_Controller {
 	
 	public function loadAdsImage(){
 		$asdId = mysql_real_escape_string(trim($_GET['id']));
-		$data["ItemID"]=$itemId;
-		$this->load->view('admin/data_fragment/image_data',$data);
+		$data["AdsID"]=$asdId;
+		$this->load->view('admin/data_fragment/adsimage_data',$data);
 	}
 	public function delete_AdsImage(){
 		$itemId=mysql_real_escape_string(trim($_GET['itemID']));
@@ -821,5 +844,20 @@ class Data_controller extends CI_Controller {
 		
 	}
 	//end advertisement Image upload 
+	public function adsPublishSave(){
+		$adsid = mysql_real_escape_string(trim($_GET['adsID']));
+		$sql = "UPDATE Advertise SET Status=1 WHERE ID ='$adsid'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->output->set_output(json_encode(array (
+					"status"=>"success"
+			)));
+		}
+		else {
+			$this->output->set_output(json_encode(array (
+					"status"=>"fail"
+			)));
+		}
+	}
 }
 
