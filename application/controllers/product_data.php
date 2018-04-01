@@ -232,35 +232,54 @@ class Product_data extends CI_Controller {
 						WHERE Added_by='$userID'
 						AND isActive = 1";
 				$query2 = $this->db->query($sql2);
+				$flag=0;
 				if($query2){
 					while($result2 = mysql_fetch_array($query2->result_id)){
+						$flag=0;
 						$itemID = $result2['Item_id'];
 						$qty = $result2['Qty'];
 						$charge = $result2['Charge'];
 						$netCharge =$result2['Net_Charge'];
-					}
-					$sql3="SELECT `Pincode`, `Time`, `Rate` FROM `Shipping` WHERE isActive=1 AND Pincode='$pincode'";
-					$query3 = $this->db->query($sql3);
-					if($query3){
-						while ($result3 = mysql_fetch_array($query3->result_id)){
-							$rate = $result3['Rate'];
-							$time = $result3['Time'];
+						
+						$sql3="SELECT `Pincode`, `Time`, `Rate` FROM `Shipping` WHERE isActive=1 AND Pincode='$pincode'";
+						$query3 = $this->db->query($sql3);
+						if($query3){
+							while ($result3 = mysql_fetch_array($query3->result_id)){
+								$rate = $result3['Rate'];
+								$time = $result3['Time'];
+							}
 						}
+						$sql5="INSERT INTO `Order_Header`(`Order_No`, `Qty`, `Item_id`, `Item_price`, `Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Order_status`, `Shipping_charge`, `Total_amount`, `Added_by`, `Added_on`, `isActive`)
+						VALUES ('$orderNo','$qty','$itemID','$charge','$name','$address','$state','$city','$pincode','$mobile',1,'$rate','$netCharge','$userID',NOW(),1)";
+						$query5 = $this->db->query($sql5);
+						$flag=1;
 					}
+					
 				}
-				$sql4 ="SELECT `ID`, `Code`, `Description` FROM `Order_Status` WHERE ID=1";
-				$query4= $this->db->query($sql4);
-				if($query4){
-					while($result4 = mysql_fetch_array($query4->result_id)){
-						$desc = $result4['Description'];
+				
+					
+					if($flag==1){
+						$sql7 = "DELETE FROM Cart WHERE Added_by='$userID'";
+						$query7 = $this->db->query($sql7);
+						if($query7){
+							$this->session->set_userdata('orderStat', "success");
+							$this->output->set_output(json_encode(array(
+									"status"=> "success"
+							)));
+						}else{
+							$this->session->set_userdata('orderStat', "fail");
+							$this->output->set_output(json_encode(array(
+									"status"=> "fail"
+							)));
+						}
+						
+					}else{
+						$this->session->set_userdata('orderStat', "fail");
+						$this->output->set_output(json_encode(array(
+								"status"=> "fail"
+						)));
 					}
-					$sql5="INSERT INTO `Order_Header`(`Order_No`, `Qty`, `Item_id`, `Item_price`, `Name`, `Address`, `State`, `City`, `Pincode`, `Mobile`, `Order_status`, `Shipping_charge`, `Total_amount`, `Added_by`, `Added_on`, `isActive`)
-					VALUES ('$orderNo','$qty','$itemID','$charge','$name','$address','$state','$city','$pincode','$mobile','$desc','$rate','$netCharge','$userID',NOW(),1)";
-					$query5 = $this->db->query($sql5);
-					if($sql5){
-						///order reply 
-					}
-				}
+				
 			}
 		}
 	}

@@ -36,7 +36,6 @@
 								<input type="text" name="pincodeShipping" id="pincodeShipping" placeholder="Pincode">
 								<input type="text" name="mobileShipping" id="mobileShipping" placeholder="Mobile">
 							<a class="btn btn-primary" onClick="saveShippingAddress()">Save</a>
-							<a class="btn btn-primary" onClick="shippingOrderDetails()" >Continue</a>
 						</div>
 					</div>
 					<div class="col-sm-5 clearfix">
@@ -50,10 +49,13 @@
 							</div>
 						
 						</div>	
+						
+							<a class="btn btn-primary" onClick="shippingOrderDetails()" >Continue</a>
 					</div>					
 				</div>
 			</div>
 		</div>
+		</section>
 		<br>
 		<?php $this->load->view('data/global_footer.php');?>
 		<script>
@@ -117,12 +119,8 @@
 			}
 	  
 		  function orderReceivedReply(response){
-			  $('#loading').hide();
-		  var sqlresponse = JSON.parse(response);
-			  if(sqlresponse.status === "success"){
-				  	  ITEM_ID=sqlresponse.itemID;
-				  	popupmsg("Successfully saved!");
-			  }
+			  window.open("<?php echo base_url();?>home/ordermessage");
+			  
 			 
 		  }
 				

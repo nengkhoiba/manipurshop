@@ -64,9 +64,10 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('login.php');
 	}
-	public function order(){
-		$this->load->view('home/orderreceive');
+	public function ordermessage(){
+		$this->load->view('message');
 	}
+	
 }
 
 	
