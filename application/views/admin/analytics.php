@@ -50,8 +50,12 @@
 										  </select>
 										</div>
 										<div class="input-group form-group input-group-sm ">
-										  <span class="input-group-addon" id="sizing-addon1">Date</span>
-										  <input class="form-control" style="width:97%;" type="date" value="2018-03-28" id="dateOrder" name="dateOrder">										
+										  <span class="input-group-addon" id="sizing-addon1">Date From</span>
+										  <input class="form-control" id="dateFrom" name="dateFrom" style="width:97%;" type="date" value="2018-03-28" id="dateOrder" name="dateOrder">										
+										</div>
+										<div class="input-group form-group input-group-sm ">
+										  <span class="input-group-addon" id="sizing-addon1">Till Date</span>
+										  <input class="form-control" id="tillDate" name="tillDate" style="width:97%;" type="date" value="2018-03-28" id="dateOrder" name="dateOrder">										
 										</div>
 				                     
 										<div class="form-group">

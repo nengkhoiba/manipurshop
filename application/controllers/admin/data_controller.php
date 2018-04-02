@@ -859,5 +859,35 @@ class Data_controller extends CI_Controller {
 			)));
 		}
 	}
+	public function adsPublishTableSave(){
+		$adsid = mysql_real_escape_string(trim($_GET['id']));
+		$sql = "UPDATE Advertise SET Status=1 WHERE ID ='$adsid'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->output->set_output(json_encode(array (
+					"status"=>"success"
+			)));
+		}
+		else {
+			$this->output->set_output(json_encode(array (
+					"status"=>"fail"
+			)));
+		}
+	}
+	public function adsUnPublishTableSave(){
+		$adsid = mysql_real_escape_string(trim($_GET['id']));
+		$sql = "UPDATE Advertise SET Status=0 WHERE ID ='$adsid'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->output->set_output(json_encode(array (
+					"status"=>"success"
+			)));
+		}
+		else {
+			$this->output->set_output(json_encode(array (
+					"status"=>"fail"
+			)));
+		}
+	}
 }
 

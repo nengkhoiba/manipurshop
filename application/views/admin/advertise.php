@@ -296,7 +296,38 @@ $("html").on("dragover", function(e) {
 			  	loadAds();
 		  }
 	  }
-	
+	  function adsPublishFromTable(id){
+			var url = '<?php echo base_url();?>admin/data_controller/adsPublishTableSave?id='+id;
+			  callServiceToFetchData(url,adsPublishTableSaveReply);	
+		}
+		  function adsPublishTableSaveReply(response){
+			  $('#loading').hide();
+		  var sqlresponse = JSON.parse(response);
+			  if(sqlresponse.status === "success"){
+				  	popupmsg("Successfully Publish The Advertisment!");
+				  	loadAds();
+			  }
+			  if(sqlresponse.status === "fali"){
+				  	popupmsg("Something went wrong!");
+				  	loadAds();
+			  }
+		  }
+		  function adsUnPublishFromTable(id){
+				var url = '<?php echo base_url();?>admin/data_controller/adsUnPublishTableSave?id='+id;
+				  callServiceToFetchData(url,adsUnPublishTableSaveReply);	
+			}
+			  function adsUnPublishTableSaveReply(response){
+				  $('#loading').hide();
+			  var sqlresponse = JSON.parse(response);
+				  if(sqlresponse.status === "success"){
+					  	popupmsg("Successfully Unpublish The Advertisment!");
+					  	loadAds();
+				  }
+				  if(sqlresponse.status === "fali"){
+					  	popupmsg("Something went wrong!");
+					  	loadAds();
+				  }
+			  }
 	function popupmsg(message){
 		var msg="<div class='msgbox alert alert-danger ' >"+
 		   message+"</div>";
