@@ -95,7 +95,8 @@ function adsDetailsSave() {
 	  }
 	  //end form validation
 	  $('#loading').show();
-	  var url = '<?php echo base_url();?>admin/data_controller/adsDetailsSave?adsTit='+document.getElementById('adsTitle').value+'&adsDesc='+document.getElementById('adsDescription').value+'&link='+document.getElementById('adsLink').value+'&adsID='+document.getElementById('adsID').value;
+	  var link=encodeURIComponent(document.getElementById('adsLink').value);
+	  var url = '<?php echo base_url();?>admin/data_controller/adsDetailsSave?adsTit='+document.getElementById('adsTitle').value+'&adsDesc='+document.getElementById('adsDescription').value+'&link='+link+'&adsID='+document.getElementById('adsID').value;
 	  callServiceToFetchData(url,adsDetailsSaveReply);
 	  }
 
