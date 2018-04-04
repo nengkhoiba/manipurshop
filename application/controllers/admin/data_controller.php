@@ -237,13 +237,14 @@ class Data_controller extends CI_Controller {
 		$itemStock = mysql_real_escape_string(trim($_GET['itemStock']));
 		$itemDelivery = mysql_real_escape_string(trim($_GET['itemDelivery']));
 		$itemCode= mysql_real_escape_string(trim($_GET['itemCode']));
+		$handlingCharge = mysql_real_escape_string(trim($_GET['handlingCharge']));
 		$flag=mysql_real_escape_string(trim($_GET['postType']));
 		
 		$addedBy=$this->session->userdata("USERID");
 		
 		if($flag== 0){
-			$sql = "INSERT INTO Item(Code, Title, Category_id, Brand_id, Description, Item_stock, Delivery_Time, Added_by, Added_on, isActive)
-					 VALUES ('$itemCode','$itemName','$itemCategory','$itemBrand','$itemDesc','$itemStock','$itemDelivery','$addedBy',NOW(),1)";
+			$sql = "INSERT INTO Item(Code, Title, Category_id, Brand_id, Description, Item_stock, Delivery_Time,Handling_Charge, Added_by, Added_on, isActive)
+					 VALUES ('$itemCode','$itemName','$itemCategory','$itemBrand','$itemDesc','$itemStock','$itemDelivery','$handlingCharge',$addedBy',NOW(),1)";
 			$query= $this->db->query($sql);
 			if($query){
 				$sql1="SELECT ID FROM Item
@@ -279,6 +280,7 @@ class Data_controller extends CI_Controller {
 			Description='$itemDesc',
 			Item_stock='$itemStock',
 			Delivery_Time='$itemDelivery',
+			Handling_Charge='$handlingCharge',
 			Modified_by='$addedBy',
 			Modified_on=NOW()
 			WHERE ID='$flag'";
@@ -319,7 +321,7 @@ class Data_controller extends CI_Controller {
 	}
 	public function load_itemDetail(){
 		$itemId= mysql_real_escape_string(trim($_GET['id']));
-		$sql ="Select Code, Title, Category_id, Brand_id, Description, Item_stock, Delivery_Time, isPublish from Item where ID ='$itemId'";
+		$sql ="Select Code, Title, Category_id, Brand_id, Description, Item_stock, Delivery_Time,Handling_Charge, isPublish from Item where ID ='$itemId'";
 		$query = $this->db->query($sql);
 		if($query){
 			$data=array();
@@ -331,6 +333,7 @@ class Data_controller extends CI_Controller {
 				$data['desc']=$result['Description'];
 				$data['stock']=$result['Item_stock'];
 				$data['time']=$result['Delivery_Time'];
+				$data['handlingCharge'] = $result['Handling_Charge'];
 				$data['publish']=$result['isPublish'];
 				
 			}
@@ -889,5 +892,24 @@ class Data_controller extends CI_Controller {
 			)));
 		}
 	}
+	//oder status set
+	public function orderStatusSet(){
+		$orderID = mysql_real_escape_string(trim($_GET['orderID']));
+		$orderValue = mysql_real_escape_string(trim($_GET['status']));
+		$sql = "UPDATE `Order_Header` SET `Order_status`='$orderValue'
+				 WHERE ID = '$orderID'";
+		$query = $this->db->query($sql);
+		if($query){
+			$this->output->set_output(json_encode(array (
+					"status"=>"success"
+			)));
+		}
+		else {
+			$this->output->set_output(json_encode(array (
+					"status"=>"fail"
+			)));
+		}
+	}
+	//end order status set 
 }
 

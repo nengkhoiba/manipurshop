@@ -77,11 +77,15 @@
 										</div>
 										<div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Item Stock</span>
-										  <input id="itemStock" name="itemStock" type="text" class="form-control" placeholder="Item Stock" aria-describedby="sizing-addon1">
+										  <input id="itemStock" name="itemStock" type="number" class="form-control" placeholder="Item Stock" aria-describedby="sizing-addon1">
 										</div>
 					                     <div class="input-group form-group input-group-sm">
 										  <span class="input-group-addon" id="sizing-addon1">Delivery Time</span>
-										  <input id="itemDelivery" name="itemDelivery" type="text" class="form-control" placeholder="In Hours" aria-describedby="sizing-addon1">
+										  <input id="itemDelivery" name="itemDelivery" type="number" class="form-control" placeholder="In Hours" aria-describedby="sizing-addon1">
+										</div>
+										 <div class="input-group form-group input-group-sm">
+										  <span class="input-group-addon" id="sizing-addon1">Handling Charge</span>
+										  <input id="itemHandlingCharge" name="itemHandlingCharge" type="number" class="form-control" placeholder="Handling Charge" aria-describedby="sizing-addon1">
 										</div>
 					              		 <a style="cursor:pointer" onclick="iteminfoSave()" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-tags"> </span>&nbsp;Save To Drafts </a>                   
 				                     		
@@ -319,12 +323,17 @@ var ITEM_ID=0;
 		   popupmsg("Please enter Item Delivery Time!");
         return;	 
 	  }
+	   else if (document.getElementById('itemHandlingCharge').value.trim()==""){
+			  
+		   popupmsg("Please enter Item Handling Charge!");
+        return;	 
+	  }
 		 else{
 		 document.getElementById('msgbox').innerHTML="";
 		 }
 	  //end form validation
 	  $('#loading').show();
-	  var url = '<?php echo base_url();?>admin/data_controller/itemInfo?itemCode='+document.getElementById('itemCode').value+'&itemCategory='+document.getElementById('itemCategory').value+'&itemBrand='+document.getElementById('itemBrand').value+'&itemName='+document.getElementById('itemName').value+'&itemDesc='+document.getElementById('itemDesc').value+'&itemStock='+document.getElementById('itemStock').value+'&itemDelivery='+document.getElementById('itemDelivery').value+'&postType='+ITEM_ID;
+	  var url = '<?php echo base_url();?>admin/data_controller/itemInfo?itemCode='+document.getElementById('itemCode').value+'&itemCategory='+document.getElementById('itemCategory').value+'&itemBrand='+document.getElementById('itemBrand').value+'&itemName='+document.getElementById('itemName').value+'&itemDesc='+document.getElementById('itemDesc').value+'&itemStock='+document.getElementById('itemStock').value+'&itemDelivery='+document.getElementById('itemDelivery').value+'&handlingCharge='+document.getElementById('itemHandlingCharge').value+'&postType='+ITEM_ID;
 	  callServiceToFetchData(url,itemInfosaveReply);
 	  }
 
@@ -364,6 +373,7 @@ var ITEM_ID=0;
 				     document.getElementById('itemDesc').value=sqlresponse.desc;
 				     document.getElementById('itemStock').value=sqlresponse.stock;
 				     document.getElementById('itemDelivery').value=sqlresponse.time;
+				     document.getElementById('itemHandlingCharge').value=sqlresponse.handlingCharge;
 		  }
 
 	  function enablePublish(id){
