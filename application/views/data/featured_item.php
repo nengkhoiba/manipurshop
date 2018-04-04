@@ -19,14 +19,14 @@ $query = $this->db->query($sql);
 if($query){
 	while ($result = mysql_fetch_array($query->result_id)){
 		?>
-                        <div style="cursor: pointer;" class="col-sm-4" onclick="itemClick('<?php echo $result['ID']; ?>')">
+                        <div style="cursor: pointer;" class="col-sm-4" >
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="<?php echo base_url();?><?php echo $result['ImageUrl']; ?>" alt="" />
+										<img onclick="itemClick('<?php echo $result['ID']; ?>')" src="<?php echo base_url();?><?php echo $result['ImageUrl']; ?>" alt="" />
 										<h2>₹ <?php echo $result['Price']; ?></h2>
 										<p><?php echo $result['Title']; ?></p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<a onclick="addToCart(<?php echo $result['ID']?>)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 								</div>
 								
