@@ -1,8 +1,9 @@
-<?php $this->load->view('data/global_header.php');?>
+<?php $this->load->view('data/mini_header.php');?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-6">
+			<h3>Privacy Policy</h3>
 			Amazon.in Privacy Notice
 
 Amazon.in knows that you care how information about you is used and shared and we appreciate your trust in us to do that carefully and sensibly. This notice describes the privacy policy of Amazon.in. By visiting Amazon.in, you are accepting and consenting to the practices described in this Privacy Notice.

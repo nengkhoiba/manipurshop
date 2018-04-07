@@ -1,5 +1,5 @@
-<?php $this->load->view('data/global_header.php');?>
-	 <div id="contact-page" class="container">
+<?php $this->load->view('data/mini_header.php');?>
+<div id="contact-page" class="container">
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			

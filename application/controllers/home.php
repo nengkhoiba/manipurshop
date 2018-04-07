@@ -113,6 +113,9 @@ class Home extends CI_Controller {
 	public function storelocation(){
 		$this->load->view('store_location.php');
 	}
+	public function faq(){
+		$this->load->view('faq.php');
+	}
 }
 
 	
