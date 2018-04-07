@@ -58,20 +58,7 @@
 						</div>
 				
 					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-							<?php if($this->session->userdata('LOGIN')){?>
-								<li><a href="<?php echo base_url();?>home/cart"><i class="fa fa-shopping-cart"></i> Cart(<?php $userid=$this->session->userdata('ID'); echo $this->db->query("SELECT * FROM Cart WHERE Added_by='$userid'")->num_rows();?>)</a></li>
-								
-									<li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-lock"></i> Logout (<?php echo $this->session->userdata('USERNAME');?>)</a></li>
-								<?php } else {?>
-								<li><a href="<?php echo base_url();?>home/cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								
-								<li><a href="<?php echo base_url();?>login"><i class="fa fa-lock"></i> Login</a></li><?php }?>
-							</ul>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div><!--/header-middle-->
@@ -80,14 +67,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<div class="search_box pull-right">
-							<input type="text" id="itemSearch" name="itemSearch" placeholder="Search"/>
-								<span class="input-group-btn">
-       								 <button class="btn btn-search" type="button" onclick="itemSearchBtn()"><i class="fa fa-search fa-fw"></i></button>
-      							</span>
-						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
+<div class="container">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115894.01660192745!2d93.86636978389053!3d24.80613429642649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3749265bf16390db%3A0x19499aae263c5424!2sImphal%2C+Manipur!5e0!3m2!1sen!2sin!4v1523109926560" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<?php $this->load->view('data/global_footer.php');?>

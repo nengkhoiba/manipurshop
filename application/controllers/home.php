@@ -67,7 +67,52 @@ class Home extends CI_Controller {
 	public function ordermessage(){
 		$this->load->view('message');
 	}
-	
+	public function shop(){
+		$searchValue = mysql_real_escape_string(trim($_GET['q']));
+		$category = mysql_real_escape_string(trim($_GET['c']));
+		$brand = mysql_real_escape_string(trim($_GET['b']));
+		$price = mysql_real_escape_string(trim($_GET['p']));
+		if(isset($searchValue)){
+			$data['q']=$searchValue;
+			$data['c']=$category;
+			$data['b']=$brand;
+			$data['p']=$price;
+			$this->load->view('shop',$data);
+		}
+		else{
+			$data['q']= "";
+			$data['c']= "";
+			$data['b']= "";
+			$data['p']= "";
+			$this->load->view('shop',$data);
+		}
+	}
+	public function contact(){
+		$this->load->view('contact');
+	}
+	public function orderStatus(){
+		if($this->session->userdata('LOGIN')){
+			$this->load->view('orderstatus.php');
+		}
+		else{
+			redirect('login');
+		}
+	}
+	public function termandcondition(){
+		$this->load->view('term_and_conditions.php');
+	}
+	public function privacypolicy(){
+		$this->load->view('privacy_policy.php');
+	}
+	public function refundpolicy(){
+		$this->load->view('refund_policy.php');
+	}
+	public function companyinfo(){
+		$this->load->view('company_information.php');
+	}
+	public function storelocation(){
+		$this->load->view('store_location.php');
+	}
 }
 
 	

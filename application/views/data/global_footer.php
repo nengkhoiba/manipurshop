@@ -13,10 +13,8 @@
 						<div class="single-widget">
 							<h2>Service</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
+								<li><a href="<?php echo base_url();?>home/contact">Contact Us</a></li>
+								<li><a href="<?php echo base_url();?>home/orderStatus">Order Status</a></li>
 								<li><a href="#">FAQ’s</a></li>
 							</ul>
 						</div>
@@ -45,11 +43,9 @@
 						<div class="single-widget">
 							<h2>Policies</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
+								<li><a href="<?php echo base_url();?>home/termandcondition">Terms & Condition</a></li>
+								<li><a href="<?php echo base_url();?>home/privacypolicy">Privecy Policy</a></li>
+								<li><a href="<?php echo base_url();?>home/refundpolicy">Refund Policy</a></li>
 							</ul>
 						</div>
 					</div>
@@ -57,11 +53,8 @@
 						<div class="single-widget">
 							<h2>About Murolen</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
+								<li><a href="<?php echo base_url();?>home/companyinfo">Company Information</a></li>
+								<li><a href="<?php echo base_url();?>home/storelocation">Store Location</a></li>
 							</ul>
 						</div>
 					</div>
@@ -132,19 +125,12 @@ function popupmsg(message){
      document.getElementById('msgbox').innerHTML=msg;
      $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
 }
-function itemSearch(){
-	  var url = '<?php echo base_url();?>product_data/itemSearch?searchValue='+document.getElementById('itemSearch').value;
-	  callServiceToFetchData(url,searchItemReply);	
+function itemSearchBtn(){
+	
+	  var url = '<?php echo base_url();?>home/shop?q='+document.getElementById('itemSearch').value;
+	  window.open(url,'_self');
 }
-function searchItemReply(response){
-	var sqlresponse = JSON.parse(response);
-		  if(sqlresponse.status === "success"){		  
-			  popupmsg("Successfully Added!");
-		  }
-		  if(sqlresponse.status === "fail"){
-			  popupmsg("Item not found!");
-		  }
-	}
+
 	</script>
 
   
