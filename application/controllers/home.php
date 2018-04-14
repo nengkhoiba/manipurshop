@@ -116,6 +116,9 @@ class Home extends CI_Controller {
 	public function faq(){
 		$this->load->view('faq.php');
 	}
+	public function mail(){
+		$this->load->view('mail_sent_order_receive.html');
+	}
 }
 
 	
