@@ -21,6 +21,7 @@
 	<th>Shipping Charge</th>
 	<th>Total Amount</th>
 	<th>Action</th>
+	<th>Print Detail</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -64,7 +65,7 @@
 				<td><?php echo $result['Shipping_charge'];?></td>
 				<td><a class="label label-success"><?php echo $result['Total_amount'];?></a></td>
 				<td><i style="cursor: pointer" class="fa fa-remove"></i></td>
-				
+				<td><a onClick="popupOrder('<?php echo $result['ID'];?>')" ><i style="cursor: pointer" class="fa fa-print" ></i></a></td>
 			</tr>
 			
 	<?php }
@@ -73,6 +74,26 @@
 	
 	                                    </tbody>
 	                                </table>
+	                                
+	                                
+	                                <!-- Modal -->
+									  <div class="modal fade" id="myOrderModal" role="dialog">
+									    <div class="modal-dialog modal-lg">
+									      <div class="modal-content">
+									        <div class="modal-header">
+									          <button type="button" class="close" data-dismiss="modal">&times;</button>
+									          <h4 class="modal-title">Order Details</h4>
+									        </div>
+									        <div id="orderContainer" class="modal-body">
+									        
+									        </div>
+									        <div class="modal-footer">
+									          <button type="button" class="btn btn-default" data-dismiss="modal">Print</button>
+									          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        </div>
+									      </div>
+									    </div>
+									  </div>
 </div>
 <?php $this->load->view('admin/global/footer.php')?>
  <script>
@@ -85,11 +106,9 @@
  var orderStatus = 0;
  function orderConfirm(id){
 	 orderStatus=4;
-	 var url = "<?php echo base_url();?>admin/data_controller/orderStatusSet?orderID="id+"&status="+orderStatus;
+	 var url = "<?php echo base_url();?>admin/data_controller/orderStatusSet?orderID="+id+"&status="+orderStatus;
 	 callServiceToFetchData(url,confirmOrderStatusReply);
  }
-
-
 
  function confirmOrderStatusReply(response){
  var sqlresponse = JSON.parse(response);
@@ -107,4 +126,28 @@
 	     document.getElementById('msgbox').innerHTML=msg;
 	     $(".msgbox").fadeTo(1500, 500).slideUp(500, function(){(".msgbox").slideUp(500);});
 	}
+
+function popupOrder(id){
+	 var url = "<?php echo base_url();?>admin/data_controller/orderPrint?orderPrintId="+id;
+	 var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+	  					$('#loading').hide();
+	  					document.getElementById('orderContainer').innerHTML = xmlHttp.responseText;
+	  					$('#myOrderModal').modal("show");
+	  				
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}}
+
  </script>

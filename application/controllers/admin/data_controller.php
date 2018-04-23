@@ -911,5 +911,12 @@ class Data_controller extends CI_Controller {
 		}
 	}
 	//end order status set 
+	//order print
+	public function orderPrint(){
+		$printId = $_GET['orderPrintId'];
+		$data['ordPrintId']= $printId;
+		$this->load->view('admin/data_fragment/order_print',$data);
+	}
+	//end order print
 }
 
