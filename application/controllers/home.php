@@ -72,18 +72,13 @@ class Home extends CI_Controller {
 		$category = mysql_real_escape_string(trim($_GET['c']));
 		$brand = mysql_real_escape_string(trim($_GET['b']));
 		$price = mysql_real_escape_string(trim($_GET['p']));
+		$page = mysql_real_escape_string(trim($_GET['per_page']));
 		if(isset($searchValue)){
 			$data['q']=$searchValue;
 			$data['c']=$category;
 			$data['b']=$brand;
 			$data['p']=$price;
-			$this->load->view('shop',$data);
-		}
-		else{
-			$data['q']= "";
-			$data['c']= "";
-			$data['b']= "";
-			$data['p']= "";
+			$data['per_page']=$page;
 			$this->load->view('shop',$data);
 		}
 	}
@@ -112,6 +107,66 @@ class Home extends CI_Controller {
 	}
 	public function storelocation(){
 		$this->load->view('store_location.php');
+	}
+	public function search(){
+		$this->load->library('pagination');
+		$this->load->model('search_model','database');
+		
+		$param=$_GET['q'];
+		$cat=$_GET['c'];
+		$brand=$_GET['b'];
+		$price=$_GET['p'];
+		$page=$_GET['per_page'];
+		if($_GET['per_page']=="")$page=1;
+		 
+		$end=$page*3;
+		$start=$end-3;
+		
+		$result = $this->database->searchproduct($end,$start,$param,$cat,$brand,$price);
+		 
+		$search ="?q=".$param."&c=".$cat."&b=".$brand."&p="+$price+"&per_page="+$page;
+		
+		 
+		$config['base_url'] = site_url('home/search'.$search);
+		$config['total_rows'] = sizeof($result);
+		$config['use_page_numbers'] = TRUE;
+		$config['page_query_string'] = TRUE;
+		$config['per_page'] = "3";
+		$config["uri_segment"] = 3;
+		//	$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
+		$choice = $config["total_rows"] / $config["per_page"];
+		$config["num_links"] = 3;
+		
+		//config for bootstrap pagination class integration
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = 'First';
+		$config['last_link'] = 'Last';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = '&laquo';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = '&raquo';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		
+		$this->pagination->initialize($config);
+		$data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		
+		//call the model function
+		$data['productlist'] = $this->database->get_product_list($end, $start,$param,$cat,$brand,$price);
+		
+		$data['pagination'] = $this->pagination->create_links();
+		
+		//load theview
+		$this->load->view('shop',$data);
 	}
 }
 

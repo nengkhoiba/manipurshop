@@ -77,10 +77,10 @@
 				                      User List
 				                    </div>
 				                    <div class="panel-body">
-<div class="" id="userContainer">
-<?php $this->load->view('admin/data_fragment/user_data')?>
-</div>
-</div>
+										<div class="" id="userContainer">
+											<?php $this->load->view('admin/data_fragment/user_data')?>
+										</div>
+									</div>
 </div>
 </div>
 <?php $this->load->view('admin/global/footer.php');?>

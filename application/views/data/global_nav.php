@@ -10,7 +10,7 @@
                                        				?>
                                        					<div class="panel panel-default">
 														<div class="panel-heading">
-															<h4 class="panel-title"><a href="<?php echo base_url();?>home/shop?q='<?php echo $result['ID'];?>;"><?php echo $result['Description']; ?></a></h4>
+															<h4 class="panel-title"><a onclick="addcat('<?php echo $result['ID'];?>')"><?php echo $result['Description']; ?></a></h4>
 														</div>
 													</div>
                                        				<?php
@@ -30,7 +30,7 @@
                                        		if($query){
                                        			while ($result = mysql_fetch_array($query->result_id)){
                                        				?>
-													<li><a href="<?php echo base_url();?>home/shop?q='+document.getElementById('itemSearch').value;"> <span class="pull-right">(<?php echo $result['ItemCount']; ?>)</span><?php echo $result['Description']; ?></a></li>
+													<li><a onclick="addBrand('<?php echo $result['ID'];?>')" > <span class="pull-right">(<?php echo $result['ItemCount']; ?>)</span><?php echo $result['Description']; ?></a></li>
                                        				<?php
                                        			}
                                        		}

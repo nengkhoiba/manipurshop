@@ -84,6 +84,21 @@
 		
 	</footer><!--/Footer-->
 	<script>
+	var selectedCategory="<?php if(ISSET($_GET['c'])){echo $_GET['c'];}?>";
+	var selectedBrand="<?php if(ISSET($_GET['b'])){echo $_GET['b'];}?>";
+	var selectedPrice="<?php if(ISSET($_GET['p'])){echo $_GET['p'];}?>";
+	function addcat(val){
+		selectedCategory=val;
+		itemSearchBtn();
+		}
+	function addBrand(val){
+		selectedBrand=val;
+		itemSearchBtn();
+	}	
+	function addPrice(val){
+		selectedPrice=val;
+		itemSearchBtn();
+	}
 	function addToCart(id){
 			  //run form validation
 			
@@ -127,7 +142,7 @@ function popupmsg(message){
 }
 function itemSearchBtn(){
 	
-	  var url = '<?php echo base_url();?>home/shop?q='+document.getElementById('itemSearch').value;
+	  var url = '<?php echo base_url();?>home/search?q='+document.getElementById('itemSearch').value+'&c='+selectedCategory+'&b='+selectedBrand+'&p='+selectedPrice+'&per_page=1';
 	  window.open(url,'_self');
 }
 

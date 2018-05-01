@@ -81,7 +81,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="search_box pull-right">
-							<input type="text" id="itemSearch" name="itemSearch" placeholder="Search"/>
+							<input type="text" id="itemSearch" name="itemSearch" placeholder="Search" value="<?php if(ISSET($_GET['q'])){echo $_GET['q'];}?>"/>
 								<span class="input-group-btn">
        								 <button class="btn btn-search" type="button" onclick="itemSearchBtn()"><i class="fa fa-search fa-fw"></i></button>
       							</span>
