@@ -79,14 +79,17 @@
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-12">
-						<div class="search_box pull-right">
-							<input type="text" id="itemSearch" name="itemSearch" placeholder="Search" value="<?php if(ISSET($_GET['q'])){echo $_GET['q'];}?>"/>
-								<span class="input-group-btn">
-       								 <button class="btn btn-search" type="button" onclick="itemSearchBtn()"><i class="fa fa-search fa-fw"></i></button>
-      							</span>
-						</div>
-					</div>
+				<div id="custom-search-input">
+                            <div class="input-group col-md-8 pull-right">
+                                <input onkeypress="return runScript(event)" type="text" id="itemSearch" class="search-query form-control" placeholder="Search" value="<?php if(ISSET($_GET['q'])){echo $_GET['q'];}?>" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button" onclick="itemSearchBtn()" >
+                                        <span class="fa fa-search fa-fw"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+					
 				</div>
 			</div>
 		</div><!--/header-bottom-->

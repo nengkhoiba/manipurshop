@@ -42,7 +42,7 @@
 						<div class="price-range"><!--price-range-->
 							<h2>Price Range</h2>
 							<div class="well text-center">
-								 <input type="text" class="span2" name="price" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="5" data-slider-value="[0,10000]" id="sl2" ><br />
+								 <input type="text" class="priceRange" name="priceRange" value=""  data-slider-min="0" data-slider-max="10000" data-slider-step="5" data-slider-value="[0,10000]" id="sl2" ><br />
 								 <b class="pull-left">₹ 0</b> <b class="pull-right">₹ 10000</b>
 							</div>
 						</div><!--/price-range-->

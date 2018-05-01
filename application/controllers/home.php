@@ -119,19 +119,18 @@ class Home extends CI_Controller {
 		$page=$_GET['per_page'];
 		if($_GET['per_page']=="")$page=1;
 		 
-		$end=$page*3;
-		$start=$end-3;
+		$end=$page*9;
+		$start=$end-9;
 		
-		$result = $this->database->searchproduct($end,$start,$param,$cat,$brand,$price);
+		$result = $this->database->searchproduct($param,$cat,$brand,$price);
 		 
-		$search ="?q=".$param."&c=".$cat."&b=".$brand."&p="+$price+"&per_page="+$page;
-		
+		$search ="?q=".$param."&c=".$cat."&b=".$brand."&p=".$price."&per_page=".$page;
 		 
 		$config['base_url'] = site_url('home/search'.$search);
-		$config['total_rows'] = sizeof($result);
+		$config['total_rows'] = $result;
 		$config['use_page_numbers'] = TRUE;
 		$config['page_query_string'] = TRUE;
-		$config['per_page'] = "3";
+		$config['per_page'] = "9";
 		$config["uri_segment"] = 3;
     	$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
 		$choice = $config["total_rows"] / $config["per_page"];
@@ -164,7 +163,7 @@ class Home extends CI_Controller {
 		$data['productlist'] = $this->database->get_product_list($end, $start,$param,$cat,$brand,$price);
 		
 		$data['pagination'] = $this->pagination->create_links();
-		
+		//echo $this->pagination->create_links();
 		//load theview
 		$this->load->view('shop',$data);
 				}

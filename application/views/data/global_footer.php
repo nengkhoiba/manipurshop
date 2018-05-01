@@ -94,11 +94,13 @@
 	function addBrand(val){
 		selectedBrand=val;
 		itemSearchBtn();
+		alert(document.getElementsByName('priceRange').getAttribute(''));
 	}	
 	function addPrice(val){
 		selectedPrice=val;
 		itemSearchBtn();
 	}
+
 	function addToCart(id){
 			  //run form validation
 			
@@ -144,6 +146,20 @@ function itemSearchBtn(){
 	
 	  var url = '<?php echo base_url();?>home/search?q='+document.getElementById('itemSearch').value+'&c='+selectedCategory+'&b='+selectedBrand+'&p='+selectedPrice+'&per_page=1';
 	  window.open(url,'_self');
+}
+function itemClick(id){
+	window.open("<?php echo base_url();?>home/product?id="+id);
+	}
+function addToCart(id){
+	
+	  var url = '<?php echo base_url();?>product_data/addToCart?qty=1&prodID='+id;
+	  callServiceToFetchData(url,addToCartReply);
+}
+function runScript(e) {
+    if (e.keyCode == 13) {
+    	itemSearchBtn();
+        return false;
+    }
 }
 
 	</script>

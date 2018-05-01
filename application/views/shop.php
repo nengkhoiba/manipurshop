@@ -26,7 +26,7 @@
                                        			}
                                        		
                                        ?>
-                                       <?php echo $pagination; ?>
+                                      
 				</div>
 			</div>
 			<div class="row">

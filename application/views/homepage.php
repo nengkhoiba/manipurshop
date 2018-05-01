@@ -51,12 +51,5 @@
 	</section>
 	<?php $this->load->view('data/global_footer');?>
 	<script>
-	function itemClick(id){
-		window.open("<?php echo base_url();?>home/product?id="+id);
-		}
-	function addToCart(id){
-		
-		  var url = '<?php echo base_url();?>product_data/addToCart?qty=1&prodID='+id;
-		  callServiceToFetchData(url,addToCartReply);
-	}
+	
 	</script>
