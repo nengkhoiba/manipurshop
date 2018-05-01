@@ -65,8 +65,8 @@ Item.Title as title, s.Rate as Ship_Charge
 							<tr>
 								<th>Address:</td>
 								<td><?php  echo $result['Address'];?></td>
-								<td><?php  echo $result['State'];?></td>
-								<td><?php  echo $result['City'];?></td>
+								<td><?php  echo $result['State'];?><br>
+								<?php  echo $result['City'];?><br>
 								<?php  echo $result['Pincode'];?>
 								</td>
 							</tr>
