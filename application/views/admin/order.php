@@ -20,7 +20,6 @@
 	<th>Order Status</th>
 	<th>Shipping Charge</th>
 	<th>Total Amount</th>
-	<th>Action</th>
 	<th>Print Detail</th>
 	</tr>
 	</thead>
@@ -64,7 +63,6 @@
 				
 				<td><?php echo $result['Shipping_charge'];?></td>
 				<td><a class="label label-success"><?php echo $result['Total_amount'];?></a></td>
-				<td><i style="cursor: pointer" class="fa fa-remove"></i></td>
 				<td><a onClick="popupOrder('<?php echo $result['ID'];?>')" ><i style="cursor: pointer" class="fa fa-print" ></i></a></td>
 			</tr>
 			
@@ -88,7 +86,7 @@
 									        
 									        </div>
 									        <div class="modal-footer">
-									          <button type="button" class="btn btn-default" data-dismiss="modal">Print</button>
+									          <button onclick="printOrder()" type="button" class="btn btn-default" data-dismiss="modal">Print</button>
 									          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									        </div>
 									      </div>
@@ -99,10 +97,32 @@
  <script>
  $(document).ready (function(){
 	  $('#order').addClass('menu-top-active');
-	
-	 // $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);});
  });
 
+ //print order
+
+ function printOrder(){
+	 $("#orderContainer").printThis({
+		  debug: false,               // show the iframe for debugging
+		  importCSS: true,            // import page CSS
+		  importStyle: false,         // import style tags
+		  printContainer: true,       // grab outer container as well as the contents of the selector
+		  loadCSS: "path/to/my.css",  // path to additional css file - use an array [] for multiple
+		  pageTitle: "",              // add title to print page
+		  removeInline: false,        // remove all inline styles from print elements
+		  printDelay: 333,            // variable print delay
+		  header: null,               // prefix to html
+		  footer: null,               // postfix to html
+		  base: false ,               // preserve the BASE tag, or accept a string for the URL
+		  formValues: true,           // preserve input/form values
+		  canvas: false,              // copy canvas elements (experimental)
+		  doctypeString: "...",       // enter a different doctype for older markup
+		  removeScripts: false,       // remove script tags from print content
+		  copyTagClasses: false       // copy classes from the html & body tag
+		});
+}
+
+ //end print order
  var orderStatus = 0;
  function orderConfirm(id){
 	 orderStatus=4;
