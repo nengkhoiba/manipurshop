@@ -1,9 +1,10 @@
-<?php $this->load->view('data/global_header.php');?>
+<?php $this->load->view('data/mini_header.php');?>
 <div class="container ">
 	<div class="row">
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-6">
+			<h3>Terms & Conditions</h3>
 			<p>
 				Conditions of Use
 

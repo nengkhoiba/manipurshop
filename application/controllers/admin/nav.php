@@ -66,6 +66,9 @@ class Nav extends CI_Controller {
 	public function ads(){
 		$this->load->view('admin/ads');
 	}
+	/*public function orderPopup(){
+		$this->load->view('admin/data/order_print');
+	}*/
 }
 
 	

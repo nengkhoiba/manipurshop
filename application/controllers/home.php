@@ -133,7 +133,7 @@ class Home extends CI_Controller {
 		$config['page_query_string'] = TRUE;
 		$config['per_page'] = "3";
 		$config["uri_segment"] = 3;
-		//	$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
+    	$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
 		$choice = $config["total_rows"] / $config["per_page"];
 		$config["num_links"] = 3;
 		
@@ -167,6 +167,12 @@ class Home extends CI_Controller {
 		
 		//load theview
 		$this->load->view('shop',$data);
+				}
+	public function faq(){
+		$this->load->view('faq.php');
+	}
+	public function mail(){
+		$this->load->view('mail_sent_order_receive.html');
 	}
 }
 
