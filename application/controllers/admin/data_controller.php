@@ -244,7 +244,7 @@ class Data_controller extends CI_Controller {
 		
 		if($flag== 0){
 			$sql = "INSERT INTO Item(Code, Title, Category_id, Brand_id, Description, Item_stock, Delivery_Time,Handling_Charge, Added_by, Added_on, isActive)
-					 VALUES ('$itemCode','$itemName','$itemCategory','$itemBrand','$itemDesc','$itemStock','$itemDelivery','$handlingCharge',$addedBy',NOW(),1)";
+					 VALUES ('$itemCode','$itemName','$itemCategory','$itemBrand','$itemDesc','$itemStock','$itemDelivery','$handlingCharge',$addedBy,NOW(),1)";
 			$query= $this->db->query($sql);
 			if($query){
 				$sql1="SELECT ID FROM Item
